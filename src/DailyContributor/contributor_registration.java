@@ -27,8 +27,10 @@ public class contributor_registration extends JFrame implements ActionListener, 
 
 	private JTextArea txtrAddress;
 	String [] account_type={"Select Bank type","Saving","Current","Domicilary Account","Non Resident Nigerian (NRN)","Fixed Deposit Account"};
-	
-	
+	int num=0001;
+	//String txt= "ggtc"+num;
+	String txting = "ggtc";
+	String txt1=txting.toUpperCase();
 	private JTextField txtDate, txtTime, txtstaffID, txtfName, txtemail,
 			txtpNumber, txtnkNumber, txtnkName,txtaName, txtaNumber, txtbName,
 			txttype;
@@ -37,7 +39,7 @@ public class contributor_registration extends JFrame implements ActionListener, 
 
 	private JComboBox jcmbaType;
 
-	JButton btnSave, btnRemove, btnPreview, btnExit, btnModify, btnNew,
+	JButton btnSave, btnRemove, btnPreview, btnExit, btnModify, btnNew,btnOk,
 			btnSearch;
 
 	private java.util.Date currDate = new java.util.Date(); // Creating Object.
@@ -111,9 +113,10 @@ public class contributor_registration extends JFrame implements ActionListener, 
 		lblcId.setForeground(Color.white);
 		lblcId.setFont(new Font("Times New Roman", Font.ITALIC, 16));
 		pAdmin.add(lblcId).setBounds(10, 16, 180, 120);
-		String txt= "ggtc";
+		String txt= "ggtc1";
 		String txt1=txt.toUpperCase();
 		txtstaffID = new JTextField(txt1);
+		txtstaffID.setEditable(false);
 		txtstaffID.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
 		txtstaffID.setFont(new Font("Times New Roman", Font.ITALIC, 13));
 		txtstaffID.addKeyListener (new KeyAdapter () {
@@ -131,10 +134,23 @@ public class contributor_registration extends JFrame implements ActionListener, 
 		);
 		pAdmin.add(txtstaffID).setBounds(90, 68, 130, 20);
 		
+		
+		btnOk = new JButton(new ImageIcon("images//sam.gif"));
+		pAdmin.add(btnOk).setBounds(214, 65, 38, 25);
+		btnOk.addActionListener(this);
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		lblcfName = new JLabel("<html><b>Full Name :</i></b></html>");
 		lblcfName.setForeground(Color.white);
 		lblcfName.setFont(new Font("Times New Roman", Font.ITALIC, 14));
-		pAdmin.add(lblcfName).setBounds(10, 45, 180, 120);
+		//pAdmin.add(lblcfName).setBounds(10, 45, 180, 120);
 		txtfName = new JTextField();
 		txtfName.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
 		txtfName.addKeyListener(new KeyAdapter() {
@@ -149,12 +165,12 @@ public class contributor_registration extends JFrame implements ActionListener, 
 
 			}
 		});
-		pAdmin.add(txtfName).setBounds(90, 96, 340, 20);
+		//pAdmin.add(txtfName).setBounds(90, 96, 340, 20);
 	
 		lblEmail = new JLabel("<html><b>Email :</i></b></html>");
 		lblEmail.setForeground(Color.white);
 		lblEmail.setFont(new Font("Times New Roman", Font.ITALIC, 16));
-		pAdmin.add(lblEmail).setBounds(10, 75, 180, 120);
+		//pAdmin.add(lblEmail).setBounds(10, 75, 180, 120);
 		txtemail = new JTextField();
 		txtemail.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
 		txtemail.addKeyListener(new KeyAdapter() {
@@ -174,12 +190,12 @@ public class contributor_registration extends JFrame implements ActionListener, 
 
 			}
 		});
-		pAdmin.add(txtemail).setBounds(90, 125, 230, 20);
+		//pAdmin.add(txtemail).setBounds(90, 125, 230, 20);
 	
 		lblpNumber = new JLabel("<html><b>Phone Num:</i></b></html>");
 		lblpNumber.setForeground(Color.white);
 		lblpNumber.setFont(new Font("Times New Roman", Font.ITALIC, 13));
-		pAdmin.add(lblpNumber).setBounds(10, 156, 180, 20);
+		//pAdmin.add(lblpNumber).setBounds(10, 156, 180, 20);
 		txtpNumber = new JTextField();
 		txtpNumber.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent ke) {
@@ -194,27 +210,27 @@ public class contributor_registration extends JFrame implements ActionListener, 
 			}
 		});
 		txtpNumber.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
-		pAdmin.add(txtpNumber).setBounds(90,158,230,20);
+		//pAdmin.add(txtpNumber).setBounds(90,158,230,20);
 		
 		
 		lblGender = new JLabel("<html><b>Gender :</i></b></html>");
 		lblGender.setFont(new Font("Times New Roman", Font.ITALIC, 14));
 		lblGender.setForeground(Color.white);
-		pAdmin.add(lblGender).setBounds(10, 190, 100, 20);
+		//pAdmin.add(lblGender).setBounds(10, 190, 100, 20);
 	
 
 		cbmf = new CheckboxGroup();
 		cbm = new Checkbox("Male", cbmf, true);
 		cbf = new Checkbox("Female", cbmf, false);
-		cbm.setBounds(94, 225, 50, 15);
-		add(cbm);
-		cbf.setBounds(190, 225, 80, 15);
-		add(cbf);
+	//	cbm.setBounds(94, 225, 50, 15);
+		//add(cbm);
+		//cbf.setBounds(190, 225, 80, 15);
+		//add(cbf);
 
 		lblrAddress = new JLabel("<html><b>Res. Address:</i></b></html>");
 		lblrAddress.setFont(new Font("Times New Roman", Font.ITALIC, 14));
 		lblrAddress.setForeground(Color.white);
-		pAdmin.add(lblrAddress).setBounds(10, 220, 80, 25);
+		//pAdmin.add(lblrAddress).setBounds(10, 220, 80, 25);
 
 
 		//JScrollPane p=new JScrollPane();
@@ -239,88 +255,114 @@ public class contributor_registration extends JFrame implements ActionListener, 
 		txtrAddress.setWrapStyleWord(true);
 		txtrAddress.setLineWrap(true);
 		txtrAddress.setFont(new Font("Times New Roman", Font.ITALIC, 14));
-		txtrAddress.setBounds(90, 224, 370, 100);
+		//txtrAddress.setBounds(90, 224, 370, 100);
 		pAdmin.add(txtrAddress);
 		
 		lblnkName = new JLabel("<html><i><b>Next of Kin Name :</i></b></html>");
 		lblnkName.setForeground(Color.white);
 		lblnkName.setFont(new Font("Times New Roman", Font.ITALIC, 12));
-		pAdmin.add(lblnkName).setBounds(0, 280, 180, 120);
+		//pAdmin.add(lblnkName).setBounds(0, 280, 180, 120);
 		txtnkName= new JTextField();
 		txtnkName.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
 		txtnkName.setFont(new Font("Algerian", Font.ITALIC, 14));
-		pAdmin.add(txtnkName).setBounds(90, 332, 290, 20);
+		//pAdmin.add(txtnkName).setBounds(90, 332, 290, 20);
 		
 		lblnkNumber = new JLabel("<html><i><b>Next of Kin Number :</i></b></html>");
 		lblnkNumber.setForeground(Color.white);
 		lblnkNumber.setFont(new Font("Times New Roman", Font.ITALIC, 13));
-		pAdmin.add(lblnkNumber).setBounds(0,310, 180, 120);
+		//pAdmin.add(lblnkNumber).setBounds(0,310, 180, 120);
 		txtnkNumber = new JTextField();
+		txtnkNumber.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent ke) {
+				char c = ke.getKeyChar();
+
+				if (!(c == '0' || c == '1' || c == '2' || c == '3' || c == '4'
+						|| c == '5' || c == '6' || c == '7' || c == '8' || c == '9')) {
+					getToolkit().beep();
+					ke.consume();
+
+				}
+			}
+		});
 		txtnkNumber.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
 		txtnkNumber.setFont(new Font("Algerian", Font.ITALIC, 14));
-		pAdmin.add(txtnkNumber).setBounds(115, 360, 265, 20);
+		//pAdmin.add(txtnkNumber).setBounds(115, 360, 265, 20);
 		
 		
 		lblofficialinfo = new JLabel("<html><i><b>Official Portal(Bank Details-Optional)</i></b></html>");
 		lblofficialinfo.setForeground(Color.red);
 		lblofficialinfo.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		pAdmin.add(lblofficialinfo).setBounds(40,338, 300, 120);
+		//pAdmin.add(lblofficialinfo).setBounds(40,338, 300, 120);
 		
 
 		lblaName = new JLabel("<html><i><b>Account Name :</i></b></html>");
 		lblaName.setForeground(Color.white);
 		lblaName.setFont(new Font("Times New Roman", Font.ITALIC, 16));
-		pAdmin.add(lblaName).setBounds(40,370, 180, 120);
+		//pAdmin.add(lblaName).setBounds(40,370, 180, 120);
 		txtaName = new JTextField();
 		txtaName.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
 		txtaName.setFont(new Font("Times New Roman", Font.ITALIC, 14));
-		pAdmin.add(txtaName).setBounds(160, 422, 290, 20);
+		//pAdmin.add(txtaName).setBounds(160, 422, 290, 20);
 		
 	lblaNumber = new JLabel("<html><i><b>Account Number :</i></b></html>");
 		lblaNumber.setForeground(Color.white);
 		lblaNumber.setFont(new Font("Times New Roman", Font.ITALIC, 16));
-		pAdmin.add(lblaNumber).setBounds(30,400, 180, 120);
+		//pAdmin.add(lblaNumber).setBounds(30,400, 180, 120);
 		txtaNumber = new JTextField();
+		txtaNumber.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent ke) {
+				char c = ke.getKeyChar();
+
+				if (!(c == '0' || c == '1' || c == '2' || c == '3' || c == '4'
+						|| c == '5' || c == '6' || c == '7' || c == '8' || c == '9')) {
+					getToolkit().beep();
+					ke.consume();
+
+				}
+			}
+		});
 		txtaNumber.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
 		txtaNumber.setFont(new Font("Times New RomanAlgerian", Font.ITALIC, 14));
-		pAdmin.add(txtaNumber).setBounds(160, 450, 290, 20);
+		//pAdmin.add(txtaNumber).setBounds(160, 450, 290, 20);
 		
 		lblaType = new JLabel("<html><i><b>Act. Type :</i></b></html>");
 		lblaType.setForeground(Color.white);
 		lblaType.setFont(new Font("Times New Roman", Font.ITALIC, 12));
-		pAdmin.add(lblaType).setBounds(0,430, 180, 120);
+		//pAdmin.add(lblaType).setBounds(0,430, 180, 120);
 		
 		jcmbaType = new JComboBox(account_type);
 		jcmbaType.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
 		jcmbaType.setFont(new Font("Times New Roman",Font.ITALIC,12));
-		pAdmin.add(jcmbaType).setBounds(54, 480, 145, 22);
+		//pAdmin.add(jcmbaType).setBounds(54, 480, 145, 22);
 		
 		
-		lblaName = new JLabel("<html><i><b>Bank Name :</i></b></html>");
-		lblaName.setForeground(Color.white);
-		lblaName.setFont(new Font("Times New Roman", Font.ITALIC, 16));
-		pAdmin.add(lblaName).setBounds(215,430, 180, 120);
-		txtaNumber = new JTextField();
-		txtaNumber.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
-		txtaNumber.setFont(new Font("Times New RomanAlgerian", Font.ITALIC, 12));
-		pAdmin.add(txtaNumber).setBounds(296, 480, 185, 20);
+		lblbName = new JLabel("<html><i><b>Bank Name :</i></b></html>");
+		lblbName.setForeground(Color.white);
+		lblbName.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		//pAdmin.add(lblaName).setBounds(215,430, 180, 120);
+		txtbName = new JTextField();
+		txtbName.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
+		txtbName.setFont(new Font("Times New RomanAlgerian", Font.ITALIC, 12));
+		//pAdmin.add(txtbName).setBounds(296, 480, 185, 20);
 		
 
 		btnSave = new JButton("Save");
-		pAdmin.add(btnSave).setBounds(0, 507, 65, 25);
+		//pAdmin.add(btnSave).setBounds(0, 507, 65, 25);
 		btnNew = new JButton("New");
-		pAdmin.add(btnNew).setBounds(69, 507, 60, 25);
+		//pAdmin.add(btnNew).setBounds(69, 507, 60, 25);
 		btnModify = new JButton("Modify");
-		pAdmin.add(btnModify).setBounds(135, 507, 80, 25);
+		//pAdmin.add(btnModify).setBounds(135, 507, 80, 25);
 
 		btnPreview = new JButton("Preview");
-		pAdmin.add(btnPreview).setBounds(225, 507, 80, 25);
+		//pAdmin.add(btnPreview).setBounds(225, 507, 80, 25);
 		btnRemove = new JButton("Remove");
-		pAdmin.add(btnRemove).setBounds(310, 507, 85, 25);
+		//pAdmin.add(btnRemove).setBounds(310, 507, 85, 25);
 		btnExit = new JButton("Exit");
-		pAdmin.add(btnExit).setBounds(399, 507, 75, 25);
+		//pAdmin.add(btnExit).setBounds(399, 507, 75, 25);
 		cont=getContentPane();
-	    
+	    //visible();
+	    chkid();
+	   // visible();
 		cont.add( new textcontributor(),BorderLayout.NORTH);
 		getContentPane().add(pAdmin, BorderLayout.CENTER);
 
@@ -344,26 +386,121 @@ public class contributor_registration extends JFrame implements ActionListener, 
 	}
 	}
 	
+	void clearText(){
+		txtfName.setText("");
+		txtaName.setText("");
+		txtbName.setText("");
+		txtemail.setText("");
+		txtnkName.setText("");
+		txtnkNumber.setText("");
+		txttype.setText("");
+		jcmbaType.setSelectedIndex(0);
+		txtrAddress.setText("");
+		
+		
+		
+	}
+	void visible(){
+		pAdmin.add(lblcfName).setBounds(10, 45, 180, 120);
+		pAdmin.add(txtfName).setBounds(90, 96, 340, 20);
+		pAdmin.add(lblEmail).setBounds(10, 75, 180, 120);
+		pAdmin.add(txtemail).setBounds(90, 125, 230, 20);
+		pAdmin.add(lblpNumber).setBounds(10, 156, 180, 20);
+		pAdmin.add(txtpNumber).setBounds(90,158,230,20);
+		pAdmin.add(lblGender).setBounds(10, 190, 80, 20);
+		cbm.setBounds(94, 193, 50, 17);
+		cbf.setBounds(190, 193, 80, 15);
+				pAdmin.add(cbf);
+				pAdmin.add(cbm);
+				txtstaffID.setEditable(false);
+				pAdmin.add(lblrAddress).setBounds(10, 220, 80, 25);
+				pAdmin.add(lblnkName).setBounds(0, 280, 180, 120);
+				pAdmin.add(txtnkName).setBounds(90, 332, 290, 20);
+				pAdmin.add(txtrAddress).setBounds(90, 224, 370, 100);
+				pAdmin.add(lblnkNumber).setBounds(0,310, 180, 120);
+				pAdmin.add(txtnkNumber).setBounds(115, 360, 265, 20);
+				pAdmin.add(lblofficialinfo).setBounds(40,338, 300, 120);
+				pAdmin.add(lblaName).setBounds(40,370, 180, 120);
+				pAdmin.add(txtaName).setBounds(160, 422, 290, 20);
+				pAdmin.add(lblaNumber).setBounds(30,400, 180, 120);
+				pAdmin.add(txtaNumber).setBounds(160, 450, 290, 20);
+				pAdmin.add(lblaType).setBounds(0,430, 180, 120);
+				pAdmin.add(txtbName).setBounds(296, 480, 185, 20);
+				pAdmin.add(jcmbaType).setBounds(54, 480, 145, 22);
+				pAdmin.add(lblbName).setBounds(215,430, 180, 120);
+				pAdmin.add(btnSave).setBounds(0, 507, 65, 25);
+				pAdmin.add(btnNew).setBounds(69, 507, 60, 25);
+				pAdmin.add(btnModify).setBounds(135, 507, 80, 25);
+				pAdmin.add(btnPreview).setBounds(225, 507, 80, 25);
+				pAdmin.add(btnRemove).setBounds(310, 507, 85, 25);
+				pAdmin.add(btnExit).setBounds(399, 507, 75, 25);
+	}
+	/*
+	if(userID.equals(txtstaffID.getText())){
+	     JOptionPane.showMessageDialog(null,"Product Code Already taken");
+	   }*/
+	void chkid(){
+		
+		
+		//txtstaffID.setText(txt1);
+		 try{
+				
+				
+				stmt=con.createStatement();
+				rs = stmt.executeQuery("select * from contributorreg  ");
+				
+					//System.out.println("ssssssss");
+			
+			
+					while(rs.next()){
+					     //String userID=rs.getString("cid");
+					    // String sn=rs.getString("s/n");
+					     int sn=Integer.parseInt(rs.getString("s/n"));
+					     if(sn==0){
+					    	 System.out.println(sn);
+								//txtstaffID.setText(sn);
+					//String s=userID+1;
+								
+								//double dtoLitre=Double.parseDouble(txtoCounter.getText());
+								
+					//txtstaffID.setText(s);
+					}
+			//txtstaffID.setText(txt1);
+					     int sn1=sn+1;
+					 	txtstaffID.setText(txt1+""+sn1);
+					}}
+					catch (Exception e) {
+						// TODO: handle exception
+				
+		// visible();
+		 
+	 }}
+	
+	
 	void retrieve(){
 		
 		try{
 		
 		
-		stmt=con.createStatement();
-		rs = stmt.executeQuery("select * from contributorreg ");
-		
-		
-			while(rs.next()){
-			     String userID=rs.getString("cid");
-			if(userID.equals(txtstaffID.getText())){
-			     JOptionPane.showMessageDialog(null,"Product Code Already taken");
-			    
-			     
+	
+			
+			if(txtstaffID.getText().length()==0 ||txtstaffID.getText().equals("GGTC")){
+				System.out.println("invalid ID or empty Field");
+			}else if(txtpNumber.getText().length()!=11 || txtnkNumber.getText().length()!=11){
+					System.out.println("Invalid Number");
+				}
+			else if(txtfName.getText().equals("")||txtaName.getText().equals("")||txtaNumber.getText().equals("")||txtbName.getText().equals("")||txtemail.getText().equals("")||txtnkName.getText().equals("")||txtnkNumber.getText().equals("")||txtrAddress.getText().equals("")){
+				System.out.println("fill all empty field");
 			}
-			else if(txtstaffID.getText().length()==0 ||txtstaffID.getText().equals("GGTC")){
-			System.out.println("invalid ID or empty Field");
-		}
-		else{
+			else if(txtaNumber.getText().length()!=10){
+				System.out.println("Invalid bank number");
+			}
+			else if(jcmbaType.getSelectedItem().equals("Select Bank type")){
+				System.out.println("invalid bank type");
+				
+				
+			}
+			else{
 			String gender1="";
 
 			if(cbm.getState()==true)
@@ -376,66 +513,36 @@ public class contributor_registration extends JFrame implements ActionListener, 
 				}
 		 String sql="INSERT INTO contributorreg(date,time,cid,fname,email,cpnumber,gender,residentialaddress,nextofkinname,nextofkinnumber,actname,actnumber,acttype,bname)values('"+txtDate.getText()+"','"+txtTime.getText()+"','"+txtstaffID.getText()+"','"+txtfName.getText()+"','"+txtemail.getText()+"','"+txtpNumber.getText()+"','"+gender1+"','"+txtrAddress.getText()+"','"+txtnkName.getText()+"','"+txtnkNumber.getText()+"','"+txtaName.getText()+"','"+txtaNumber.getText()+"','"+jcmbaType.getSelectedItem()+"','"+txtbName.getText()+"')";
 	    
-			try {
+			
 				ps=con.prepareStatement(sql);
 				//System.out.println("sas");
 				ps.executeUpdate();
-				System.out.println("Saved");
-			} catch (SQLException e1) {
+				JOptionPane.showMessageDialog(null, "Saved into Database");
+				clearText();
+
+				ps.close();
+			}}catch (SQLException e1) {
+				System.out.println("uuuuuuuuuuuuuuuu");
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
-
-
-		}
-			}
-		}catch (Exception e) {
-			System.out.println("WWWWWWWWW");
-		 		// TODO: handle exception
-		 	}}
-		
-			 			
-  /*else if(txtstaffID.getText().length()==0 ||txtstaffID.getText().equals("GGTC")){
-		System.out.println("invalid ID or empty Field");
-	  	
-	}else{
-		String gender1="";
-
-		if(cbm.getState()==true)
-			{
-				gender1="Male";
-			}
-		if(cbf.getState()==true)
-			{
-				gender1="Female";
-			}
-	 String sql="INSERT INTO contributorreg(date,time,cid,fname,email,cpnumber,gender,residentialaddress,nextofkinname,nextofkinnumber,actname,actnumber,acttype)values('"+txtDate.getText()+"','"+txtTime.getText()+"','"+txtstaffID.getText()+"','"+txtfName.getText()+"','"+txtemail.getText()+"','"+txtpNumber.getText()+"','"+gender1+"','"+txtrAddress.getText()+"','"+txtnkName.getText()+"','"+txtnkNumber.getText()+"','"+txtaName.getText()+"','"+txtaNumber.getText()+"','"+jcmbaType.getSelectedItem()+"')";
-    
-		try {
-			ps=con.prepareStatement(sql);
-			ps.executeUpdate();
-			System.out.println("Saved");
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-
 	}
-*/
-		
+			}
 			
-		
-		//}
+			
 void insertinfo(){
-retrieve();
+
 
 	if(txtstaffID.getText().length()==0 ||txtstaffID.getText().equals("GGTC")){
   		System.out.println("invalid ID");
   	
   	}
+	else if(txtfName.getText().equals("")){
+		JOptionPane.showMessageDialog(null, "Invalid ");
+		
+		
+	}
 	else{
-	
+		//retrieve();
 	
 	}
 	}
@@ -463,8 +570,18 @@ retrieve();
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
+		
+		
+		
 if(obj==btnSave){
 	retrieve();
+	
+}else if(obj==btnOk){
+	
+	chkid();
+	visible();
+	
+	
 	
 }
 		}
