@@ -435,44 +435,31 @@ public class contributor_registration extends JFrame implements ActionListener, 
 				pAdmin.add(btnRemove).setBounds(310, 507, 85, 25);
 				pAdmin.add(btnExit).setBounds(399, 507, 75, 25);
 	}
-	/*
-	if(userID.equals(txtstaffID.getText())){
-	     JOptionPane.showMessageDialog(null,"Product Code Already taken");
-	   }*/
+	
 	void chkid(){
 		
-		
-		//txtstaffID.setText(txt1);
+	
 		 try{
 				
 				
 				stmt=con.createStatement();
 				rs = stmt.executeQuery("select * from contributorreg  ");
 				
-					//System.out.println("ssssssss");
-			
-			
 					while(rs.next()){
-					     //String userID=rs.getString("cid");
-					    // String sn=rs.getString("s/n");
+					    
 					     int sn=Integer.parseInt(rs.getString("s/n"));
 					     if(sn==0){
 					    	 System.out.println(sn);
-								//txtstaffID.setText(sn);
-					//String s=userID+1;
-								
-								//double dtoLitre=Double.parseDouble(txtoCounter.getText());
-								
-					//txtstaffID.setText(s);
+						
 					}
-			//txtstaffID.setText(txt1);
+		
 					     int sn1=sn+1;
 					 	txtstaffID.setText(txt1+""+sn1);
 					}}
 					catch (Exception e) {
 						// TODO: handle exception
 				
-		// visible();
+		
 		 
 	 }}
 	
@@ -480,7 +467,10 @@ public class contributor_registration extends JFrame implements ActionListener, 
 	void retrieve(){
 		
 		try{
-		
+			if(txtemail.getText().contains("@")){
+			}else{
+				System.out.println("Invalid email");
+			}
 		
 	
 			
@@ -498,8 +488,9 @@ public class contributor_registration extends JFrame implements ActionListener, 
 			else if(jcmbaType.getSelectedItem().equals("Select Bank type")){
 				System.out.println("invalid bank type");
 				
+				}
 				
-			}
+			
 			else{
 			String gender1="";
 
