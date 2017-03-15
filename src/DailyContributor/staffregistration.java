@@ -372,7 +372,10 @@ public class staffregistration extends JFrame implements ActionListener, FocusLi
 			
 				if(txtemail.getText().contains("@")){
 				}else{
-					System.out.println("Invalid email");
+					JOptionPane.showMessageDialog(null, "Invalid Email Address");	
+					
+					
+					//System.out.println("Invalid email");
 				}
 			
 		
