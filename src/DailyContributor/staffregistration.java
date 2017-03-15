@@ -29,7 +29,7 @@ public class staffregistration extends JFrame implements ActionListener, FocusLi
 	String[] name={"Select","User","Manager"};
 	private JComboBox jcmbposition;
 	private JTextField txtDate, txtTime, txtstaffID, txtfName, txtemail,
-			txtpNumber,  txtnkName,txtaName, txtaNumber, txtbName;
+			txtpNumber,txtaName, txtaNumber, txtbName;
 		
 	TextArea txtOthers;
 	private JPasswordField txtpassword;
@@ -146,7 +146,7 @@ public class staffregistration extends JFrame implements ActionListener, FocusLi
 		
 		txtpassword = new JPasswordField();
 		txtpassword.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
-		txtpassword.setFont(new Font("Algerian", Font.ITALIC, 14));
+		txtpassword.setFont(new Font("Times New Roman", Font.ITALIC, 14));
 		//pAdmin.add(txtpassword).setBounds(315, 40, 115, 20);
 		
 		
@@ -242,7 +242,7 @@ public class staffregistration extends JFrame implements ActionListener, FocusLi
 			public void keyTyped (KeyEvent ke) {
 				char c = ke.getKeyChar ();
 				
-				if (! ((Character.isAlphabetic (c)) || (c == KeyEvent.VK_BACK_SPACE))) {
+				if (! ((Character.isAlphabetic (c)) || (c == KeyEvent.VK_BACK_SPACE)||(c == KeyEvent.VK_SPACE))) {
 
 					if (!(c == '0' || c == '1' || c == '2' || c == '3' || c == '4' ||
 				            c == '5' || c == '6' || c == '7' || c == '8' || c == '9' || c=='.'||c==',')) {
@@ -356,6 +356,15 @@ public class staffregistration extends JFrame implements ActionListener, FocusLi
 		
 	}
 	
+	void clearText(){
+		txtfName.setText("");
+		txtemail.setText("");
+		txtrAddress.setText("");
+		txtpNumber.setText("");
+		
+		jcmbposition.setSelectedIndex(0);
+		txtrAddress.setText("");}
+	
 	
 	void insertUpdate(){
 		
@@ -369,18 +378,24 @@ public class staffregistration extends JFrame implements ActionListener, FocusLi
 		
 				
 				if(txtstaffID.getText().length()==0 ||txtstaffID.getText().equals("GGTC")){
-					System.out.println("invalid ID or empty Field");}
-				/*else if(txtpNumber.getText().length()!=11 ){
-						System.out.println("Invalid Number");
+					//System.out.println("invalid ID or empty Field");
+				JOptionPane.showMessageDialog(null, "invalid ID or empty Field");	
+				}
+				else if(txtpNumber.getText().length()!=11 ){
+						//System.out.println("Invalid Number");
+						JOptionPane.showMessageDialog(null, "Invalid Number");	
+						
 					}
-				else if(txtfName.getText().equals("")||txtemail.getText().equals("")){
-					System.out.println("fill all empty field");
+				else if(txtfName.getText().equals("")||txtemail.getText().equals("")||txtrAddress.getText().equals("")){
+				//	System.out.println("fill all empty field");
+					JOptionPane.showMessageDialog(null, "fill all empty field");	
+					
 				}
 				
-				else if(jcmbposition.getSelectedItem().equals("Select Bank type")){
-					System.out.println("Invalid SELECTion");
-					
-					}*/
+				else if(jcmbposition.getSelectedItem().equals("Select")){
+					//System.out.println("Invalid Selection");
+					JOptionPane.showMessageDialog(null, "fill all empty field");
+					}
 					
 				
 				else{
@@ -394,15 +409,14 @@ public class staffregistration extends JFrame implements ActionListener, FocusLi
 					{
 						gender1="Female";
 					}
-			// String sql="INSERT INTO staffadminreg(date,time,staffid,position,password,fname,email,pnumber,gender,address)values('"+txtDate.getText()+"','"+txtTime.getText()+"','"+txtstaffID.getText()+"','"+jcmbposition.getSelectedItem()+"','"+txtpassword.getText()+"','"+txtfName.getText()+"','"+txtemail.getText()+"','"+txtpNumber.getText()+"','"+gender1+"','"+txtrAddress.getText()+"')";
-		    
-				String sql="INSERT INTO staffadminreg(date,time,staffid,position,password)values('"+txtDate.getText()+"','"+txtTime.getText()+"','"+txtstaffID.getText()+"','"+jcmbposition.getSelectedItem()+"','"+txtpassword.getText()+"')";
+				String sql="INSERT INTO staffadminreg(date,time,staffid,position,password,fname,email,pnumber,gender,address)values('"+txtDate.getText()+"','"+txtTime.getText()+"','"+txtstaffID.getText()+"','"+jcmbposition.getSelectedItem()+"','"+txtpassword.getText()+"','"+txtfName.getText()+"','"+txtemail.getText()+"','"+txtpNumber.getText()+"','"+gender1+"','"+txtrAddress.getText()+"')";
+				
 				try{
 					ps=conn.prepareStatement(sql);
 					//System.out.println("sas");
 					ps.executeUpdate();
 					JOptionPane.showMessageDialog(null, "Saved into Database");
-					//clearText();
+					clearText();
 
 					ps.close();
 				}catch (SQLException e1) {
