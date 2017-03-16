@@ -17,7 +17,7 @@ import javax.swing.event.*;
 import javax.swing.table.*;
 
 import java.awt.print.*;
-class contributor_list extends JFrame implements ActionListener
+class staffadmin_list extends JFrame implements ActionListener
 {
 	JPanel main=new JPanel();
 	Container c=getContentPane();
@@ -27,7 +27,7 @@ class contributor_list extends JFrame implements ActionListener
 	JComboBox cmb;
 	JButton print;
 	JButton cancle;
-	contributor_list()
+	staffadmin_list()
 	{
 		setSize(620,520);
 		setTitle("Contributor's List");
@@ -86,11 +86,12 @@ class contributor_list extends JFrame implements ActionListener
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				contributormainmenu sa =new contributormainmenu();
-				sa.setSize(340,190);
-				sa.setLocationRelativeTo(null);
-				sa.setVisible(true);
-				contributor_list.setDefaultLookAndFeelDecorated(true);
+				staffregistration sam = new staffregistration();
+				sam.setSize(480, 420);
+				sam.setVisible(true);
+				sam.setResizable(false);
+				sam.setLocationRelativeTo(null);
+				staffadmin_list.setDefaultLookAndFeelDecorated(true);
 				setVisible(false);
 				
 				
@@ -129,29 +130,29 @@ class contributor_list extends JFrame implements ActionListener
 			
 			
 			st=conn.createStatement();
-			ResultSet set=st.executeQuery("select * from contributorreg");
+			ResultSet set=st.executeQuery("select * from staffadminreg");
 			int row=0;
 			int i=0;
 			while(set.next())
 			{
 				row++;
 			}
-			DefaultTableModel model=new DefaultTableModel(new String[]{"Date ","Time ","Cont. ID", "full name", "Phone", "Email Address", "Gender","Next of Kin Name", "Next of kin Number"},row);
+			DefaultTableModel model=new DefaultTableModel(new String[]{"Date ","Time ","Staff/Manager ID", "full name", "Phone", "Email Address", "position","gender"},row);
 			table=new JTable(model);
-			set=st.executeQuery("select * from contributorreg");
+			set=st.executeQuery("select * from staffadminreg");
 			while(set.next())
 			{
 				model.setValueAt(set.getString(2).trim(),i,0);
 				model.setValueAt(set.getString(3).trim(),i,1);
 				model.setValueAt(set.getString(4).trim(),i,2);
-				model.setValueAt(set.getString(5).trim(),i,3);
-				model.setValueAt(set.getString(7).trim(),i,4);
-				model.setValueAt(set.getString(6).trim(),i,5);
-				model.setValueAt(set.getString(8).trim(),i,6);
+				model.setValueAt(set.getString(7).trim(),i,3);
+				model.setValueAt(set.getString(9).trim(),i,4);
+				model.setValueAt(set.getString(8).trim(),i,5);
+				model.setValueAt(set.getString(5).trim(),i,6);
 				model.setValueAt(set.getString(10).trim(),i,7);
-				model.setValueAt(set.getString(11).trim(),i,8);
+				/*model.setValueAt(set.getString(11).trim(),i,8);
 				
-				i++;
+*/				i++;
 			}
 			table=new JTable(model);
 		}
@@ -171,7 +172,7 @@ class contributor_list extends JFrame implements ActionListener
 	
 
 							public static void main(String args []){
-								contributor_list sa=new contributor_list();
+								staffadmin_list sa=new staffadmin_list();
 								sa.setSize(1200, 520);
 								sa.setLocation(12, 10);
 								sa.setVisible(true);

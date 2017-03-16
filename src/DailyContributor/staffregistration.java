@@ -462,6 +462,15 @@ if(obj==btnSave){
 }else if(obj==btnOk){
 	chkid();visible();
 }
+else if(obj==btnPreview){
+	dispose();
+	staffadmin_list sa=new staffadmin_list();
+	sa.setSize(1200, 520);
+	sa.setLocation(12, 10);
+	sa.setVisible(true);
+	
+	
+}
 		}
 	
 	}

@@ -1,4 +1,4 @@
-package DailyContributor;
+/*package DailyContributor;
 
 
 import javax.swing.*;
@@ -17,7 +17,7 @@ import javax.swing.event.*;
 import javax.swing.table.*;
 
 import java.awt.print.*;
-class contributor_list extends JFrame implements ActionListener
+class contributor_list extends JFrame implements Printable,ActionListener
 {
 	JPanel main=new JPanel();
 	Container c=getContentPane();
@@ -35,13 +35,13 @@ class contributor_list extends JFrame implements ActionListener
 		addWindowListener(new WindowAdapter()
 		{
 			public void windowClosing(WindowEvent e)
-			{/*
+			{
 				StaffsInfo sam=new StaffsInfo();
 				sam.setVisible(true);
 				sam.setLocationRelativeTo(null);
 				payroll_list.setDefaultLookAndFeelDecorated(true);
 				setVisible(false);
-				*/
+				
 			}
 		});
 		//StudentByCourseReport.setDefaultLookAndFeelDecorated(true);
@@ -86,11 +86,12 @@ class contributor_list extends JFrame implements ActionListener
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				contributormainmenu sa =new contributormainmenu();
-				sa.setSize(340,190);
-				sa.setLocationRelativeTo(null);
-				sa.setVisible(true);
-				contributor_list.setDefaultLookAndFeelDecorated(true);
+				
+				dailyTransaction sam=new dailyTransaction();
+				sam.setVisible(true);
+				sam.setSize(799,410);
+				sam.setLocationRelativeTo(null);
+				dis_charge_report.setDefaultLookAndFeelDecorated(true);
 				setVisible(false);
 				
 				
@@ -102,7 +103,30 @@ class contributor_list extends JFrame implements ActionListener
 			{
 				PrinterJob jb=PrinterJob.getPrinterJob();
 				jb.printDialog();
+				System.out.println("SSSSSSSS");
 				
+				
+				 PrinterJob job = PrinterJob.getPrinterJob();
+		         job.setPrintable(this);
+		         boolean ok = job.printDialog();
+		         if (ok) {
+		             try {
+		                  job.print();
+		             } catch (PrinterException ex) {
+		               The job did not successfully complete 
+		             }
+		         }
+		    }
+				//PrinterJob jb=PrinterJob.getPrinterJob();
+			//	jb.printDialog();
+				if (doPrint) {
+				    try {
+				        job.print();
+				    } catch (PrinterException e) {
+				        // The job did not successfully
+				        // complete
+				    }
+				}
 				
 			}
 		});
@@ -169,7 +193,8 @@ class contributor_list extends JFrame implements ActionListener
         c.add(main);
 	}
 	
-
+	
+	
 							public static void main(String args []){
 								contributor_list sa=new contributor_list();
 								sa.setSize(1200, 520);
@@ -180,16 +205,52 @@ class contributor_list extends JFrame implements ActionListener
 
 
 
+						
+
+
+
+							@Override
+							public int print(Graphics graphics, PageFormat pageFormat, int pageIndex)
+									throws PrinterException {
+								
+								 if (pageIndex > 0) {  We have only one page, and 'page' is zero-based 
+							            return NO_SUCH_PAGE;
+							        }
+								
+								 graphics.drawString("Hello world!", 100, 100);
+							//	print.addActionListener(new ActionListener()
+							//	{
+									public void actionPerformed(ActionEvent e)
+									{
+										PrinterJob jb=PrinterJob.getPrinterJob();
+										jb.printDialog();
+										
+										
+										if (doPrint) {
+										    try {
+										        job.print();
+										    } catch (PrinterException e) {
+										        // The job did not successfully
+										        // complete
+										    }
+										}
+										
+									}
+								});
+								
+								
+								// TODO Auto-generated method stub
+								return 0;
+							}
+
+
+
 							@Override
 							public void actionPerformed(ActionEvent e) {
 								// TODO Auto-generated method stub
 								
 							}
-
-
-
-						
-
-
+								
 							}
 			
+*/

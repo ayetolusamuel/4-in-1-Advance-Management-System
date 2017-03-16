@@ -41,7 +41,7 @@ class staffnadminloginpage extends JFrame implements ActionListener{
 Choice catt;
 	JComboBox cmbsId;
 	
-	private JButton btnOK,btnLogin,btnCancel,btnQuit;
+	private JButton btnLogin,btnCancel,btnQuit;
 	Connection conn;
 	Statement st;
 ResultSet set;
@@ -88,8 +88,13 @@ String timeStamp = new SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance(
 		lbluserName.setForeground(Color.white);
 		lbluserName.setFont(new Font("Times New Roman",Font.PLAIN,15));
 		pRegister.add(lbluserName).setBounds(10, 30, 300, 25);
-		txtuserName=new JTextField();
+		
+		String id="ggts";
+		String idname=id.toUpperCase();
+		txtuserName=new JTextField(idname);
 		txtuserName.setEditable(true);
+		txtuserName.setCaretPosition(4);
+		
 		txtuserName.setFont(new Font("Times New Roman",Font.ITALIC,15));
 		txtuserName.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
 		pRegister.add(txtuserName).setBounds(100, 32, 140, 20);
@@ -152,29 +157,58 @@ String timeStamp = new SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance(
 	}
 	
 	//
-	
-	class TableHandler extends MouseAdapter
-	{
-		public void mouseClicked(MouseEvent me)
-		{
-			
-			try
-			{
-				Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-				conn=DriverManager.getConnection("jdbc:odbc:Driver={Microsoft Access Driver " +
-			            "(*.mdb)};"+"DBQ=D:\\database\\Student_Info.mdb","ayets","setonji04");
-				st=conn.createStatement();
-			
-			}
-				catch (Exception e) {
-					// TODO: handle exception
-				}
-			/*if(cmbAttendance.getSelectedItem().equals("Present") ){
-				cmbCover1.setSelectedItem("No");
-			}*/
-		}}
-		
+	void retrieveinfo(){
+		boolean flag=false;
+		String s=txtuserName.getText();
+		char a[]=txtPassword.getPassword();
 
+		String u_name="";
+		String p_name="";
+		try{
+				st=conn.createStatement();
+		set=st.executeQuery("Select * from  staffadminreg");
+		set.next();
+		u_name=set.getString("staffid");
+		p_name=set.getString("password");
+		}
+		catch (Exception e) {
+			System.out.println("erroe");
+			// TODO: handle exception
+		}
+		if(s.equals(u_name)&&a.length==p_name.length())
+		{
+			for(int i=0;i<p_name.length();i++)
+			{
+			  if(a[i]==p_name.charAt(i))
+			       flag=true;
+			  else
+			  {
+			       flag=false;
+			       break;
+			  }
+
+
+			}
+		 }
+		if(flag==true)
+		{
+			JOptionPane.showMessageDialog(null, "Login Succesfuly");
+			setVisible(false);
+			contributormainmenu sa =new contributormainmenu();
+			sa.setSize(340,190);
+			sa.setLocationRelativeTo(null);
+			sa.setVisible(true);
+		}
+		else
+		{
+			Icon error=new ImageIcon("images//error.png");
+			
+			JOptionPane.showMessageDialog(null,"<html><font size=4 color=red>Invalid Password \n\t\t Please enter valid password","Login",JOptionPane.ERROR_MESSAGE,error);
+		}
+	}
+
+		
+		
 	public void focusGained(FocusEvent e) {
 		// TODO Auto-generated method stub
 		
@@ -241,12 +275,77 @@ void retrieve(){
 	public void actionPerformed(ActionEvent e) {
 
 Object obj = e.getSource();
-		
+		if(obj==btnLogin){
+			//retrieve();
+			
+			 String s1="",s2="";
+             String user =txtuserName.getText();
+             String pass =txtPassword.getText();
+             
+             
+             if(user.length()==0 || pass.length()==0){
+                 
+                 JOptionPane.showMessageDialog(null, "Invalid user or pass,try again","error",JOptionPane.ERROR_MESSAGE);
+             }
+             else{
+             {
+              try{
+                  st = conn.createStatement();
+                  set = st.executeQuery("select * from staffadminreg where staffid='"+txtuserName.getText()+"' AND password='"+txtPassword.getText()+"'");
+                   
+                while(set.next()){
+                    
+                    s1 = set.getString("staffid");
+                    s2 = set.getString("password");
+                            
+                } 
+                if(!s1.equals(txtuserName.getText()) || !s2.equals(txtPassword.getText())){
+                    
+                    JOptionPane.showMessageDialog(null, "Invalid Field,try again","Error Message",JOptionPane.ERROR_MESSAGE);
+                    //txtuserName.setText("");
+                    txtPassword.setText("");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Login Successfullyy....","Message",JOptionPane.INFORMATION_MESSAGE);
+                    dailycontributor sam = new dailycontributor();
+            		sam.setSize(480, 420);
+            		sam.setVisible(true);
+            		sam.setResizable(false);
+            		sam.setLocationRelativeTo(null);      
+                  
+            		sam.setResizable(false);
+                    txtuserName.setText("");
+                    txtPassword.setText("");
+                   dispose();
+                }          
+                 }catch(Exception ex){
+                  
+                   
+              }
+             }
+             }
+          }
+           
+          /*if(e.getSource()==b2){
+              
+              int reply = JOptionPane.showConfirmDialog(null, "Are you Sure you want to exit ?","Message",JOptionPane.YES_NO_OPTION);
+                 
+              if(reply==JOptionPane.YES_OPTION){
+                 
+                  System.exit(0);
+              }
+              
+          }*/
 
-				
-		
-		
-	}
+			
+			
+			
+			
+			
+			
+		}
+
 	
 	
 	public static void main(String[] args) {

@@ -37,7 +37,7 @@ class contributormainmenu extends JFrame implements ActionListener{
 	
 	private JPanel pRegister;
 	//private JTextField txtuserName,txtcsfName,txtsfName;
-	String[] info={"Select","Contributor Registration","Daily Record","Search Contributor","Contributor's List","Contributor's Contact","Contributor Bank Account","Payment Summary"};
+	String[] info={"Select","Contributor Registration","Daily Record","Search Contributor","Contributor's List","Contributor's Contact","Contributor Bank Account","Payment Summary","Send sms"};
 	
 Choice catt;
 	JComboBox cmbcontinfo;
@@ -164,25 +164,7 @@ String timeStamp = new SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance(
 			sam.setLocationRelativeTo(null);
 		}
 		
-/*
-		
-		 switch (s) {
-         case 
-         JOptionPane.showMessageDialog(null, "Process Successfully");
-         break;
-         case JOptionPane.NO_OPTION:
-         JOptionPane.showMessageDialog(null, "Process is Canceled");
-         break;
-		//pane.add(sam);
-		//show();
-}*/
-		
-		//catch (Exception e) {
-			// TODO: handle exception
-		
-		
-		//System.out.println("Error");
-		//}
+
 	}
 void retrieve(){
 	boolean flag=false;
@@ -273,10 +255,22 @@ static void searchcont(){
 	public void actionPerformed(ActionEvent e) {
 
 Object obj = e.getSource();
-		
-if(obj==btnOK){
+		if(obj==btnLogout){
+			setVisible(false);
+			LoginPage sa =new LoginPage();
+			sa.setSize(300,250);
+			sa.setLocationRelativeTo(null);
+			sa.setVisible(true);
+			contributor_list.setDefaultLookAndFeelDecorated(true);
+			setVisible(false);	
+		}
+		else if(obj==btnQuit){
+			System.exit(0);
+		}
+		else if(obj==btnOK){
 	if(cmbcontinfo.getSelectedItem().equals("Contributor Registration")){
 		setVisible(false);
+		btnOK.setBounds(0,0,0,0);
 		contributor_registration sam = new contributor_registration();
 		sam.setSize(480, 589);
 		sam.setVisible(true);

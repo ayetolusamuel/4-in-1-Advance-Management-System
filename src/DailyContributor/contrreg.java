@@ -1,4 +1,4 @@
-package DailyContributor;
+/*package DailyContributor;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -136,7 +136,7 @@ public class contributor_registration extends JFrame implements ActionListener, 
 		
 		
 		btnOk = new JButton(new ImageIcon("images//sam.gif"));
-		pAdmin.add(btnOk).setBounds(225, 65, 38, 25);
+		pAdmin.add(btnOk).setBounds(214, 65, 38, 25);
 		btnOk.addActionListener(this);
 		
 		
@@ -223,7 +223,7 @@ public class contributor_registration extends JFrame implements ActionListener, 
 		cbm = new Checkbox("Male", cbmf, true);
 		cbf = new Checkbox("Female", cbmf, false);
 	//	cbm.setBounds(94, 225, 50, 15);
-		//add(cbm);
+		add(cbm);
 		//cbf.setBounds(190, 225, 80, 15);
 		//add(cbf);
 
@@ -272,18 +272,6 @@ public class contributor_registration extends JFrame implements ActionListener, 
 		lblnkNumber.setFont(new Font("Times New Roman", Font.ITALIC, 13));
 		//pAdmin.add(lblnkNumber).setBounds(0,310, 180, 120);
 		txtnkNumber = new JTextField();
-		txtnkNumber.addKeyListener(new KeyAdapter() {
-			public void keyTyped(KeyEvent ke) {
-				char c = ke.getKeyChar();
-
-				if (!(c == '0' || c == '1' || c == '2' || c == '3' || c == '4'
-						|| c == '5' || c == '6' || c == '7' || c == '8' || c == '9')) {
-					getToolkit().beep();
-					ke.consume();
-
-				}
-			}
-		});
 		txtnkNumber.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
 		txtnkNumber.setFont(new Font("Algerian", Font.ITALIC, 14));
 		//pAdmin.add(txtnkNumber).setBounds(115, 360, 265, 20);
@@ -309,18 +297,6 @@ public class contributor_registration extends JFrame implements ActionListener, 
 		lblaNumber.setFont(new Font("Times New Roman", Font.ITALIC, 16));
 		//pAdmin.add(lblaNumber).setBounds(30,400, 180, 120);
 		txtaNumber = new JTextField();
-		txtaNumber.addKeyListener(new KeyAdapter() {
-			public void keyTyped(KeyEvent ke) {
-				char c = ke.getKeyChar();
-
-				if (!(c == '0' || c == '1' || c == '2' || c == '3' || c == '4'
-						|| c == '5' || c == '6' || c == '7' || c == '8' || c == '9')) {
-					getToolkit().beep();
-					ke.consume();
-
-				}
-			}
-		});
 		txtaNumber.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
 		txtaNumber.setFont(new Font("Times New RomanAlgerian", Font.ITALIC, 14));
 		//pAdmin.add(txtaNumber).setBounds(160, 450, 290, 20);
@@ -386,20 +362,7 @@ public class contributor_registration extends JFrame implements ActionListener, 
 	}
 	}
 	
-	void clearText(){
-		txtfName.setText("");
-		txtaName.setText("");
-		txtbName.setText("");
-		txtemail.setText("");
-		txtnkName.setText("");
-		txtnkNumber.setText("");
-
-		jcmbaType.setSelectedIndex(0);
-		txtrAddress.setText("");
-		
-		
-		
-	}
+	
 	void visible(){
 		pAdmin.add(lblcfName).setBounds(10, 45, 180, 120);
 		pAdmin.add(txtfName).setBounds(90, 96, 340, 20);
@@ -407,16 +370,15 @@ public class contributor_registration extends JFrame implements ActionListener, 
 		pAdmin.add(txtemail).setBounds(90, 125, 230, 20);
 		pAdmin.add(lblpNumber).setBounds(10, 156, 180, 20);
 		pAdmin.add(txtpNumber).setBounds(90,158,230,20);
-		pAdmin.add(lblGender).setBounds(10, 190, 80, 20);
-		cbm.setBounds(94, 193, 50, 17);
-		cbf.setBounds(190, 193, 80, 15);
-				pAdmin.add(cbf);
-				pAdmin.add(cbm);
+		pAdmin.add(lblGender).setBounds(10, 190, 100, 20);
+		cbm.setBounds(94, 225, 50, 15);
+	cbf.setBounds(190, 225, 80, 15);
+				add(cbf);
 				txtstaffID.setEditable(false);
 				pAdmin.add(lblrAddress).setBounds(10, 220, 80, 25);
 				pAdmin.add(lblnkName).setBounds(0, 280, 180, 120);
 				pAdmin.add(txtnkName).setBounds(90, 332, 290, 20);
-				pAdmin.add(txtrAddress).setBounds(90, 224, 370, 100);
+				txtrAddress.setBounds(90, 224, 370, 100);
 				pAdmin.add(lblnkNumber).setBounds(0,310, 180, 120);
 				pAdmin.add(txtnkNumber).setBounds(115, 360, 265, 20);
 				pAdmin.add(lblofficialinfo).setBounds(40,338, 300, 120);
@@ -425,7 +387,6 @@ public class contributor_registration extends JFrame implements ActionListener, 
 				pAdmin.add(lblaNumber).setBounds(30,400, 180, 120);
 				pAdmin.add(txtaNumber).setBounds(160, 450, 290, 20);
 				pAdmin.add(lblaType).setBounds(0,430, 180, 120);
-				pAdmin.add(txtbName).setBounds(296, 480, 185, 20);
 				pAdmin.add(jcmbaType).setBounds(54, 480, 145, 22);
 				pAdmin.add(lblbName).setBounds(215,430, 180, 120);
 				pAdmin.add(btnSave).setBounds(0, 507, 65, 25);
@@ -436,61 +397,56 @@ public class contributor_registration extends JFrame implements ActionListener, 
 				pAdmin.add(btnExit).setBounds(399, 507, 75, 25);
 	}
 	
+	if(userID.equals(txtstaffID.getText())){
+	     JOptionPane.showMessageDialog(null,"Product Code Already taken");
+	   }
 	void chkid(){
 		
-	
+		
+		//txtstaffID.setText(txt1);
 		 try{
 				
 				
 				stmt=con.createStatement();
 				rs = stmt.executeQuery("select * from contributorreg  ");
 				
+					//System.out.println("ssssssss");
+			
+			
 					while(rs.next()){
-					    
+					     //String userID=rs.getString("cid");
+					    // String sn=rs.getString("s/n");
 					     int sn=Integer.parseInt(rs.getString("s/n"));
 					     if(sn==0){
 					    	 System.out.println(sn);
-						
+								//txtstaffID.setText(sn);
+					//String s=userID+1;
+								
+								//double dtoLitre=Double.parseDouble(txtoCounter.getText());
+								
+					//txtstaffID.setText(s);
 					}
-		
+			//txtstaffID.setText(txt1);
 					     int sn1=sn+1;
 					 	txtstaffID.setText(txt1+""+sn1);
 					}}
 					catch (Exception e) {
 						// TODO: handle exception
 				
-		
+		// visible();
 		 
 	 }}
-	
-	
 	void retrieve(){
 		
 		try{
-			if(txtemail.getText().contains("@")){
-			}else{
-				System.out.println("Invalid email");
-			}
+		
 		
 	
 			
 			if(txtstaffID.getText().length()==0 ||txtstaffID.getText().equals("GGTC")){
 				System.out.println("invalid ID or empty Field");
-			}else if(txtpNumber.getText().length()!=11 || txtnkNumber.getText().length()!=11){
-					System.out.println("Invalid Number");
-				}
-			else if(txtfName.getText().equals("")||txtaName.getText().equals("")||txtaNumber.getText().equals("")||txtbName.getText().equals("")||txtemail.getText().equals("")||txtnkName.getText().equals("")||txtnkNumber.getText().equals("")||txtrAddress.getText().equals("")){
-				System.out.println("fill all empty field");
-			}
-			else if(txtaNumber.getText().length()!=10){
-				System.out.println("Invalid bank number");
-			}
-			else if(jcmbaType.getSelectedItem().equals("Select Bank type")){
-				System.out.println("invalid bank type");
 				
 				}
-				
-			
 			else{
 			String gender1="";
 
@@ -508,8 +464,7 @@ public class contributor_registration extends JFrame implements ActionListener, 
 				ps=con.prepareStatement(sql);
 				//System.out.println("sas");
 				ps.executeUpdate();
-				JOptionPane.showMessageDialog(null, "Saved into Database");
-				clearText();
+				System.out.println("Saved");
 
 				ps.close();
 			}}catch (SQLException e1) {
@@ -520,6 +475,31 @@ public class contributor_registration extends JFrame implements ActionListener, 
 			}
 			
 			
+			else{
+				String gender1="";
+
+				if(cbm.getState()==true)
+					{
+						gender1="Male";
+					}
+				if(cbf.getState()==true)
+					{
+						gender1="Female";
+					}
+			 String sql="INSERT INTO contributorreg(date,time,cid,fname,email,cpnumber,gender,residentialaddress,nextofkinname,nextofkinnumber,actname,actnumber,acttype,bname)values('"+txtDate.getText()+"','"+txtTime.getText()+"','"+txtstaffID.getText()+"','"+txtfName.getText()+"','"+txtemail.getText()+"','"+txtpNumber.getText()+"','"+gender1+"','"+txtrAddress.getText()+"','"+txtnkName.getText()+"','"+txtnkNumber.getText()+"','"+txtaName.getText()+"','"+txtaNumber.getText()+"','"+jcmbaType.getSelectedItem()+"','"+txtbName.getText()+"')";
+		    
+				try {
+					ps=con.prepareStatement(sql);
+					//System.out.println("sas");
+					ps.executeUpdate();
+					System.out.println("Saved");
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+		}}}
+		catch (Exception e) {
+			// TODO: handle exception
+		}	}
 void insertinfo(){
 
 
@@ -565,26 +545,16 @@ void insertinfo(){
 		
 		
 if(obj==btnSave){
-	retrieve();
+	//retrieve();
 	
 }else if(obj==btnOk){
 	
 	chkid();
 	visible();
-}
-else if(obj==btnPreview){
-	setVisible(false);
-	contributor_list sa=new contributor_list();
-	sa.setSize(1200, 520);
-	sa.setLocation(12, 10);
-	sa.setVisible(true);
 	
 	
-}else if(obj==btnExit){
-	System.exit(0);
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 }
 		}
 	
-	}
+	}*/

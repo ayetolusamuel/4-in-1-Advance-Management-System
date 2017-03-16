@@ -282,8 +282,7 @@ Object obj = e.getSource();
 			
 		}
 		else if(obj==btnQuit	){
-		dispose();
-		
+		System.exit(0);
 	}
 		
 		else if(obj==btnCancel){
@@ -340,7 +339,6 @@ Object obj = e.getSource();
 	public static void main(String[] args) {
 		LoginPage sa =new LoginPage();
 		sa.setSize(300,250);
-		//sa.setLocation(180,0);
 		sa.setLocationRelativeTo(null);
 		sa.setVisible(true);
 

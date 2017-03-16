@@ -40,7 +40,7 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 	private JComboBox jcmbaType;
 
 	JButton btnSave, btnRemove, btnPreview, btnExit, btnModify, btnNew,
-			btnSearch;
+			btnmessage,btnSearch;
 
 	private java.util.Date currDate = new java.util.Date(); // Creating Object.
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy",
@@ -432,7 +432,7 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 		
 		
 		*/
-
+		
 		btnSave = new JButton("Save");
 		pAdmin.add(btnSave).setBounds(0, 335, 65, 25);
 		btnNew = new JButton("New");
