@@ -1,4 +1,4 @@
-package DailyContributor;
+/*package DailyContributor;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -22,17 +22,22 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 	String user = "ayets";
 	String pass = "setonji04";
 	private JPanel pAdmin = new JPanel();
-	private JLabel lblDate, lblTime,lblcfName,lblEmail, lblrAddress, lblpNumber,  lblnkNumber,lblchkid;
+	private JLabel lblDate, lblTime, lblcId, lblcfName, lblGender,lblaType,
+			lblEmail, lblrAddress, lblpNumber, lblnkName, lblnkNumber,
+			lblofficialinfo, 	lblaName, lblaNumber,lblbName,lblchkid;
 	JLabel lbl1, lbldd;
 
 	private JTextArea txtrAddress;
+	String [] account_type={"Select Bank type","Saving","Current","Domicilary Account","Non Resident Nigerian (NRN)","Fixed Deposit Account"};
 	
-	private JTextField txtcfName, txtEmail, txtwithdraw,txtpNumber, txtTime, txtDate,txtchkid,txtadeposited,txtbalance,txtcomission;
-		
+	
+	private JTextField txtcfName, txtEmail, txtstaffID, txtfName, 
+			txtpNumber, txtnkNumber, txtnkName,txtaName, txtTime, txtDate,txtchkid,
+			txtBonus;
 	TextArea txtOthers;
 	PreparedStatement ps = null;
 
-	
+	private JComboBox jcmbaType;
 
 	JButton btnSave, btnRemove, btnPreview, btnExit, btnModify, btnNew,
 			btnmessage,btnSearch,btnOK;
@@ -92,7 +97,6 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 		txtchkid = new JTextField("GGTC");
 		txtchkid.setFont(new Font("Times New Roman", Font.ITALIC, 13));
 		txtchkid.setEditable(true);
-		txtchkid.setCaretPosition(4);
 		pAdmin.add(txtchkid).setBounds(323, 12, 90, 20);
 		
 		btnOK = new JButton(new ImageIcon("images//sam.gif"));
@@ -106,7 +110,7 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 
 		txtDate = new JTextField(d);
 		txtDate.setFont(new Font("Algerian", Font.ITALIC, 13));
-		txtDate.setEditable(true);
+		txtDate.setEditable(false);
 		//pAdmin.add(txtDate).setBounds(383, 12, 90, 20);
 
 		lblTime = new JLabel("<html><i><b>Time :</i></b></html>");
@@ -114,7 +118,7 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 		lblTime.setFont(new Font("Times New Roman", Font.ITALIC, 16));
 		//pAdmin.add(lblTime).setBounds(339, -10, 70, 120);
 		txtTime = new JTextField(timeStamp);
-		txtTime.setEditable(false);
+		//txtTime.setEditable(false);
 		txtTime.setFont(new Font("Algerian", Font.ITALIC, 14));
 		//pAdmin.add(txtTime).setBounds(383, 40, 90, 20);
 
@@ -156,7 +160,7 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 		lblrAddress = new JLabel("<html><b>Res. Address:</i></b></html>");
 		lblrAddress.setFont(new Font("Times New Roman", Font.ITALIC, 14));
 		lblrAddress.setForeground(Color.white);
-		pAdmin.add(lblrAddress).setBounds(10, 102, 80, 25);
+		//pAdmin.add(lblrAddress).setBounds(10, 102, 80, 25);
 
 		txtrAddress=new JTextArea();
 		txtrAddress.addKeyListener (new KeyAdapter () {
@@ -181,16 +185,16 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 		txtrAddress.setEditable(false);
 		txtrAddress.setFont(new Font("Times New Roman", Font.ITALIC, 14));
 		txtrAddress.setBounds(90, 104, 380, 100);
-		pAdmin.add(txtrAddress);
+		//pAdmin.add(txtrAddress);
 		
 		lblnkNumber = new JLabel("<html><b>Amount Deposited :</i></b></html>");
 		lblnkNumber.setForeground(Color.white);
 		lblnkNumber.setFont(new Font("Times New Roman", Font.ITALIC, 12));
-		pAdmin.add(lblnkNumber).setBounds(10, 168, 100, 120);
-		txtadeposited = new JTextField();
-		txtadeposited.setEditable(true);
-		txtadeposited.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
-		txtadeposited.addKeyListener(new KeyAdapter() {
+		//pAdmin.add(lblnkNumber).setBounds(10, 168, 100, 120);
+		txtnkNumber = new JTextField();
+		txtnkNumber.setEditable(true);
+		txtnkNumber.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
+		txtnkNumber.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent ke) {
 				char c = ke.getKeyChar();
 
@@ -207,17 +211,17 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 
 			}
 		});
-		pAdmin.add(txtadeposited).setBounds(130, 219, 100, 20);
+		//pAdmin.add(txtnkNumber).setBounds(130, 219, 100, 20);
 		
 		
 		lblnkNumber = new JLabel("<html><b>Balance :</i></b></html>");
 		lblnkNumber.setForeground(Color.white);
 		lblnkNumber.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		pAdmin.add(lblnkNumber).setBounds(10, 198, 180, 120);
-		txtbalance = new JTextField();
-		txtbalance.setEditable(false);
-		txtbalance.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
-		txtbalance.addKeyListener(new KeyAdapter() {
+		//pAdmin.add(lblnkNumber).setBounds(10, 198, 180, 120);
+		txtnkNumber = new JTextField();
+		txtnkNumber.setEditable(false);
+		txtnkNumber.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
+		txtnkNumber.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent ke) {
 				char c = ke.getKeyChar();
 
@@ -234,16 +238,16 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 
 			}
 		});
-		pAdmin.add(txtbalance).setBounds(130, 249, 100, 20);
+		//pAdmin.add(txtnkNumber).setBounds(130, 249, 100, 20);
 		
 		lblnkNumber = new JLabel("<html><b>Commision :</i></b></html>");
 		lblnkNumber.setForeground(Color.white);
 		lblnkNumber.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		pAdmin.add(lblnkNumber).setBounds(10, 228, 180, 120);
-		txtcomission = new JTextField();
-		txtcomission.setEditable(false);
-		txtcomission.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
-		txtcomission.addKeyListener(new KeyAdapter() {
+		//pAdmin.add(lblnkNumber).setBounds(10, 228, 180, 120);
+		txtnkNumber = new JTextField();
+		txtnkNumber.setEditable(false);
+		txtnkNumber.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
+		txtnkNumber.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent ke) {
 				char c = ke.getKeyChar();
 
@@ -260,16 +264,16 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 
 			}
 		});
-		pAdmin.add(txtcomission).setBounds(130, 279, 100, 20);
+		//pAdmin.add(txtnkNumber).setBounds(130, 279, 100, 20);
 		
 		lblnkNumber = new JLabel("<html><b>Loan/Withdraw :</i></b></html>");
 		lblnkNumber.setForeground(Color.white);
 		lblnkNumber.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		pAdmin.add(lblnkNumber).setBounds(10, 258, 180, 120);
-		txtwithdraw = new JTextField();
-		txtwithdraw.setEditable(true);
-		txtwithdraw.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
-		txtwithdraw.addKeyListener(new KeyAdapter() {
+		//pAdmin.add(lblnkNumber).setBounds(10, 258, 180, 120);
+		txtnkNumber = new JTextField();
+		txtnkNumber.setEditable(true);
+		txtnkNumber.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
+		txtnkNumber.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent ke) {
 				char c = ke.getKeyChar();
 
@@ -286,29 +290,29 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 
 			}
 		});
-		pAdmin.add(txtwithdraw).setBounds(130, 309, 100, 20);
+		//pAdmin.add(txtnkNumber).setBounds(130, 309, 100, 20);
 		
 		
 	
 		btnSave = new JButton("Save");
-		pAdmin.add(btnSave).setBounds(0, 335, 65, 25);
+		//pAdmin.add(btnSave).setBounds(0, 335, 65, 25);
 		btnNew = new JButton("New");
-		pAdmin.add(btnNew).setBounds(69, 335, 60, 25);
+		//pAdmin.add(btnNew).setBounds(69, 335, 60, 25);
 		btnModify = new JButton("Modify");
-		pAdmin.add(btnModify).setBounds(135, 335, 80, 25);
+		//pAdmin.add(btnModify).setBounds(135, 335, 80, 25);
 
 		btnPreview = new JButton("Preview");
-		pAdmin.add(btnPreview).setBounds(225, 335, 80, 25);
+		//pAdmin.add(btnPreview).setBounds(225, 335, 80, 25);
 		btnRemove = new JButton("Remove");
-		pAdmin.add(btnRemove).setBounds(310, 335, 85, 25);
+		//pAdmin.add(btnRemove).setBounds(310, 335, 85, 25);
 		btnExit = new JButton("Exit");
-		pAdmin.add(btnExit).setBounds(399, 335, 75, 25);
+		//pAdmin.add(btnExit).setBounds(399, 335, 75, 25);
 		cont=getContentPane();
 	    
 		cont.add( new textcontributor(),BorderLayout.NORTH);
 		getContentPane().add(pAdmin, BorderLayout.CENTER);
 
-	btnNew.addActionListener(this);
+		btnNew.addActionListener(this);
 		btnSave.addActionListener(this);
 		btnRemove.addActionListener(this);
 		btnPreview.addActionListener(this);
@@ -333,6 +337,46 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 
 	}
 		
+		String s = JOptionPane.showInputDialog(null,"Enter the Contributor ID","GGTC");
+		
+		if(s == null || (s != null && ("".equals(s))))   
+		{
+		   System.exit(0);
+		}
+
+	else{
+		
+		
+
+		try{
+			
+			System.out.println("Contributor Id: "+s);
+		rs = stmt.executeQuery("SELECT * FROM `contributorreg` WHERE cid ='"+s+"'");
+		//rs = stmt.executeQuery("select * from contributorreg where cid='"+txtstaffID.getText()+"'");
+		//rs = stmt.executeQuery("select * from reg where UserName='"+t1.getText()+"' AND Password='"+t2.getText()+"'");
+		
+			while(rs.next()){
+				System.out.println("Email: "+rs.getString("email"));
+				System.out.println("Full Name:"+ rs.getString("fname"));
+				System.out.println("Phone Number: "+ rs.getString("cpnumber"));
+			     // String userID=rs.getString("pcode");
+			    // txtemail.setText(rs.getString("email"));
+			         
+	}
+			     
+			    	 
+
+	}catch (Exception e) {
+			// TODO: handle exception
+		
+		
+		System.out.println("Error");
+	}//}
+		
+		
+		
+		
+	//update();	
 
 		
 	}
@@ -341,7 +385,64 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 	
 	
 	
+	
+	
+	
+	 void productdetails(){
+		
 
+		try{
+			String s=txtstaffID.getText();
+			System.out.println("Contributor Id: "+s);
+		rs = stmt.executeQuery("SELECT * FROM `contributorreg` WHERE cid ='"+s+"'");
+		//rs = stmt.executeQuery("select * from contributorreg where cid='"+txtstaffID.getText()+"'");
+		//rs = stmt.executeQuery("select * from reg where UserName='"+t1.getText()+"' AND Password='"+t2.getText()+"'");
+		
+			while(rs.next()){
+				System.out.println("Email: "+rs.getString("email"));
+				System.out.println("Full Name:"+ rs.getString("fname"));
+				System.out.println("Phone Number: "+ rs.getString("cpnumber"));
+			     // String userID=rs.getString("pcode");
+			   txtEmail.setText(rs.getString("email"));
+			         
+	}
+			     
+			    	 
+
+	}catch (Exception e) {
+			// TODO: handle exception
+		
+		
+		System.out.println("Error");
+	}
+	}
+	void update(){
+		try{
+			String s = JOptionPane.showInputDialog(null,"Enter the Contributor ID","GGTC");
+			
+			System.out.println("Contributor Id: "+s);
+		rs = stmt.executeQuery("SELECT * FROM `contributorreg` WHERE cid ='"+s+"'");
+		//rs = stmt.executeQuery("select * from contributorreg where cid='"+txtstaffID.getText()+"'");
+		//rs = stmt.executeQuery("select * from reg where UserName='"+t1.getText()+"' AND Password='"+t2.getText()+"'");
+		
+			while(rs.next()){
+				System.out.println("Email: "+rs.getString("email"));
+				System.out.println("Full Name:"+ rs.getString("fname"));
+				System.out.println("Phone Number: "+ rs.getString("cpnumber"));
+			     // String userID=rs.getString("pcode");
+			    txtemail.setText(rs.getString("email"));
+			         
+	}
+			     
+			    	 
+
+	}catch (Exception e) {
+			// TODO: handle exception
+		
+		
+		System.out.println("Error");
+	}
+		}
 	
 	public static void main(String[] args) {
 		
@@ -377,84 +478,55 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
 if(obj==btnOK){
-	String s=txtchkid.getText();
-	try {
-		stmt=con.createStatement();
-	} catch (SQLException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
-	}
-	try {
-		rs = stmt.executeQuery("select * from contributorreg ");
-	} catch (SQLException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
-	}
-	try {
+	
+		String s=txtstaffID.getText();
+		System.out.println("Contributor Id: "+s);
+		try{
+	rs = stmt.executeQuery("SELECT * FROM `contributorreg` WHERE cid ='"+s+"'");
+	//rs = stmt.executeQuery("select * from contributorreg where cid='"+txtstaffID.getText()+"'");
+	//rs = stmt.executeQuery("select * from reg where UserName='"+t1.getText()+"' AND Password='"+t2.getText()+"'");
+	System.out.println(s);
 		while(rs.next()){
-		String fetch= rs.getString("cid");
-		
-		if(fetch.equals(s)){
-
-txtchkid.setBounds(0,0,0,0);;
-lblchkid.setBounds(0,0,0,0);;
-btnOK.setBounds(0,0,0,0);
-pAdmin.add(lblDate).setBounds(339, -40, 70, 120);
-pAdmin.add(lblTime).setBounds(339, -10, 70, 120);
-JLabel lblxk= new JLabel("<html><b>Cont.ID:");
-
-pAdmin.add(lblxk).setBounds(336, 70, 70, 20);
-lblxk.setForeground(Color.white);
-lblxk.setFont(new Font("Times New Roman", Font.ITALIC, 12));
-pAdmin.add(txtchkid).setBounds(385, 70, 70, 20);
-
-txtchkid.setEditable(false);
-pAdmin.add(txtDate).setBounds(383, 12, 90, 20);
-pAdmin.add(txtTime).setBounds(383, 40, 90, 20);
-pAdmin.add(lblcfName).setBounds(10, -40, 100, 120);
-pAdmin.add(txtcfName).setBounds(90, 12, 220, 20);
-pAdmin.add(lblEmail).setBounds(10, -10, 70, 120);
-pAdmin.add(txtEmail).setBounds(90, 40, 220, 20);
-	
-		}}}catch (Exception e2) {
-		// TODO: handle exception
-	}
+			System.out.println("Email: "+rs.getString("email"));
+			System.out.println("Full Name:"+ rs.getString("fname"));
+			System.out.println("Phone Number: "+ rs.getString("cpnumber"));
+		     // String userID=rs.getString("pcode");
+		   txtEmail.setText(rs.getString("email"));
+		   
+		}}
+		 catch (Exception e2) {
+			 System.out.println("Error");
+			// TODO: handle exception
+		}  
+		   
+		   
 	
 	
-	try{
-rs = stmt.executeQuery("SELECT * FROM `contributorreg` WHERE cid ='"+s+"'");
-
 	
-
-while(rs.next()){
-
-	txtcfName.setText(rs.getString("fname"));
-    txtEmail.setText(rs.getString("email"));
-    txtpNumber.setText(rs.getString("cpnumber"));
-    txtrAddress.setText(rs.getString("residentialaddress"));
-    
-    
-    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
-     
-	
-	}
-	catch (Exception ez) {
-		// TODO: handle exception
-	}
+		
 		
 		}
-else if(obj==btnExit){
-	dispose();
-	staffnadminloginpage sa =new staffnadminloginpage();
-	sa.setSize(300,190);
-	sa.setLocationRelativeTo(null);
-	sa.setVisible(true);
-	
-	
-}
-		
-	}
+
+
+
+
+
 
 
 
@@ -473,4 +545,4 @@ else if(obj==btnExit){
 		
 		
 	}
-}
+}*/

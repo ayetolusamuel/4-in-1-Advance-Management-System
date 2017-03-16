@@ -94,7 +94,6 @@ String timeStamp = new SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance(
 		txtuserName=new JTextField(idname);
 		txtuserName.setEditable(true);
 		txtuserName.setCaretPosition(4);
-		
 		txtuserName.setFont(new Font("Times New Roman",Font.ITALIC,15));
 		txtuserName.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
 		pRegister.add(txtuserName).setBounds(100, 32, 140, 20);
@@ -327,16 +326,15 @@ Object obj = e.getSource();
              }
           }
            
-          /*if(e.getSource()==b2){
-              
-              int reply = JOptionPane.showConfirmDialog(null, "Are you Sure you want to exit ?","Message",JOptionPane.YES_NO_OPTION);
-                 
-              if(reply==JOptionPane.YES_OPTION){
-                 
-                  System.exit(0);
-              }
-              
-          }*/
+		else  if(obj==btnQuit){
+            dispose();
+            LoginPage sa =new LoginPage();
+    		sa.setSize(300,250);
+    		sa.setLocationRelativeTo(null);
+    		sa.setVisible(true);
+			
+			
+          }
 
 			
 			
