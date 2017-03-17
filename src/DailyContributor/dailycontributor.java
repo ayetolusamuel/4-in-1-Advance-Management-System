@@ -193,19 +193,16 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 		txtadeposited.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent ke) {
 				char c = ke.getKeyChar();
-
-				if (!((Character.isAlphabetic(c)) || (c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_SPACE))) {
-					if (!(c == '0' || c == '1' || c == '2' || c == '3'
+				if (!(c == '0' || c == '1' || c == '2' || c == '3'
 							|| c == '4' || c == '5' || c == '6' || c == '7'
-							|| c == '8' || c == '9' || c == '_' || c == '@'
-							|| c == '-' || c == '.')) {
+							|| c == '8' || c == '9')) {
 
 						getToolkit().beep();
 						ke.consume();
 					}
 				}
 
-			}
+			
 		});
 		pAdmin.add(txtadeposited).setBounds(130, 219, 100, 20);
 		
@@ -349,7 +346,8 @@ void retrieve(){
 				System.out.println("invalid ID or empty Field");
 			
 			}else if(txtadeposited.getText().equals("")){
-					System.out.println("Fill empty field");
+					//System.out.println("Fill empty field");
+					JOptionPane.showMessageDialog(null, "Fill all editable empty fill");
 				}
 			
 			else{
@@ -364,9 +362,16 @@ void retrieve(){
 				//System.out.println("sas");
 				ps.executeUpdate();
 				JOptionPane.showMessageDialog(null, "<html><i>\n Your Commission is " + txtcomission.getText() + " NAIRA"+"\n\"Saved into Database\"");
-				//clearText();
-
 				ps.close();
+				dispose();
+			dailycontributor sam = new dailycontributor();
+			sam.setSize(480, 420);
+			sam.setVisible(true);
+			sam.setResizable(false);
+			
+			sam.setLocationRelativeTo(null);
+
+			
 			}}catch (SQLException e1) {
 				System.out.println("uuuuuuuuuuuuuuuu");
 				// TODO Auto-generated catch block
@@ -493,7 +498,17 @@ else if(obj==btnExit){
 	sa.setVisible(true);
 	
 	
-}else if(obj==btnSave){
+}
+else if(obj==btnPreview){
+	dispose();
+	dailycontribution_list sa=new dailycontribution_list();
+	sa.setSize(1200, 520);
+	sa.setLocation(12, 10);
+	sa.setVisible(true);
+	
+}
+
+else if(obj==btnSave){
 	System.out.println(ampd);
 	//String amtpaid= txtadeposited.getText();
 	//String com= txtcomission.getText();

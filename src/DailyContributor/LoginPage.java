@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -55,6 +57,27 @@ String timeStamp = new SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance(
 
 	
 	LoginPage(){
+		
+		
+		addWindowListener(new WindowAdapter()
+		{
+			@SuppressWarnings("static-access")
+			public void windowClosing(WindowEvent e)
+			{
+				LoginPage sa =new LoginPage();
+				sa.setSize(300,250);
+				sa.setLocationRelativeTo(null);
+				sa.setVisible(true);
+				sa.setDefaultLookAndFeelDecorated(true);
+				setVisible(false);
+				
+				
+				
+			}
+		});
+		
+		
+		
 		pRegister =new JPanel(){
 			
 			public void paintComponent(Graphics g)
@@ -299,7 +322,7 @@ Object obj = e.getSource();
 				pRegister.add(btnLogin).setBounds(20, 150, 70, 25);
 				pRegister.add(btnCancel).setBounds(106, 150, 90, 25);
 			
-		}else if (jcmbPosition.getSelectedItem().equals("User")||jcmbPosition.getSelectedItem().equals("Manager")){
+		}else if (jcmbPosition.getSelectedItem().equals("User")||jcmbPosition.getSelectedItem().equals("Manager")&&jcmbPlatform.getSelectedItem().equals("Daily Contribution")){
 			setVisible(false);
 			JFrame frame = new JFrame();
 			String[] options = new String[2];
@@ -336,12 +359,8 @@ Object obj = e.getSource();
 	}
 	
 	
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
-		LoginPage sa =new LoginPage();
-		sa.setSize(300,250);
-		sa.setLocationRelativeTo(null);
-		sa.setVisible(true);
-
 		
 		try{
 			javax.swing.UIManager.setLookAndFeel("com.birosoft.liquid.LiquidLookAndFeel");
@@ -350,6 +369,13 @@ Object obj = e.getSource();
 			System.out.println("error in loading theme "+e.getMessage());
 			
 		}	
+		LoginPage sa =new LoginPage();
+		sa.setSize(300,250);
+		sa.setLocationRelativeTo(null);
+		sa.setVisible(true);
+		sa.setDefaultLookAndFeelDecorated(true);
+		
+		
 	}
 	
 	

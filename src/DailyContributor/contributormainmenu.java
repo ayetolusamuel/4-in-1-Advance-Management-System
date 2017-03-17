@@ -37,7 +37,7 @@ class contributormainmenu extends JFrame implements ActionListener{
 	
 	private JPanel pRegister;
 	//private JTextField txtuserName,txtcsfName,txtsfName;
-	String[] info={"Select","Contributor Registration","Daily Record","Search Contributor","Contributor's List","Contributor's Contact","Contributor Bank Account","Payment Summary","Send sms"};
+	String[] info={"Select","Contributor Registration","Daily Contributor Record","Search Contributor","Contributor's List","Contributor's Contact","Contributor Bank Account","Payment Summary","Send sms"};
 	
 Choice catt;
 	JComboBox cmbcontinfo;
@@ -94,11 +94,11 @@ String timeStamp = new SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance(
 		cmbcontinfo.setEditable(false);
 		cmbcontinfo.setFont(new Font("Times New Roman",Font.ITALIC,15));
 		cmbcontinfo.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
-		pRegister.add(cmbcontinfo).setBounds(105, 52, 180, 20);
+		pRegister.add(cmbcontinfo).setBounds(105, 52, 190, 20);
 		
 
 		btnOK = new JButton(new ImageIcon("images//sam.gif"));
-		pRegister.add(btnOK).setBounds(292, 50, 38, 25);
+		pRegister.add(btnOK).setBounds(295, 50, 38, 25);
 		btnOK.addActionListener(this);
 		
 		
@@ -287,7 +287,17 @@ Object obj = e.getSource();
 		searchcont();
 		
 	
-	}try{
+	}
+	else if(cmbcontinfo.getSelectedItem().equals("Daily Contributor Record")){
+		dispose();
+		dailycontributor sam = new dailycontributor();
+		sam.setSize(480, 420);
+		sam.setVisible(true);
+		sam.setResizable(false);
+		sam.setLocationRelativeTo(null);
+	
+	}
+	try{
 		javax.swing.UIManager.setLookAndFeel("com.birosoft.liquid.LiquidLookAndFeel");
 		JFrame.setDefaultLookAndFeelDecorated(true);
 	} catch (Exception ey) {
