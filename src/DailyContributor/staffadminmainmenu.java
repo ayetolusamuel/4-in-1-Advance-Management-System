@@ -28,7 +28,7 @@ import javax.swing.*;
 
 
 
-class contributormainmenu extends JFrame implements ActionListener{
+class staffadminmainmenu extends JFrame implements ActionListener{
 	private JLabel lblcontinfo,lblPassword;
 	private JTextField txtuserName;
 	private JPasswordField txtPassword;
@@ -37,7 +37,7 @@ class contributormainmenu extends JFrame implements ActionListener{
 	
 	private JPanel pRegister;
 	//private JTextField txtuserName,txtcsfName,txtsfName;
-	String[] info={"Select","Contributor Registration","Daily Contributor Record","Search Contributor","Contributor's List","Contributor's Contact","Contributor's Bank Details","Payment Summary","Send sms"};
+	String[] info={"Select","Staff/Admin Registration"," "," "," "," "," "," "," "};
 	
 Choice catt;
 	JComboBox cmbcontinfo;
@@ -56,7 +56,7 @@ private String d = sdf.format (currDate);							//Storing Date.
 String timeStamp = new SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance().getTime());
 
 	
-	contributormainmenu(){
+	staffadminmainmenu(){
 		pRegister =new JPanel(){
 			
 			public void paintComponent(Graphics g)
@@ -252,6 +252,7 @@ static void searchcont(){
 	}
 }
 
+	@SuppressWarnings("static-access")
 	public void actionPerformed(ActionEvent e) {
 
 Object obj = e.getSource();
@@ -268,14 +269,15 @@ Object obj = e.getSource();
 			System.exit(0);
 		}
 		else if(obj==btnOK){
-	if(cmbcontinfo.getSelectedItem().equals("Contributor Registration")){
-		setVisible(false);
+	if(cmbcontinfo.getSelectedItem().equals("Staff/Admin Registration")){
+		
 		btnOK.setBounds(0,0,0,0);
-		contributor_registration sam = new contributor_registration();
-		sam.setSize(480, 589);
-		sam.setVisible(true);
-		sam.setResizable(false);
-		sam.setLocationRelativeTo(null);
+		LoginPage sa =new LoginPage();
+		sa.setSize(300,250);
+		sa.setLocationRelativeTo(null);
+		sa.setVisible(true);
+		sa.setDefaultLookAndFeelDecorated(true);
+		setVisible(false);
 			}
 	else if(cmbcontinfo.getSelectedItem().equals("Daily Record")){
 		setVisible(false);
@@ -358,7 +360,7 @@ Object obj = e.getSource();
 	
 	
 	public static void main(String[] args) {
-		contributormainmenu sa =new contributormainmenu();
+		staffadminmainmenu sa =new staffadminmainmenu();
 		sa.setSize(340,190);
 		sa.setLocationRelativeTo(null);
 		sa.setVisible(true);

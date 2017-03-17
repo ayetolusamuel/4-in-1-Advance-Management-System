@@ -28,7 +28,7 @@ import javax.swing.*;
 
 
 
-class contributormainmenu extends JFrame implements ActionListener{
+class mainmenu extends JFrame implements ActionListener{
 	private JLabel lblcontinfo,lblPassword;
 	private JTextField txtuserName;
 	private JPasswordField txtPassword;
@@ -37,7 +37,7 @@ class contributormainmenu extends JFrame implements ActionListener{
 	
 	private JPanel pRegister;
 	//private JTextField txtuserName,txtcsfName,txtsfName;
-	String[] info={"Select","Contributor Registration","Daily Contributor Record","Search Contributor","Contributor's List","Contributor's Contact","Contributor's Bank Details","Payment Summary","Send sms"};
+	String[] info={"Select","Contributor's Main Menu","Staff/Admin Menu"};
 	
 Choice catt;
 	JComboBox cmbcontinfo;
@@ -56,7 +56,7 @@ private String d = sdf.format (currDate);							//Storing Date.
 String timeStamp = new SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance().getTime());
 
 	
-	contributormainmenu(){
+	mainmenu(){
 		pRegister =new JPanel(){
 			
 			public void paintComponent(Graphics g)
@@ -277,70 +277,30 @@ Object obj = e.getSource();
 		sam.setResizable(false);
 		sam.setLocationRelativeTo(null);
 			}
-	else if(cmbcontinfo.getSelectedItem().equals("Daily Record")){
-		setVisible(false);
-		productdetails();
-	
-	}
-	else if(cmbcontinfo.getSelectedItem().equals("Search Contributor")){
-		setVisible(false);
-		searchcont();
+	else if(cmbcontinfo.getSelectedItem().equals("Contributor's Main Menu")){
 		
-	
-	}
-	
-	else if(cmbcontinfo.getSelectedItem().equals("Send sms")){
-		JOptionPane.showMessageDialog(null, "Check Later! work in progress");
-		
-	}
-	
-	
-	else if(cmbcontinfo.getSelectedItem().equals("Payment Summary")){
-		JOptionPane.showMessageDialog(null, "Check Later! work in progress");
-		
-	}
-	
-	else if(cmbcontinfo.getSelectedItem().equals("Contributor's Contact")){
-		dispose();
-		contributors_contact sa=new contributors_contact();
-		sa.setSize(1200, 520);
-		sa.setLocation(12, 10);
-		sa.setVisible(true);
-		
-	
-	}
-	else if(cmbcontinfo.getSelectedItem().equals("Contributor's List")){
-		dispose();
-		contributors_list sa=new contributors_list();
-		sa.setSize(500, 520);
-		sa.setVisible(true);
+		contributormainmenu sa =new contributormainmenu();
+		sa.setSize(340,190);
 		sa.setLocationRelativeTo(null);
-		
-
-	}
-	
-	else if(cmbcontinfo.getSelectedItem().equals("Contributor's Bank Details")){
-		dispose();
-		contributor_bank_details sa=new contributor_bank_details();
-		sa.setSize(1200, 520);
-		sa.setLocation(12, 10);
 		sa.setVisible(true);
+		contributormainmenu.setDefaultLookAndFeelDecorated(true);
+		setVisible(false);
 		
+	}
 	
+else if(cmbcontinfo.getSelectedItem().equals("Staff/Admin Menu")){
+		
+	staffadminmainmenu sa =new staffadminmainmenu();
+	sa.setSize(340,190);
+	sa.setLocationRelativeTo(null);
+	sa.setVisible(true);
+	staffadminmainmenu.setDefaultLookAndFeelDecorated(true);
+		setVisible(false);
+		
 	}
 	
 	
 	
-	
-	else if(cmbcontinfo.getSelectedItem().equals("Daily Contributor Record")){
-		dispose();
-		dailycontributor sam = new dailycontributor();
-		sam.setSize(480, 420);
-		sam.setVisible(true);
-		sam.setResizable(false);
-		sam.setLocationRelativeTo(null);
-	
-	}
 	try{
 		javax.swing.UIManager.setLookAndFeel("com.birosoft.liquid.LiquidLookAndFeel");
 		JFrame.setDefaultLookAndFeelDecorated(true);
@@ -358,7 +318,7 @@ Object obj = e.getSource();
 	
 	
 	public static void main(String[] args) {
-		contributormainmenu sa =new contributormainmenu();
+		mainmenu sa =new mainmenu();
 		sa.setSize(340,190);
 		sa.setLocationRelativeTo(null);
 		sa.setVisible(true);

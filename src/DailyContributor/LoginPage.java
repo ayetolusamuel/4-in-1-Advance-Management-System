@@ -279,7 +279,7 @@ void retrieve(){
 	{
 		JOptionPane.showMessageDialog(null, "Login Succesfuly");
 		setVisible(false);
-		contributormainmenu sa =new contributormainmenu();
+		mainmenu sa =new mainmenu();
 		sa.setSize(340,190);
 		sa.setLocationRelativeTo(null);
 		sa.setVisible(true);
@@ -322,7 +322,7 @@ Object obj = e.getSource();
 				pRegister.add(btnLogin).setBounds(20, 150, 70, 25);
 				pRegister.add(btnCancel).setBounds(106, 150, 90, 25);
 			
-		}else if (jcmbPosition.getSelectedItem().equals("User")||jcmbPosition.getSelectedItem().equals("Manager")&&jcmbPlatform.getSelectedItem().equals("Daily Contribution")){
+		}else if (jcmbPosition.getSelectedItem().equals("User")||jcmbPosition.getSelectedItem().equals("Manager")){
 			setVisible(false);
 			JFrame frame = new JFrame();
 			String[] options = new String[2];

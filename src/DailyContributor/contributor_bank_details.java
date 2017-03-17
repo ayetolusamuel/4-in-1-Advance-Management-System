@@ -36,11 +36,7 @@ class contributor_bank_details extends JFrame implements MouseListener
 		{
 			public void windowClosing(WindowEvent e)
 			{
-				/*StaffsInfo sam=new StaffsInfo();
-				sam.setVisible(true);
-				sam.setLocationRelativeTo(null);
-				payroll_list.setDefaultLookAndFeelDecorated(true);
-				setVisible(false);*/
+				setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 				
 			}
 		});
@@ -87,12 +83,12 @@ class contributor_bank_details extends JFrame implements MouseListener
 			public void actionPerformed(ActionEvent e)
 			{
 				
-				/*dailyTransaction sam=new dailyTransaction();
-				sam.setVisible(true);
-				sam.setSize(799,410);
-				sam.setLocationRelativeTo(null);
-				dis_charge_report.setDefaultLookAndFeelDecorated(true);
-				setVisible(false);*/
+				contributormainmenu sa =new contributormainmenu();
+				sa.setSize(340,190);
+				sa.setLocationRelativeTo(null);
+				sa.setVisible(true);
+				contributormainmenu.setDefaultLookAndFeelDecorated(true);
+				setVisible(false);
 				
 				
 			}
@@ -100,9 +96,26 @@ class contributor_bank_details extends JFrame implements MouseListener
 		print.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
-			{
-				PrinterJob jb=PrinterJob.getPrinterJob();
-				jb.printDialog();
+			{	
+				try {
+		            boolean complete = table.print();
+		            
+		            if (complete) {
+		             // JOptionPane.showMessageDialog(null, "Printing in Progress");
+		            } else {
+		                /*show a message indicating that printing was cancelled */
+		              
+		            }
+		        } catch (PrinterException pe) {
+		            /* Printing failed, report to the user */
+		           
+		        }
+				
+				setVisible(false);
+				contributormainmenu sa =new contributormainmenu();
+				sa.setSize(340,190);
+				sa.setLocationRelativeTo(null);
+				sa.setVisible(true);
 				
 			}
 		});
@@ -163,7 +176,8 @@ class contributor_bank_details extends JFrame implements MouseListener
 		table.setFont(new Font("Times New Roman",Font.PLAIN,13));
 		table.setForeground(Color.MAGENTA);
 		table.setGridColor(new Color(0,128,192));
-	  	//table.setBackground(new Color(0,128,192));
+	  	table.setRowHeight(25);
+	  	table.setEnabled(false);
         table.getTableHeader().setReorderingAllowed(false);
         c.add(main);
 		}}

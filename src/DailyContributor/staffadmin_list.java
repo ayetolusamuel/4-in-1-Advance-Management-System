@@ -30,18 +30,12 @@ class staffadmin_list extends JFrame implements ActionListener
 	staffadmin_list()
 	{
 		setSize(620,520);
-		setTitle("Contributor's List");
+		setTitle("Staff/Admin's List");
 		setLocation(240,80);
 		addWindowListener(new WindowAdapter()
 		{
 			public void windowClosing(WindowEvent e)
-			{/*
-				StaffsInfo sam=new StaffsInfo();
-				sam.setVisible(true);
-				sam.setLocationRelativeTo(null);
-				payroll_list.setDefaultLookAndFeelDecorated(true);
-				setVisible(false);
-				*/
+			{setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 			}
 		});
 		//StudentByCourseReport.setDefaultLookAndFeelDecorated(true);
@@ -51,7 +45,7 @@ class staffadmin_list extends JFrame implements ActionListener
 
 		main.setLayout(new BorderLayout());
 		main.setBackground(new Color(245,240,255));
-		JLabel l=new JLabel("<html><font size=6 color=#800080><i>Contributor'  List");
+		JLabel l=new JLabel("<html><font size=6 color=#800080><i>Staff/Admin's  List");
 		JPanel title=new JPanel()
 		{
 			public void paintComponent(Graphics g)
@@ -86,13 +80,16 @@ class staffadmin_list extends JFrame implements ActionListener
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				staffregistration sam = new staffregistration();
-				sam.setSize(480, 420);
-				sam.setVisible(true);
-				sam.setResizable(false);
-				sam.setLocationRelativeTo(null);
-				staffadmin_list.setDefaultLookAndFeelDecorated(true);
+				/*contributormainmenu sa =new contributormainmenu();
+				sa.setSize(340,190);
+				sa.setLocationRelativeTo(null);
+				sa.setVisible(true);
+				contributormainmenu.setDefaultLookAndFeelDecorated(true);
 				setVisible(false);
+				
+				*/
+				dispose();
+				
 				
 				
 			}
@@ -101,8 +98,27 @@ class staffadmin_list extends JFrame implements ActionListener
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				PrinterJob jb=PrinterJob.getPrinterJob();
-				jb.printDialog();
+				try {
+		            boolean complete = table.print();
+		            
+		            if (complete) {
+		                /* show a success message  */
+		              
+		            } else {
+		                /*show a message indicating that printing was cancelled */
+		              
+		            }
+		        } catch (PrinterException pe) {
+		            /* Printing failed, report to the user */
+		           
+		        }
+				/*contributormainmenu sa =new contributormainmenu();
+				sa.setSize(340,190);
+				sa.setLocationRelativeTo(null);
+				sa.setVisible(true);
+				contributormainmenu.setDefaultLookAndFeelDecorated(true);
+				setVisible(false);
+				*/
 				
 				
 			}
@@ -119,16 +135,7 @@ class staffadmin_list extends JFrame implements ActionListener
 			   
 			   try {
 				conn = DriverManager.getConnection(url,"root","");
-				//con=DriverManager.getConnection("jdbc:odbc:Driver={Microsoft Access Driver " +
-			         //   "(*.mdb)};"+"DBQ=D:\\database\\rakedomanagement.mdb","ayets","setonji04");
 				
-			   
-		
-			
-			
-			
-			
-			
 			st=conn.createStatement();
 			ResultSet set=st.executeQuery("select * from staffadminreg");
 			int row=0;
@@ -150,9 +157,7 @@ class staffadmin_list extends JFrame implements ActionListener
 				model.setValueAt(set.getString(8).trim(),i,5);
 				model.setValueAt(set.getString(5).trim(),i,6);
 				model.setValueAt(set.getString(10).trim(),i,7);
-				/*model.setValueAt(set.getString(11).trim(),i,8);
-				
-*/				i++;
+			i++;
 			}
 			table=new JTable(model);
 		}
@@ -165,8 +170,9 @@ class staffadmin_list extends JFrame implements ActionListener
 		table.setFont(new Font("Times New Roman",Font.PLAIN,13));
 		table.setForeground(Color.MAGENTA);
 		table.setGridColor(new Color(0,128,192));
-	  	//table.setBackground(new Color(0,128,192));
-        table.getTableHeader().setReorderingAllowed(false);
+	  	table.setRowHeight(25);
+	  	table.setEnabled(false);
+	  	table.getTableHeader().setReorderingAllowed(false);
         c.add(main);
 	}
 	

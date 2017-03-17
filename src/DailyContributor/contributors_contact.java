@@ -36,15 +36,9 @@ class contributors_contact extends JFrame implements MouseListener
 		{
 			public void windowClosing(WindowEvent e)
 			{
-				/*StaffsInfo sam=new StaffsInfo();
-				sam.setVisible(true);
-				sam.setLocationRelativeTo(null);
-				payroll_list.setDefaultLookAndFeelDecorated(true);
-				setVisible(false);*/
-				
+				setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 			}
 		});
-		//StudentByCourseReport.setDefaultLookAndFeelDecorated(true);
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("images//mainicon.png"));
 		c=getContentPane();
@@ -86,13 +80,12 @@ class contributors_contact extends JFrame implements MouseListener
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				
-				/*dailyTransaction sam=new dailyTransaction();
-				sam.setVisible(true);
-				sam.setSize(799,410);
-				sam.setLocationRelativeTo(null);
-				dis_charge_report.setDefaultLookAndFeelDecorated(true);
-				setVisible(false);*/
+				contributormainmenu sa =new contributormainmenu();
+				sa.setSize(340,190);
+				sa.setLocationRelativeTo(null);
+				sa.setVisible(true);
+				contributormainmenu.setDefaultLookAndFeelDecorated(true);
+				setVisible(false);
 				
 				
 			}
@@ -117,9 +110,12 @@ class contributors_contact extends JFrame implements MouseListener
 		           
 		        }
 				
-				/*PrinterJob jb=PrinterJob.getPrinterJob();
-				jb.printDialog();*/
-				dispose();
+				contributormainmenu sa =new contributormainmenu();
+				sa.setSize(340,190);
+				sa.setLocationRelativeTo(null);
+				sa.setVisible(true);
+				contributormainmenu.setDefaultLookAndFeelDecorated(true);
+				setVisible(false);
 			}
 		});
 		cancle.setToolTipText("Exit");
@@ -183,7 +179,7 @@ class contributors_contact extends JFrame implements MouseListener
 		table.setForeground(Color.MAGENTA);
 		table.setRowHeight(30);
 		table.setGridColor(new Color(0,128,192));
-	  	//table.setBackground(new Color(0,128,192));
+	  	table.setEnabled(false);
         table.getTableHeader().setReorderingAllowed(false);
         c.add(main);
         

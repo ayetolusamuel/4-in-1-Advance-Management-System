@@ -17,7 +17,7 @@ import javax.swing.event.*;
 import javax.swing.table.*;
 
 import java.awt.print.*;
-class contributor_list extends JFrame implements ActionListener
+class contributors_list extends JFrame implements MouseListener
 {
 	JPanel main=new JPanel();
 	Container c=getContentPane();
@@ -27,7 +27,7 @@ class contributor_list extends JFrame implements ActionListener
 	JComboBox cmb;
 	JButton print;
 	JButton cancle;
-	contributor_list()
+	contributors_list()
 	{
 		setSize(620,520);
 		setTitle("Contributor's List");
@@ -36,7 +36,7 @@ class contributor_list extends JFrame implements ActionListener
 		{
 			public void windowClosing(WindowEvent e)
 			{
-			setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+				setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 				
 			}
 		});
@@ -47,7 +47,7 @@ class contributor_list extends JFrame implements ActionListener
 
 		main.setLayout(new BorderLayout());
 		main.setBackground(new Color(245,240,255));
-		JLabel l=new JLabel("<html><font size=6 color=#800080><i>Contributor'  List");
+		JLabel l=new JLabel("<html><font size=6 color=#800080><i>The List of all Contributor's");
 		JPanel title=new JPanel()
 		{
 			public void paintComponent(Graphics g)
@@ -86,7 +86,7 @@ class contributor_list extends JFrame implements ActionListener
 				sa.setSize(340,190);
 				sa.setLocationRelativeTo(null);
 				sa.setVisible(true);
-				contributor_list.setDefaultLookAndFeelDecorated(true);
+				contributormainmenu.setDefaultLookAndFeelDecorated(true);
 				setVisible(false);
 				
 				
@@ -95,27 +95,29 @@ class contributor_list extends JFrame implements ActionListener
 		print.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
-			{try {
-	            boolean complete = table.print();
-	            
-	            if (complete) {
-	                /* show a success message  */
-	             // System.out.println("complete printing");
-	              JOptionPane.showMessageDialog(null, "Printing in Progress");
-	            } else {
-	                /*show a message indicating that printing was cancelled */
-	              
-	            }
-	        } catch (PrinterException pe) {
-	            /* Printing failed, report to the user */
-	           
-	        }
-			
-			setVisible(false);
-			contributormainmenu sa =new contributormainmenu();
-			sa.setSize(340,190);
-			sa.setLocationRelativeTo(null);
-			sa.setVisible(true);
+			{
+				
+				try {
+		            boolean complete = table.print();
+		            
+		            if (complete) {
+		                /* show a success message  */
+		            	
+		            } else {
+		                /*show a message indicating that printing was cancelled */
+		              
+		            }
+		        } catch (PrinterException pe) {
+		            /* Printing failed, report to the user */
+		           
+		        }
+				
+				contributormainmenu sa =new contributormainmenu();
+				sa.setSize(340,190);
+				sa.setLocationRelativeTo(null);
+				sa.setVisible(true);
+				contributormainmenu.setDefaultLookAndFeelDecorated(true);
+				setVisible(false);
 				
 			}
 		});
@@ -126,17 +128,14 @@ class contributor_list extends JFrame implements ActionListener
 		butpan.setBackground(new Color(255,197,68));
 		c.add("South",butpan);
 		
+			
+		
 			  String url = "jdbc:mysql://localhost:3306/ggtelecom";
 			  
 			   
 			   try {
 				conn = DriverManager.getConnection(url,"root","");
-				//con=DriverManager.getConnection("jdbc:odbc:Driver={Microsoft Access Driver " +
-			         //   "(*.mdb)};"+"DBQ=D:\\database\\rakedomanagement.mdb","ayets","setonji04");
 				
-			   
-		
-			
 			
 			
 			
@@ -149,20 +148,13 @@ class contributor_list extends JFrame implements ActionListener
 			{
 				row++;
 			}
-			DefaultTableModel model=new DefaultTableModel(new String[]{"Date ","Time ","Cont. ID", "full name", "Phone", "Email Address", "Gender","Next of Kin Name", "Next of kin Number"},row);
+			DefaultTableModel model=new DefaultTableModel(new String[]{"Contributor ID", "full Name"},row);
 			table=new JTable(model);
 			set=st.executeQuery("select * from contributorreg");
 			while(set.next())
 			{
-				model.setValueAt(set.getString(2).trim(),i,0);
-				model.setValueAt(set.getString(3).trim(),i,1);
-				model.setValueAt(set.getString(4).trim(),i,2);
-				model.setValueAt(set.getString(5).trim(),i,3);
-				model.setValueAt(set.getString(7).trim(),i,4);
-				model.setValueAt(set.getString(6).trim(),i,5);
-				model.setValueAt(set.getString(8).trim(),i,6);
-				model.setValueAt(set.getString(10).trim(),i,7);
-				model.setValueAt(set.getString(11).trim(),i,8);
+				model.setValueAt(set.getString(4).trim(),i,0);
+				model.setValueAt(set.getString(5).trim(),i,1);
 				
 				i++;
 			}
@@ -176,34 +168,64 @@ class contributor_list extends JFrame implements ActionListener
 		table.setSelectionMode(0);
 		table.setFont(new Font("Times New Roman",Font.PLAIN,13));
 		table.setForeground(Color.MAGENTA);
+		table.setRowHeight(30);
 		table.setGridColor(new Color(0,128,192));
-		table.setRowHeight(25);
-		table.setEnabled(false);
+	  	table.setEnabled(false);
         table.getTableHeader().setReorderingAllowed(false);
         c.add(main);
+        
+        
+        
 	}
 	
-
+	
+	
 							public static void main(String args []){
-								contributor_list sa=new contributor_list();
-								sa.setSize(1200, 520);
-								sa.setLocation(12, 10);
+								contributors_list sa=new contributors_list();
+								sa.setSize(500, 520);
 								sa.setVisible(true);
-								
+								sa.setLocationRelativeTo(null);
 							}
 
 
 
 							@Override
-							public void actionPerformed(ActionEvent e) {
+							public void mouseClicked(MouseEvent e) {
 								// TODO Auto-generated method stub
 								
 							}
 
 
 
-						
+							@Override
+							public void mousePressed(MouseEvent e) {
+								// TODO Auto-generated method stub
+								
+							}
 
 
+
+							@Override
+							public void mouseReleased(MouseEvent e) {
+								// TODO Auto-generated method stub
+								
+							}
+
+
+
+							@Override
+							public void mouseEntered(MouseEvent e) {
+								// TODO Auto-generated method stub
+								
+							}
+
+
+
+							@Override
+							public void mouseExited(MouseEvent e) {
+								// TODO Auto-generated method stub
+								
+							}
+								
 							}
 			
