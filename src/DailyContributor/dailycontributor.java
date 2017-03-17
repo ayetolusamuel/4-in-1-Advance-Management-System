@@ -214,7 +214,7 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 		lblnkNumber.setForeground(Color.white);
 		lblnkNumber.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		pAdmin.add(lblnkNumber).setBounds(10, 198, 180, 120);
-		txtbalance = new JTextField();
+		txtbalance = new JTextField("0.00");
 		txtbalance.setEditable(false);
 		txtbalance.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
 		txtbalance.addKeyListener(new KeyAdapter() {
@@ -266,7 +266,7 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 		lblnkNumber.setForeground(Color.white);
 		lblnkNumber.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		pAdmin.add(lblnkNumber).setBounds(10, 258, 180, 120);
-		txtwithdraw = new JTextField();
+		txtwithdraw = new JTextField("0.00");
 		txtwithdraw.setEditable(true);
 		txtwithdraw.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
 		txtwithdraw.addKeyListener(new KeyAdapter() {
@@ -315,8 +315,9 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 		btnExit.addActionListener(this);
 		btnModify.addActionListener(this);
 		
-
-		
+		//String com=  txtcomission.setText("");
+		/*String ampd=txtadeposited.getText();
+		System.out.println(ampd);*/
 		
 		
 		String url = "jdbc:mysql://localhost:3306/ggtelecom";
@@ -339,7 +340,39 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 	
 	
 	
-	
+void retrieve(){
+		
+		try{
+			
+			
+			if(txtchkid.getText().length()==0 ||txtchkid.getText().equals("GGTC")){
+				System.out.println("invalid ID or empty Field");
+			
+			}else if(txtadeposited.getText().equals("")){
+					System.out.println("Fill empty field");
+				}
+			
+			else{
+				double adeposited = Double.parseDouble(txtadeposited.getText());
+				txtcomission.setText(String.format("%.2f", (adeposited)));
+				
+			
+		 String sql="INSERT INTO dailycontributionupdate(date,time,cid,fname,number,adeposited,balance,commission,loan)values('"+txtDate.getText()+"','"+txtTime.getText()+"','"+txtchkid.getText()+"','"+txtcfName.getText()+"','"+txtpNumber.getText()+"','"+txtadeposited.getText()+"','"+txtbalance.getText()+"','"+txtcomission.getText()+"','"+txtwithdraw.getText()+"')";
+	    
+			
+				ps=con.prepareStatement(sql);
+				//System.out.println("sas");
+				ps.executeUpdate();
+				JOptionPane.showMessageDialog(null, "<html><i>\n Your Commission is " + txtcomission.getText() + " NAIRA"+"\n\"Saved into Database\"");
+				//clearText();
+
+				ps.close();
+			}}catch (SQLException e1) {
+				System.out.println("uuuuuuuuuuuuuuuu");
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+	}
+			}
 	
 
 	
@@ -376,7 +409,15 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
+
+		String ampd=txtadeposited.getText();
+		//String s=txtcomission.setText(ampd);
 if(obj==btnOK){
+	
+	
+	
+
+			
 	String s=txtchkid.getText();
 	try {
 		stmt=con.createStatement();
@@ -450,6 +491,14 @@ else if(obj==btnExit){
 	sa.setSize(300,190);
 	sa.setLocationRelativeTo(null);
 	sa.setVisible(true);
+	
+	
+}else if(obj==btnSave){
+	System.out.println(ampd);
+	//String amtpaid= txtadeposited.getText();
+	//String com= txtcomission.getText();
+
+	retrieve();
 	
 	
 }
