@@ -17,7 +17,7 @@ import javax.swing.event.*;
 import javax.swing.table.*;
 
 import java.awt.print.*;
-class contributor_bank_details extends JFrame implements MouseListener
+class dailycontributorupdatestaffadmin extends JFrame implements ActionListener
 {
 	JPanel main=new JPanel();
 	Container c=getContentPane();
@@ -27,17 +27,15 @@ class contributor_bank_details extends JFrame implements MouseListener
 	JComboBox cmb;
 	JButton print;
 	JButton cancle;
-	contributor_bank_details()
+	dailycontributorupdatestaffadmin()
 	{
 		setSize(620,520);
-		setTitle("Contributor's Bank Details");
+		setTitle("Contributor's Daily Record");
 		setLocation(240,80);
 		addWindowListener(new WindowAdapter()
 		{
 			public void windowClosing(WindowEvent e)
-			{
-				setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-				
+			{setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 			}
 		});
 		//StudentByCourseReport.setDefaultLookAndFeelDecorated(true);
@@ -47,7 +45,7 @@ class contributor_bank_details extends JFrame implements MouseListener
 
 		main.setLayout(new BorderLayout());
 		main.setBackground(new Color(245,240,255));
-		JLabel l=new JLabel("<html><font size=6 color=#800080><i>Contributor's Bank Details");
+		JLabel l=new JLabel("<html><font size=6 color=#800080><i>Contributor's Daily Record");
 		JPanel title=new JPanel()
 		{
 			public void paintComponent(Graphics g)
@@ -82,12 +80,11 @@ class contributor_bank_details extends JFrame implements MouseListener
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				
-				contributormainmenu sa =new contributormainmenu();
+				staffadminmainmenu sa =new staffadminmainmenu();
 				sa.setSize(340,190);
 				sa.setLocationRelativeTo(null);
 				sa.setVisible(true);
-				contributormainmenu.setDefaultLookAndFeelDecorated(true);
+				staffadminmainmenu.setDefaultLookAndFeelDecorated(true);
 				setVisible(false);
 				
 				
@@ -96,12 +93,16 @@ class contributor_bank_details extends JFrame implements MouseListener
 		print.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
-			{	
+			{
+				
+				
+				
 				try {
 		            boolean complete = table.print();
 		            
 		            if (complete) {
-		             // JOptionPane.showMessageDialog(null, "Printing in Progress");
+		                /* show a success message  */
+		            
 		            } else {
 		                /*show a message indicating that printing was cancelled */
 		              
@@ -111,11 +112,14 @@ class contributor_bank_details extends JFrame implements MouseListener
 		           
 		        }
 				
-				setVisible(false);
-				contributormainmenu sa =new contributormainmenu();
+				/*
+				staffadminmainmenu sa =new staffadminmainmenu();
 				sa.setSize(340,190);
 				sa.setLocationRelativeTo(null);
 				sa.setVisible(true);
+				staffadminmainmenu.setDefaultLookAndFeelDecorated(true);
+				setVisible(false);
+				*/
 				
 			}
 		});
@@ -125,8 +129,6 @@ class contributor_bank_details extends JFrame implements MouseListener
 		butpan.add(cancle);
 		butpan.setBackground(new Color(255,197,68));
 		c.add("South",butpan);
-	
-		{
 		
 			  String url = "jdbc:mysql://localhost:3306/ggtelecom";
 			  
@@ -144,24 +146,27 @@ class contributor_bank_details extends JFrame implements MouseListener
 			
 			
 			st=conn.createStatement();
-			ResultSet set=st.executeQuery("select * from contributorreg");
+			ResultSet set=st.executeQuery("select * from dailycontributionupdate");
 			int row=0;
 			int i=0;
 			while(set.next())
 			{
 				row++;
 			}
-			DefaultTableModel model=new DefaultTableModel(new String[]{"Contributor ID", "full Name", "Account Name", "Account Number", "Account Type", "Bank Name"},row);
+			DefaultTableModel model=new DefaultTableModel(new String[]{"Date ","Time ","Contributor's ID", "full name", "Phone", "Amount Deposited", "Balance","Commission", "Loan/Withdraw"},row);
 			table=new JTable(model);
-			set=st.executeQuery("select * from contributorreg");
+			set=st.executeQuery("select * from dailycontributionupdate");
 			while(set.next())
 			{
-				model.setValueAt(set.getString(4).trim(),i,0);
-				model.setValueAt(set.getString(5).trim(),i,1);
-				model.setValueAt(set.getString(12).trim(),i,2);
-				model.setValueAt(set.getString(13).trim(),i,3);
-				model.setValueAt(set.getString(14).trim(),i,4);
-				model.setValueAt(set.getString(15).trim(),i,5);
+				model.setValueAt(set.getString(1).trim(),i,0);
+				model.setValueAt(set.getString(2).trim(),i,1);
+				model.setValueAt(set.getString(3).trim(),i,2);
+				model.setValueAt(set.getString(4).trim(),i,3);
+				model.setValueAt(set.getString(5).trim(),i,4);
+				model.setValueAt(set.getString(6).trim(),i,5);
+				model.setValueAt(set.getString(7).trim(),i,6);
+				model.setValueAt(set.getString(8).trim(),i,7);
+				model.setValueAt(set.getString(9).trim(),i,8);
 				
 				i++;
 			}
@@ -173,19 +178,18 @@ class contributor_bank_details extends JFrame implements MouseListener
 		JScrollPane sp=new JScrollPane(table);
 		main.add(sp);
 		table.setSelectionMode(0);
-		table.setFont(new Font("Times New Roman",Font.PLAIN,13));
+		table.setFont(new Font("Times New Roman",Font.PLAIN,14));
 		table.setForeground(Color.MAGENTA);
 		table.setGridColor(new Color(0,128,192));
-	  	table.setRowHeight(25);
-	  	table.setEnabled(false);
+		table.setRowHeight(25);
+		table.setEnabled(false);
         table.getTableHeader().setReorderingAllowed(false);
         c.add(main);
-		}}
+	}
 	
-	
-	
+
 							public static void main(String args []){
-								contributor_bank_details sa=new contributor_bank_details();
+								dailycontributorupdatestaffadmin sa=new dailycontributorupdatestaffadmin();
 								sa.setSize(1200, 520);
 								sa.setLocation(12, 10);
 								sa.setVisible(true);
@@ -195,42 +199,15 @@ class contributor_bank_details extends JFrame implements MouseListener
 
 
 							@Override
-							public void mouseClicked(MouseEvent e) {
+							public void actionPerformed(ActionEvent e) {
 								// TODO Auto-generated method stub
 								
 							}
 
 
 
-							@Override
-							public void mousePressed(MouseEvent e) {
-								// TODO Auto-generated method stub
-								
-							}
+						
 
 
-
-							@Override
-							public void mouseReleased(MouseEvent e) {
-								// TODO Auto-generated method stub
-								
-							}
-
-
-
-							@Override
-							public void mouseEntered(MouseEvent e) {
-								// TODO Auto-generated method stub
-								
-							}
-
-
-
-							@Override
-							public void mouseExited(MouseEvent e) {
-								// TODO Auto-generated method stub
-								
-							}
-								
 							}
 			

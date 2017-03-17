@@ -133,7 +133,7 @@ class dailycontribution_list extends JFrame implements ActionListener
 			  
 			   
 			   try {
-				conn = DriverManager.getConnection(url,"root","");
+				conn = DriverManager.getConnection(url,"root","setonji04");
 				//con=DriverManager.getConnection("jdbc:odbc:Driver={Microsoft Access Driver " +
 			         //   "(*.mdb)};"+"DBQ=D:\\database\\rakedomanagement.mdb","ayets","setonji04");
 				

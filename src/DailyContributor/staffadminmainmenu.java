@@ -37,7 +37,7 @@ class staffadminmainmenu extends JFrame implements ActionListener{
 	
 	private JPanel pRegister;
 	//private JTextField txtuserName,txtcsfName,txtsfName;
-	String[] info={"Select","Staff/Admin Registration"," "," "," "," "," "," "," "};
+	String[] info={"Select","Staff/Admin Registration","Daily Contribtion Update"," "," "," "," "," "," "};
 	
 Choice catt;
 	JComboBox cmbcontinfo;
@@ -125,7 +125,7 @@ String timeStamp = new SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance(
 	try {
 		
 		
-	conn = DriverManager.getConnection(url,"root","");
+	conn = DriverManager.getConnection(url,"root","setonji04");
 } catch (SQLException e1) {
 	// TODO Auto-generated catch block
 	 JOptionPane.showMessageDialog(null, "Failed Connection,ON your Local Server","Error",JOptionPane.ERROR_MESSAGE);
@@ -279,9 +279,14 @@ Object obj = e.getSource();
 		sa.setDefaultLookAndFeelDecorated(true);
 		setVisible(false);
 			}
-	else if(cmbcontinfo.getSelectedItem().equals("Daily Record")){
-		setVisible(false);
-		productdetails();
+	else if(cmbcontinfo.getSelectedItem().equals("Daily Contribtion Update")){
+		dispose();
+		dailycontributorstaffadmin sam = new dailycontributorstaffadmin();
+		sam.setSize(480, 420);
+		sam.setVisible(true);
+		sam.setResizable(false);
+		sam.setLocationRelativeTo(null);
+		
 	
 	}
 	else if(cmbcontinfo.getSelectedItem().equals("Search Contributor")){

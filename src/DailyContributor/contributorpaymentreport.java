@@ -133,7 +133,7 @@ class contributorpaymentreport extends JFrame implements MouseListener
 			  
 			   
 			   try {
-				conn = DriverManager.getConnection(url,"root","");
+				conn = DriverManager.getConnection(url,"root","setonji04");
 				
 			
 			
