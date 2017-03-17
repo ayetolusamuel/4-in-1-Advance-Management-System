@@ -30,7 +30,7 @@ class contributors_contact extends JFrame implements MouseListener
 	contributors_contact()
 	{
 		setSize(620,520);
-		setTitle("Staff Daily Transaction Report");
+		setTitle("Contributor's Contact List");
 		setLocation(240,80);
 		addWindowListener(new WindowAdapter()
 		{
@@ -51,7 +51,7 @@ class contributors_contact extends JFrame implements MouseListener
 
 		main.setLayout(new BorderLayout());
 		main.setBackground(new Color(245,240,255));
-		JLabel l=new JLabel("<html><font size=6 color=#800080><i>Daily Transaction Report");
+		JLabel l=new JLabel("<html><font size=6 color=#800080><i>Contributor's Contact List");
 		JPanel title=new JPanel()
 		{
 			public void paintComponent(Graphics g)
@@ -120,7 +120,7 @@ class contributors_contact extends JFrame implements MouseListener
 			/*Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
 			conn=DriverManager.getConnection("jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ=D://database//rakedomanagement.mdb;DriverID=22;READONLY=true) ","","");
 			*/
-			  String url = "jdbc:mysql://localhost:3306/rakedomanagement";
+			  String url = "jdbc:mysql://localhost:3306/ggtelecom";
 			  
 			   
 			   try {
@@ -136,34 +136,22 @@ class contributors_contact extends JFrame implements MouseListener
 			
 			
 			st=conn.createStatement();
-			ResultSet set=st.executeQuery("select * from dailystaffreport");
+			ResultSet set=st.executeQuery("select * from contributorreg");
 			int row=0;
 			int i=0;
 			while(set.next())
 			{
 				row++;
 			}
-			DefaultTableModel model=new DefaultTableModel(new String[]{"staffid", "fname", "phone", "email", "oCounter", "cCounter", "ppLitre", "date", "time", "sale", "litre", "product", "pump", "nozzle", "address","Remark"},row);
+			DefaultTableModel model=new DefaultTableModel(new String[]{"Contributor ID", "full Name", "Phone Number", "Email Address"},row);
 			table=new JTable(model);
-			set=st.executeQuery("select * from dailystaffreport");
+			set=st.executeQuery("select * from contributorreg");
 			while(set.next())
 			{
-				model.setValueAt(set.getString(1).trim(),i,0);
-				model.setValueAt(set.getString(2).trim(),i,1);
-				model.setValueAt(set.getString(3).trim(),i,2);
-				model.setValueAt(set.getString(4).trim(),i,3);
-				model.setValueAt(set.getString(5).trim(),i,4);
-				model.setValueAt(set.getString(6).trim(),i,5);
-				model.setValueAt(set.getString(7).trim(),i,6);
-				model.setValueAt(set.getString(8).trim(),i,7);
-				model.setValueAt(set.getString(9).trim(),i,8);
-				model.setValueAt(set.getString(10).trim(),i,9);
-				model.setValueAt(set.getString(11).trim(),i,10);
-				model.setValueAt(set.getString(12).trim(),i,11);
-				model.setValueAt(set.getString(13).trim(),i,12);
-				model.setValueAt(set.getString(14).trim(),i,13);
-				model.setValueAt(set.getString(15).trim(),i,14);
-				model.setValueAt(set.getString(16).trim(),i,15);
+				model.setValueAt(set.getString(4).trim(),i,0);
+				model.setValueAt(set.getString(5).trim(),i,1);
+				model.setValueAt(set.getString(7).trim(),i,2);
+				model.setValueAt(set.getString(6).trim(),i,3);
 				
 				i++;
 			}
@@ -186,7 +174,7 @@ class contributors_contact extends JFrame implements MouseListener
 	
 	
 							public static void main(String args []){
-								contributor_list sa=new contributor_list();
+								contributors_contact sa=new contributors_contact();
 								sa.setSize(1200, 520);
 								sa.setLocation(12, 10);
 								sa.setVisible(true);

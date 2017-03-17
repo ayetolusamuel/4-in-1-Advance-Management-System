@@ -17,7 +17,7 @@ import javax.swing.event.*;
 import javax.swing.table.*;
 
 import java.awt.print.*;
-class contributor_bank_details extends JFrame implements MouseListener
+class contributorpaymentreport extends JFrame implements MouseListener
 {
 	JPanel main=new JPanel();
 	Container c=getContentPane();
@@ -27,10 +27,10 @@ class contributor_bank_details extends JFrame implements MouseListener
 	JComboBox cmb;
 	JButton print;
 	JButton cancle;
-	contributor_bank_details()
+	contributorpaymentreport()
 	{
 		setSize(620,520);
-		setTitle("Contributor's Bank Details");
+		setTitle("Contributor's Payment Report");
 		setLocation(240,80);
 		addWindowListener(new WindowAdapter()
 		{
@@ -51,7 +51,7 @@ class contributor_bank_details extends JFrame implements MouseListener
 
 		main.setLayout(new BorderLayout());
 		main.setBackground(new Color(245,240,255));
-		JLabel l=new JLabel("<html><font size=6 color=#800080><i>Contributor's Bank Details");
+		JLabel l=new JLabel("<html><font size=6 color=#800080><i>Daily Payment Report for all Contributor's");
 		JPanel title=new JPanel()
 		{
 			public void paintComponent(Graphics g)
@@ -131,24 +131,24 @@ class contributor_bank_details extends JFrame implements MouseListener
 			
 			
 			st=conn.createStatement();
-			ResultSet set=st.executeQuery("select * from contributorreg");
+			ResultSet set=st.executeQuery("select * from dailycontributionupdate");
 			int row=0;
 			int i=0;
 			while(set.next())
 			{
 				row++;
 			}
-			DefaultTableModel model=new DefaultTableModel(new String[]{"Contributor ID", "full Name", "Account Name", "Account Number", "Account Type", "Bank Name"},row);
+			DefaultTableModel model=new DefaultTableModel(new String[]{"Contributor ID", "full Name", "Amount Deposited", "Total Amount Paid", "Commission", "Loan/Withdraw"},row);
 			table=new JTable(model);
-			set=st.executeQuery("select * from contributorreg");
+			set=st.executeQuery("select * from dailycontributionupdate");
 			while(set.next())
 			{
-				model.setValueAt(set.getString(4).trim(),i,0);
-				model.setValueAt(set.getString(5).trim(),i,1);
-				model.setValueAt(set.getString(12).trim(),i,2);
-				model.setValueAt(set.getString(13).trim(),i,3);
-				model.setValueAt(set.getString(14).trim(),i,4);
-				model.setValueAt(set.getString(15).trim(),i,5);
+				model.setValueAt(set.getString(3).trim(),i,0);
+				model.setValueAt(set.getString(4).trim(),i,1);
+				model.setValueAt(set.getString(6).trim(),i,2);
+				model.setValueAt(set.getString(7).trim(),i,3);
+				model.setValueAt(set.getString(8).trim(),i,4);
+				model.setValueAt(set.getString(9).trim(),i,5);
 				
 				i++;
 			}
@@ -171,7 +171,7 @@ class contributor_bank_details extends JFrame implements MouseListener
 	
 	
 							public static void main(String args []){
-								contributor_bank_details sa=new contributor_bank_details();
+								contributorpaymentreport sa=new contributorpaymentreport();
 								sa.setSize(1200, 520);
 								sa.setLocation(12, 10);
 								sa.setVisible(true);

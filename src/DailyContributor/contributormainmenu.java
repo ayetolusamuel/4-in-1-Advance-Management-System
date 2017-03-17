@@ -37,7 +37,7 @@ class contributormainmenu extends JFrame implements ActionListener{
 	
 	private JPanel pRegister;
 	//private JTextField txtuserName,txtcsfName,txtsfName;
-	String[] info={"Select","Contributor Registration","Daily Contributor Record","Search Contributor","Contributor's List","Contributor's Contact","Contributor Bank Account","Payment Summary","Send sms"};
+	String[] info={"Select","Contributor Registration","Daily Contributor Record","Search Contributor","Contributor's List","Contributor's Contact","Contributor's Bank Account","Payment Summary","Send sms"};
 	
 Choice catt;
 	JComboBox cmbcontinfo;
@@ -92,7 +92,7 @@ String timeStamp = new SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance(
 		pRegister.add(lblcontinfo).setBounds(0, 50, 300, 25);
 		cmbcontinfo=new JComboBox(info);
 		cmbcontinfo.setEditable(false);
-		cmbcontinfo.setFont(new Font("Times New Roman",Font.ITALIC,15));
+		cmbcontinfo.setFont(new Font("Times New Roman",Font.ITALIC,14));
 		cmbcontinfo.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
 		pRegister.add(cmbcontinfo).setBounds(105, 52, 190, 20);
 		
@@ -288,6 +288,37 @@ Object obj = e.getSource();
 		
 	
 	}
+	
+	else if(cmbcontinfo.getSelectedItem().equals("Send sms")){
+		JOptionPane.showMessageDialog(null, "Check Later! work in progress");
+		
+	}
+	
+	else if(cmbcontinfo.getSelectedItem().equals("Contributor's Contact")){
+		dispose();
+		contributors_contact sa=new contributors_contact();
+		sa.setSize(1200, 520);
+		sa.setLocation(12, 10);
+		sa.setVisible(true);
+		
+	
+	}
+	
+	
+
+	else if(cmbcontinfo.getSelectedItem().equals("Contributor's Bank Account")){
+		dispose();
+		contributor_bank_details sa=new contributor_bank_details();
+		sa.setSize(1200, 520);
+		sa.setLocation(12, 10);
+		sa.setVisible(true);
+		
+	
+	}
+	
+	
+	
+	
 	else if(cmbcontinfo.getSelectedItem().equals("Daily Contributor Record")){
 		dispose();
 		dailycontributor sam = new dailycontributor();
