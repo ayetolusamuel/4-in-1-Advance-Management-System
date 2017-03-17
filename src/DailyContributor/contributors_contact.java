@@ -101,9 +101,25 @@ class contributors_contact extends JFrame implements MouseListener
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				PrinterJob jb=PrinterJob.getPrinterJob();
-				jb.printDialog();
 				
+				try {
+		            boolean complete = table.print();
+		            
+		            if (complete) {
+		                /* show a success message  */
+		              
+		            } else {
+		                /*show a message indicating that printing was cancelled */
+		              
+		            }
+		        } catch (PrinterException pe) {
+		            /* Printing failed, report to the user */
+		           
+		        }
+				
+				/*PrinterJob jb=PrinterJob.getPrinterJob();
+				jb.printDialog();*/
+				dispose();
 			}
 		});
 		cancle.setToolTipText("Exit");
@@ -165,10 +181,14 @@ class contributors_contact extends JFrame implements MouseListener
 		table.setSelectionMode(0);
 		table.setFont(new Font("Times New Roman",Font.PLAIN,13));
 		table.setForeground(Color.MAGENTA);
+		table.setRowHeight(30);
 		table.setGridColor(new Color(0,128,192));
 	  	//table.setBackground(new Color(0,128,192));
         table.getTableHeader().setReorderingAllowed(false);
         c.add(main);
+        
+        
+        
 	}
 	
 	
