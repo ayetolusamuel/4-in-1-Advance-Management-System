@@ -125,7 +125,8 @@ String timeStamp = new SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance(
 	try {
 		
 		
-	conn = DriverManager.getConnection(url,"root","");
+	conn = DriverManager.getConnection(url,"root","setonji04");
+	System.out.println("connected");
 } catch (SQLException e1) {
 	// TODO Auto-generated catch block
 	 JOptionPane.showMessageDialog(null, "Failed Connection,ON your Local Server","Error",JOptionPane.ERROR_MESSAGE);
