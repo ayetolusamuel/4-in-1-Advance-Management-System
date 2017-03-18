@@ -497,12 +497,15 @@ else if(obj==btnExit){
 	
 }
 else if(obj==btnPreview){
-	dispose();
-	dailycontribution_list sa=new dailycontribution_list();
+	
+	
+	dailycontributorupdatestaffadmin_list sa=new dailycontributorupdatestaffadmin_list();
 	sa.setSize(1200, 520);
 	sa.setLocation(12, 10);
 	sa.setVisible(true);
+	dailycontributorupdatestaffadmin_list.setDefaultLookAndFeelDecorated(true);
 	
+	setVisible(false);
 }
 
 else if(obj==btnSave){
