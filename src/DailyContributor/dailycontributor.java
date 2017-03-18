@@ -321,7 +321,7 @@ public class dailycontributor extends JFrame implements ActionListener, FocusLis
 		try {
 			
 			
-		con = DriverManager.getConnection(url,"root","");
+		con = DriverManager.getConnection(url,"root","setonji04");
 
 		stmt=con.createStatement();
 	} catch (SQLException e1) {

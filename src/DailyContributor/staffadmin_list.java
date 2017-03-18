@@ -134,7 +134,7 @@ class staffadmin_list extends JFrame implements ActionListener
 			  
 			   
 			   try {
-				conn = DriverManager.getConnection(url,"root","");
+				conn = DriverManager.getConnection(url,"root","setonji04");
 				
 			st=conn.createStatement();
 			ResultSet set=st.executeQuery("select * from staffadminreg");

@@ -209,29 +209,6 @@ String timeStamp = new SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance(
 	
 	}
 	
-	//
-	
-	class TableHandler extends MouseAdapter
-	{
-		public void mouseClicked(MouseEvent me)
-		{
-			
-			try
-			{
-				Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-				conn=DriverManager.getConnection("jdbc:odbc:Driver={Microsoft Access Driver " +
-			            "(*.mdb)};"+"DBQ=D:\\database\\Student_Info.mdb","ayets","setonji04");
-				st=conn.createStatement();
-			
-			}
-				catch (Exception e) {
-					// TODO: handle exception
-				}
-			/*if(cmbAttendance.getSelectedItem().equals("Present") ){
-				cmbCover1.setSelectedItem("No");
-			}*/
-		}}
-		
 
 	public void focusGained(FocusEvent e) {
 		// TODO Auto-generated method stub

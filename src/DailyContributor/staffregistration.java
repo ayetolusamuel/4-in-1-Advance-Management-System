@@ -293,7 +293,7 @@ public class staffregistration extends JFrame implements ActionListener, FocusLi
 		try {
 			
 			
-		conn = DriverManager.getConnection(url,"root","");
+		conn = DriverManager.getConnection(url,"root","setonji04");
 	} catch (SQLException e1) {
 		// TODO Auto-generated catch block
 		 JOptionPane.showMessageDialog(null, "Failed Connection,ON your Local Server","Error",JOptionPane.ERROR_MESSAGE);
