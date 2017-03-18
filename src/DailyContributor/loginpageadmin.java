@@ -29,7 +29,7 @@ import javax.swing.*;
 
 
 
-class LoginPage extends JFrame implements ActionListener{
+class loginpageadmin extends JFrame implements ActionListener{
 	private JLabel lbluserName,lblPlatform,lblPosition,lblPassword;
 	private JTextField txtuserName;
 	private JPasswordField txtPassword;
@@ -56,7 +56,7 @@ private String d = sdf.format (currDate);							//Storing Date.
 String timeStamp = new SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance().getTime());
 
 	
-	LoginPage(){
+loginpageadmin(){
 		
 		
 		addWindowListener(new WindowAdapter()
@@ -315,7 +315,7 @@ Object obj = e.getSource();
         		sa.setVisible(true);
             break;
             case JOptionPane.NO_OPTION:
-            	staffadminregistration sam = new staffadminregistration();
+            	staffregistration sam = new staffregistration();
         		sam.setSize(480, 420);
         		sam.setVisible(true);
         		sam.setResizable(false);
@@ -346,7 +346,7 @@ Object obj = e.getSource();
 			System.out.println("error in loading theme "+e.getMessage());
 			
 		}	
-		LoginPage sa =new LoginPage();
+		loginpageadmin sa =new loginpageadmin();
 		sa.setSize(300,250);
 		sa.setLocationRelativeTo(null);
 		sa.setVisible(true);

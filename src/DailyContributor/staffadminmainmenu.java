@@ -271,12 +271,11 @@ Object obj = e.getSource();
 		else if(obj==btnOK){
 	if(cmbcontinfo.getSelectedItem().equals("Staff/Admin Registration")){
 		
-		btnOK.setBounds(0,0,0,0);
-		LoginPage sa =new LoginPage();
-		sa.setSize(300,250);
-		sa.setLocationRelativeTo(null);
-		sa.setVisible(true);
-		sa.setDefaultLookAndFeelDecorated(true);
+		staffregistration sam = new staffregistration();
+		sam.setSize(480, 420);
+		sam.setVisible(true);
+		sam.setResizable(false);
+		sam.setLocationRelativeTo(null);
 		setVisible(false);
 			}
 	else if(cmbcontinfo.getSelectedItem().equals("Daily Contribtion Update")){
