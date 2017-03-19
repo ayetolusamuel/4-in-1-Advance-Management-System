@@ -307,13 +307,11 @@ Object obj = e.getSource();
                 else
                 {
                     JOptionPane.showMessageDialog(null, "Login Successfullyy....","Message",JOptionPane.INFORMATION_MESSAGE);
-                    dailycontributorstaffadmin sam = new dailycontributorstaffadmin();
-            		sam.setSize(480, 420);
-            		sam.setVisible(true);
-            		sam.setResizable(false);
-            		sam.setLocationRelativeTo(null);      
-                  
-            		sam.setResizable(false);
+                    staffadminmainmenu sa =new staffadminmainmenu();
+            		sa.setSize(340,190);
+            		sa.setLocationRelativeTo(null);
+            		sa.setVisible(true);
+            		sa.setResizable(false);
                     txtuserName.setText("");
                     txtPassword.setText("");
                    dispose();

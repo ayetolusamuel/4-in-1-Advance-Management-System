@@ -489,10 +489,11 @@ while(rs.next()){
 		}
 else if(obj==btnExit){
 	dispose();
-	staffnadminloginpage sa =new staffnadminloginpage();
-	sa.setSize(300,190);
+	staffadminmainmenu sa =new staffadminmainmenu();
+	sa.setSize(340,190);
 	sa.setLocationRelativeTo(null);
 	sa.setVisible(true);
+	sa.setResizable(false);
 	
 	
 }

@@ -466,11 +466,12 @@ else if(obj==btnRefresh){
 }
 else if(obj==btnExit){
 	setVisible(false);
-	LoginPage sa =new LoginPage();
-	sa.setSize(300,250);
+	staffadminmainmenu sa =new staffadminmainmenu();
+	sa.setSize(340,190);
 	sa.setLocationRelativeTo(null);
 	sa.setVisible(true);
-	sa.setDefaultLookAndFeelDecorated(true);
+	sa.setResizable(false);
+	staffadminmainmenu.setDefaultLookAndFeelDecorated(true);
 	
 	
 }

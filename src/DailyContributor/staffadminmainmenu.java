@@ -271,7 +271,7 @@ Object obj = e.getSource();
 		else if(obj==btnOK){
 	if(cmbcontinfo.getSelectedItem().equals("Staff/Admin Registration")){
 		
-		staffregistration sam = new staffregistration();
+		staffadminregistration sam = new staffadminregistration();
 		sam.setSize(480, 420);
 		sam.setVisible(true);
 		sam.setResizable(false);
