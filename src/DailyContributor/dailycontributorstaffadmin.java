@@ -28,7 +28,7 @@ public class dailycontributorstaffadmin extends JFrame implements ActionListener
 
 	private JTextArea txtrAddress;
 	
-	private JTextField txtcfName, txtEmail, txtwithdraw,txtpNumber, txtTime, txtDate,txtchkid,txtadeposited,txtbalance,txtcomission;
+	private JTextField txtcfName, txtEmail, txtwithdraw,txtpNumber, txtTime, txtDate,txtstaffid,txtchkid,txtadeposited,txtbalance,txtcomission;
 		
 	TextArea txtOthers;
 	PreparedStatement ps = null;
@@ -78,7 +78,7 @@ public class dailycontributorstaffadmin extends JFrame implements ActionListener
 		
 		
 	;
-		setTitle("Staff Payroll System");
+		setTitle("Staff Daily Contribution Update Portal");
 		setSize(397, 510);
 		setLocation(100, 60);
 	
@@ -194,6 +194,10 @@ public class dailycontributorstaffadmin extends JFrame implements ActionListener
 		txtadeposited.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent ke) {
 				char c = ke.getKeyChar();
+
+				if (!  (c == KeyEvent.VK_BACK_SPACE)) {
+
+					
 				if (!(c == '0' || c == '1' || c == '2' || c == '3'
 							|| c == '4' || c == '5' || c == '6' || c == '7'
 							|| c == '8' || c == '9')) {
@@ -203,7 +207,7 @@ public class dailycontributorstaffadmin extends JFrame implements ActionListener
 					}
 				}
 
-			
+			}
 		});
 		pAdmin.add(txtadeposited).setBounds(130, 219, 100, 20);
 		
@@ -217,8 +221,8 @@ public class dailycontributorstaffadmin extends JFrame implements ActionListener
 		lblbalance = new JLabel("<html><b>Balance :</i></b></html>");
 		lblbalance.setForeground(Color.white);
 		lblbalance.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		//pAdmin.add(lblnkNumber).setBounds(10, 198, 180, 120);
-		txtbalance = new JTextField("0.00");
+		pAdmin.add(lblbalance).setBounds(10, 198, 180, 120);
+		txtbalance = new JTextField();
 		txtbalance.setEditable(false);
 		txtbalance.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
 		txtbalance.addKeyListener(new KeyAdapter() {
@@ -238,7 +242,7 @@ public class dailycontributorstaffadmin extends JFrame implements ActionListener
 
 			}
 		});
-		//pAdmin.add(txtbalance).setBounds(130, 249, 100, 20);
+		pAdmin.add(txtbalance).setBounds(130, 249, 100, 20);
 		
 		lblnkNumber = new JLabel("<html><b>Commision :</i></b></html>");
 		lblnkNumber.setForeground(Color.white);
@@ -265,6 +269,43 @@ public class dailycontributorstaffadmin extends JFrame implements ActionListener
 			}
 		});
 		pAdmin.add(txtcomission).setBounds(130, 279, 100, 20);
+		
+		
+		JLabel lblstat = new JLabel("For Staff/Manager Only Endorsed by (OPtional): ");
+		lblstat.setForeground(Color.red);
+		lblstat.setFont(new Font("Times New Roman", Font.ITALIC, 11));
+		//pAdmin.add(lblstat).setBounds(239, 200, 260, 120);
+		
+
+		lbladeposited = new JLabel("<html><b>Staff ID :</i></b></html>");
+		lbladeposited.setForeground(Color.BLUE);
+		lbladeposited.setFont(new Font("Times New Roman", Font.ITALIC, 12));
+		pAdmin.add(lbladeposited).setBounds(360, 260, 100, 120);
+		txtstaffid = new JTextField("GGTS");
+		txtstaffid.setEditable(true);
+		txtstaffid.setFont(new Font("Times New Roman", Font.ITALIC, 12));
+		txtstaffid.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
+		pAdmin.add(txtstaffid).setBounds(420, 310, 50, 20);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		lblnkNumber = new JLabel("<html><b>Loan/Withdraw :</i></b></html>");
 		lblnkNumber.setForeground(Color.white);
@@ -343,27 +384,62 @@ public class dailycontributorstaffadmin extends JFrame implements ActionListener
 		
 	}
 	
+	void sumup(){
+		try {
+			String s = txtchkid.getText();
+			int sum = 0;
+
+			Statement st = con.createStatement();
+			rs = st.executeQuery("SELECT SUM(adeposited) FROM `dailycontributionupdate` where cid='" + s + "'");
+
+			while (rs.next()) {
+
+				int c = rs.getInt(1);
+
+				sum += c;
+				txtbalance.setEnabled(false);
+				lblbalance.setEnabled(false);
+				pAdmin.add(txtbalance).setBounds(130, 249, 100, 20);
+				pAdmin.add(lblbalance).setBounds(10, 198, 180, 120);
+				double adeposited = Double.parseDouble(txtadeposited.getText());
+				txtcomission.setText(String.format("%.0f", (adeposited)));
+
+				txtbalance.setText(String.format("%.0f", (adeposited + sum)));
+
+				
+			}
+		} catch (Exception e2) {
+			// TODO: handle exception
+		}
 	
+		
+		
+		
+		
+		
+	}
 	
 void retrieve(){
 		
 		try{
 			
 			
-			if(txtchkid.getText().length()==0 ||txtchkid.getText().equals("GGTC")){
-				System.out.println("invalid ID or empty Field");
+			if(txtchkid.getText().length()==0 ||txtchkid.getText().equals("GGTC")||txtstaffid.getText().equals("GGTS")){
+	
+				JOptionPane.showMessageDialog(null, "invalid ID or empty Field");
 			
 			}else if(txtadeposited.getText().equals("")){
-					//System.out.println("Fill empty field");
+				
 					JOptionPane.showMessageDialog(null, "Fill all editable empty fill");
 				}
 			
 			else{
+				sumup();
 				double adeposited = Double.parseDouble(txtadeposited.getText());
-				txtcomission.setText(String.format("%.2f", (adeposited)));
-				
+				txtcomission.setText(String.format("%.0f", (adeposited)));
+		
 			
-		 String sql="INSERT INTO dailycontributionupdate(date,time,cid,fname,number,adeposited,commission,loan)values('"+txtDate.getText()+"','"+txtTime.getText()+"','"+txtchkid.getText()+"','"+txtcfName.getText()+"','"+txtpNumber.getText()+"','"+txtadeposited.getText()+"','"+txtcomission.getText()+"','"+txtwithdraw.getText()+"')";
+		 String sql="INSERT INTO dailycontributionupdate(date,time,cid,fname,number,adeposited,commission,loan,staffid)values('"+txtDate.getText()+"','"+txtTime.getText()+"','"+txtchkid.getText()+"','"+txtcfName.getText()+"','"+txtpNumber.getText()+"','"+txtadeposited.getText()+"','"+txtcomission.getText()+"','"+txtwithdraw.getText()+"','"+txtstaffid.getText()+"')";
 	    
 			
 				ps=con.prepareStatement(sql);
@@ -381,8 +457,7 @@ void retrieve(){
 
 			
 			}}catch (SQLException e1) {
-				System.out.println("uuuuuuuuuuuuuuuu");
-				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, "Error");
 				e1.printStackTrace();
 	}
 			}
@@ -494,7 +569,7 @@ while(rs.next()){
     txtEmail.setText(rs.getString("email"));
     txtpNumber.setText(rs.getString("cpnumber"));
     txtrAddress.setText(rs.getString("residentialaddress"));
-    
+    //txtstaffid.setText(rs.getString("staffid"));
     
     
 }
@@ -504,6 +579,24 @@ while(rs.next()){
 	catch (Exception ez) {
 		// TODO: handle exception
 	}
+	
+	try{
+		rs = stmt.executeQuery("SELECT * FROM `dailycontributionupdate` WHERE cid ='"+s+"'");
+
+			
+
+		while(rs.next()){
+
+			//txtstaffid.setText(rs.getString("staffid"));
+		    
+		    
+		}
+		     
+			
+			}
+			catch (Exception ez) {
+				// TODO: handle exception
+			}
 		
 		}
 else if(obj==btnExit){
@@ -535,16 +628,14 @@ else if(obj==btnchkbalance){
 		 int sum = 0;
 		
 	        Statement st = con.createStatement();
-	        // rs = st.executeQuery("SELECT SUM(adeposited) FROM dailycontributionupdate where  WHERE cid ='"+s+"'");
-	        rs = st.executeQuery("SELECT SUM(adeposited) FROM `dailycontributionupdate` where cid='"+s+"'");
-	      //  SELECT `date`, `time`, `cid`, `fname`, `number`, `adeposited`, `balance`, `commission`, `loan` FROM `dailycontributionupdate` WHERE 1
-	      //  String a=txtadeposited.getText();
-	       
+	         rs = st.executeQuery("SELECT SUM(adeposited) FROM `dailycontributionupdate` where cid='"+s+"'");
+	    
 	        while (rs.next()) {
 	        	
 	        	 int c = rs.getInt(1);
 	        	//System.out.println(c);
-	        sum = sum + c;
+	        	 sum += c;
+	       // sum = sum + c;
 	        String str = Integer.toString(sum);
 	        txtbalance.setEnabled(false);
 	        lblbalance.setEnabled(false);
@@ -552,7 +643,7 @@ else if(obj==btnchkbalance){
 	        pAdmin.add(lblbalance).setBounds(10, 198, 180, 120);
 	        txtbalance.setText(str);
 	        String a= txtbalance.getText();
-	        JOptionPane.showMessageDialog(null, "<html><i>\n Your Balance is " + a + " NAIRA"+"");
+	        JOptionPane.showMessageDialog(null, "<html><i>Contributor with ID " +s+" \n Your Balance is " + a + " NAIRA"+"" );
 			
 	        }}
 	        catch (Exception e2) {
@@ -564,7 +655,7 @@ else if(obj==btnchkbalance){
 
 
 else if(obj==btnSave){
-	
+sumup();
 	retrieve();
 	
 	
