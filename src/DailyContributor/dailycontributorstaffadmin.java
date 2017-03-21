@@ -22,7 +22,8 @@ public class dailycontributorstaffadmin extends JFrame implements ActionListener
 	String user = "ayets";
 	String pass = "setonji04";
 	private JPanel pAdmin = new JPanel();
-	private JLabel lblDate, lblTime,lblcfName,lblEmail, lblrAddress, lblpNumber,  lblnkNumber,lblchkid;
+	private JLabel lblDate, lblTime,lblcfName,lblEmail, lblrAddress, lblpNumber, lblbalance, lblnkNumber,
+	lbladeposited,lblchkid;
 	JLabel lbl1, lbldd;
 
 	private JTextArea txtrAddress;
@@ -34,7 +35,7 @@ public class dailycontributorstaffadmin extends JFrame implements ActionListener
 
 	
 
-	JButton btnSave, btnRemove, btnPreview, btnExit, btnModify, btnClear,
+	JButton btnSave, btnRemove, btnPreview, btnExit, btnModify, btnClear,btnchkbalance,
 			btnmessage,btnSearch,btnOK;
 
 	private java.util.Date currDate = new java.util.Date(); // Creating Object.
@@ -183,10 +184,10 @@ public class dailycontributorstaffadmin extends JFrame implements ActionListener
 		txtrAddress.setBounds(90, 104, 380, 100);
 		pAdmin.add(txtrAddress);
 		
-		lblnkNumber = new JLabel("<html><b>Amount Deposited :</i></b></html>");
-		lblnkNumber.setForeground(Color.white);
-		lblnkNumber.setFont(new Font("Times New Roman", Font.ITALIC, 12));
-		pAdmin.add(lblnkNumber).setBounds(10, 168, 100, 120);
+		lbladeposited = new JLabel("<html><b>Amount Deposited :</i></b></html>");
+		lbladeposited.setForeground(Color.white);
+		lbladeposited.setFont(new Font("Times New Roman", Font.ITALIC, 12));
+		pAdmin.add(lbladeposited).setBounds(10, 168, 100, 120);
 		txtadeposited = new JTextField();
 		txtadeposited.setEditable(true);
 		txtadeposited.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
@@ -207,10 +208,16 @@ public class dailycontributorstaffadmin extends JFrame implements ActionListener
 		pAdmin.add(txtadeposited).setBounds(130, 219, 100, 20);
 		
 		
-		lblnkNumber = new JLabel("<html><b>Balance :</i></b></html>");
-		lblnkNumber.setForeground(Color.white);
-		lblnkNumber.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		pAdmin.add(lblnkNumber).setBounds(10, 198, 180, 120);
+		
+		
+		
+		
+		
+		
+		lblbalance = new JLabel("<html><b>Balance :</i></b></html>");
+		lblbalance.setForeground(Color.white);
+		lblbalance.setFont(new Font("Times New Roman", Font.ITALIC, 15));
+		//pAdmin.add(lblnkNumber).setBounds(10, 198, 180, 120);
 		txtbalance = new JTextField("0.00");
 		txtbalance.setEditable(false);
 		txtbalance.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
@@ -231,7 +238,7 @@ public class dailycontributorstaffadmin extends JFrame implements ActionListener
 
 			}
 		});
-		pAdmin.add(txtbalance).setBounds(130, 249, 100, 20);
+		//pAdmin.add(txtbalance).setBounds(130, 249, 100, 20);
 		
 		lblnkNumber = new JLabel("<html><b>Commision :</i></b></html>");
 		lblnkNumber.setForeground(Color.white);
@@ -290,9 +297,13 @@ public class dailycontributorstaffadmin extends JFrame implements ActionListener
 		btnSave = new JButton("Save");
 		pAdmin.add(btnSave).setBounds(0, 335, 65, 25);
 		
-
-		btnPreview = new JButton("Preview The Contributor's List");
-		pAdmin.add(btnPreview).setBounds(75, 335, 230, 25);
+		btnchkbalance= new JButton("<html><b>Check Balance");
+		btnchkbalance.setFont(new Font("Times New Roman", Font.ITALIC, 15));
+			pAdmin.add(btnchkbalance).setBounds(170, 335, 130, 25);
+			
+			
+		btnPreview = new JButton("Preview");
+		pAdmin.add(btnPreview).setBounds(75, 335, 90, 25);
 		btnClear = new JButton("Refresh");
 		pAdmin.add(btnClear).setBounds(310, 335, 85, 25);
 		btnExit = new JButton("Quit");
@@ -307,7 +318,7 @@ public class dailycontributorstaffadmin extends JFrame implements ActionListener
 		btnClear.addActionListener(this);
 		btnPreview.addActionListener(this);
 		btnExit.addActionListener(this);
-		
+		btnchkbalance.addActionListener(this);
 		
 		//String com=  txtcomission.setText("");
 		/*String ampd=txtadeposited.getText();
@@ -352,7 +363,7 @@ void retrieve(){
 				txtcomission.setText(String.format("%.2f", (adeposited)));
 				
 			
-		 String sql="INSERT INTO dailycontributionupdate(date,time,cid,fname,number,adeposited,balance,commission,loan)values('"+txtDate.getText()+"','"+txtTime.getText()+"','"+txtchkid.getText()+"','"+txtcfName.getText()+"','"+txtpNumber.getText()+"','"+txtadeposited.getText()+"','"+txtbalance.getText()+"','"+txtcomission.getText()+"','"+txtwithdraw.getText()+"')";
+		 String sql="INSERT INTO dailycontributionupdate(date,time,cid,fname,number,adeposited,commission,loan)values('"+txtDate.getText()+"','"+txtTime.getText()+"','"+txtchkid.getText()+"','"+txtcfName.getText()+"','"+txtpNumber.getText()+"','"+txtadeposited.getText()+"','"+txtcomission.getText()+"','"+txtwithdraw.getText()+"')";
 	    
 			
 				ps=con.prepareStatement(sql);
@@ -407,11 +418,19 @@ void retrieve(){
 		// TODO Auto-generated method stub
 
 	}
+	
+	
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
 
+	       
+		
+	       
+		
+		
 		String ampd=txtadeposited.getText();
 		//String s=txtcomission.setText(ampd);
 if(obj==btnOK){
@@ -509,10 +528,43 @@ else if(obj==btnPreview){
 	setVisible(false);
 }
 
-else if(obj==btnSave){
-	System.out.println(ampd);
+else if(obj==btnchkbalance){
 	
+	try{
+		String s=txtchkid.getText();
+		 int sum = 0;
+		
+	        Statement st = con.createStatement();
+	        // rs = st.executeQuery("SELECT SUM(adeposited) FROM dailycontributionupdate where  WHERE cid ='"+s+"'");
+	        rs = st.executeQuery("SELECT SUM(adeposited) FROM `dailycontributionupdate` where cid='"+s+"'");
+	      //  SELECT `date`, `time`, `cid`, `fname`, `number`, `adeposited`, `balance`, `commission`, `loan` FROM `dailycontributionupdate` WHERE 1
+	      //  String a=txtadeposited.getText();
+	       
+	        while (rs.next()) {
+	        	
+	        	 int c = rs.getInt(1);
+	        	//System.out.println(c);
+	        sum = sum + c;
+	        String str = Integer.toString(sum);
+	        txtbalance.setEnabled(false);
+	        lblbalance.setEnabled(false);
+	        pAdmin.add(txtbalance).setBounds(130, 249, 100, 20);
+	        pAdmin.add(lblbalance).setBounds(10, 198, 180, 120);
+	        txtbalance.setText(str);
+	        String a= txtbalance.getText();
+	        JOptionPane.showMessageDialog(null, "<html><i>\n Your Balance is " + a + " NAIRA"+"");
+			
+	        }}
+	        catch (Exception e2) {
+				// TODO: handle exception
+			}
+	
+	
+}
 
+
+else if(obj==btnSave){
+	
 	retrieve();
 	
 	
