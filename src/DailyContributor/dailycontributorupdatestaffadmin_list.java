@@ -162,7 +162,7 @@ class dailycontributorupdatestaffadmin_list extends JFrame implements ActionList
 			{
 				row++;
 			}
-			DefaultTableModel model=new DefaultTableModel(new String[]{"Date ","Time ","Contributor's ID", "full name", "Phone", "Amount Deposited","Commission", "Loan/Withdraw"},row);
+			DefaultTableModel model=new DefaultTableModel(new String[]{"Date ","Time ","Contributor's ID", "full name", "Phone", "Amount Deposited","Commission", "Loan/Withdraw","Endorsed ID"},row);
 			table=new JTable(model);
 			set=st.executeQuery("select * from dailycontributionupdate");
 			while(set.next())
@@ -175,7 +175,7 @@ class dailycontributorupdatestaffadmin_list extends JFrame implements ActionList
 				model.setValueAt(set.getString(6).trim(),i,5);
 				model.setValueAt(set.getString(7).trim(),i,6);
 				model.setValueAt(set.getString(8).trim(),i,7);
-				//model.setValueAt(set.getString(9).trim(),i,8);
+				model.setValueAt(set.getString(9).trim(),i,8);
 				
 				i++;
 			}
