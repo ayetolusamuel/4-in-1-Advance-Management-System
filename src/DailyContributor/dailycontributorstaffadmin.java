@@ -311,14 +311,14 @@ public class dailycontributorstaffadmin extends JFrame implements ActionListener
 		lblnkNumber.setForeground(Color.white);
 		lblnkNumber.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		pAdmin.add(lblnkNumber).setBounds(10, 258, 180, 120);
-		txtwithdraw = new JTextField("0.00");
+		txtwithdraw = new JTextField();
 		txtwithdraw.setEditable(true);
 		txtwithdraw.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
 		txtwithdraw.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent ke) {
 				char c = ke.getKeyChar();
 
-				if (!((Character.isAlphabetic(c)) || (c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_SPACE))) {
+				if (!( c == KeyEvent.VK_SPACE)) {
 					if (!(c == '0' || c == '1' || c == '2' || c == '3'
 							|| c == '4' || c == '5' || c == '6' || c == '7'
 							|| c == '8' || c == '9' || c == '_' || c == '@'
@@ -384,6 +384,65 @@ public class dailycontributorstaffadmin extends JFrame implements ActionListener
 		
 	}
 	
+	/*void chkdatabase(){
+		
+
+try{
+stmt=con.createStatement();
+rs = stmt.executeQuery("select * from dailycontributionupdate ");
+
+
+while(rs.next()){
+      String userID=rs.getString("cid");
+      String date=rs.getString("date");
+      String deposited=rs.getString("adeposited");
+      String id=txtchkid.getText();
+      String dt=txtDate.getText();
+      String amount=txtadeposited.getText();
+      System.out.println("Samuel");
+      
+     // if(userID.equals(txtchkid.getText())){
+      if(userID.equals(null) || date.equals(null)||deposited.equals(null)){
+    	  System.out.println("empty table");
+      }
+     
+      
+      
+   if(userID.equals(id)||date.equals(dt)||deposited.equals(amount)||userID.equals(null)){
+        JOptionPane.showMessageDialog(null,"Already Exist,Not allowed");
+          
+      }
+      else{
+    	  double adeposited = Double.parseDouble(txtadeposited.getText());
+			txtcomission.setText(String.format("%.0f", (adeposited)));
+	
+		
+	 String sql="INSERT INTO dailycontributionupdate(date,time,cid,fname,number,adeposited,commission,loan,staffid)values('"+txtDate.getText()+"','"+txtTime.getText()+"','"+txtchkid.getText()+"','"+txtcfName.getText()+"','"+txtpNumber.getText()+"','"+txtadeposited.getText()+"','"+txtcomission.getText()+"','"+txtwithdraw.getText()+"','"+txtstaffid.getText()+"')";
+  
+		
+			ps=con.prepareStatement(sql);
+			//System.out.println("sas");
+			ps.executeUpdate();
+			JOptionPane.showMessageDialog(null, "<html><i>\n Your Commission is " + txtcomission.getText() + " NAIRA"+"\n\"Saved into Database\"");
+			ps.close();
+			dispose();
+		dailycontributorstaffadmin sam = new dailycontributorstaffadmin();
+		sam.setSize(480, 420);
+		sam.setVisible(true);
+		sam.setResizable(false);
+		
+		sam.setLocationRelativeTo(null);
+      }
+}}
+      
+      catch (Exception e) {
+		// TODO: handle exception
+	}
+		
+		
+	}
+	*/
+	
 	void sumup(){
 		try {
 			String s = txtchkid.getText();
@@ -406,8 +465,18 @@ public class dailycontributorstaffadmin extends JFrame implements ActionListener
 
 				txtbalance.setText(String.format("%.0f", (adeposited + sum)));
 
-				
+				double sam = Double.parseDouble(txtbalance.getText());
+
+				double loan = Double.parseDouble(txtwithdraw.getText());
+
+				int loanw = (int) (sam - loan);
+
+				JOptionPane.showMessageDialog(null,
+						"<html><i>\n Contributor with ID " + txtchkid.getText() + "\n Requested for LOAN OF "
+								+ txtwithdraw.getText() + " NAIRA" + "\n\"Your Remain Balance is " + loanw + " NAIRA");
+
 			}
+			
 		} catch (Exception e2) {
 			// TODO: handle exception
 		}
@@ -421,48 +490,48 @@ public class dailycontributorstaffadmin extends JFrame implements ActionListener
 	
 void retrieve(){
 		
-		try{
-			
-			
-			if(txtchkid.getText().length()==0 ||txtchkid.getText().equals("GGTC")||txtstaffid.getText().equals("GGTS")){
-	
-				JOptionPane.showMessageDialog(null, "invalid ID or empty Field");
-			
-			}else if(txtadeposited.getText().equals("")){
-				
-					JOptionPane.showMessageDialog(null, "Fill all editable empty fill");
-				}
-			
-			else{
-				sumup();
-				double adeposited = Double.parseDouble(txtadeposited.getText());
-				txtcomission.setText(String.format("%.0f", (adeposited)));
-		
-			
-		 String sql="INSERT INTO dailycontributionupdate(date,time,cid,fname,number,adeposited,commission,loan,staffid)values('"+txtDate.getText()+"','"+txtTime.getText()+"','"+txtchkid.getText()+"','"+txtcfName.getText()+"','"+txtpNumber.getText()+"','"+txtadeposited.getText()+"','"+txtcomission.getText()+"','"+txtwithdraw.getText()+"','"+txtstaffid.getText()+"')";
-	    
-			
-				ps=con.prepareStatement(sql);
-				//System.out.println("sas");
-				ps.executeUpdate();
-				JOptionPane.showMessageDialog(null, "<html><i>\n Your Commission is " + txtcomission.getText() + " NAIRA"+"\n\"Saved into Database\"");
-				ps.close();
-				dispose();
-			dailycontributorstaffadmin sam = new dailycontributorstaffadmin();
-			sam.setSize(480, 420);
-			sam.setVisible(true);
-			sam.setResizable(false);
-			
-			sam.setLocationRelativeTo(null);
+		if(txtchkid.getText().length()==0 ||txtchkid.getText().equals("GGTC")||txtstaffid.getText().equals("GGTS")){
 
+			JOptionPane.showMessageDialog(null, "invalid ID or empty Field");
+		
+		}else if(txtadeposited.getText().equals("")){
 			
-			}}catch (SQLException e1) {
-				JOptionPane.showMessageDialog(null, "Error");
-				e1.printStackTrace();
-	}
+				JOptionPane.showMessageDialog(null, "Fill all editable empty fill");
+			}
+		
+		else{
+			sumup();
+			
+			//chkdatabase();
+			
+		double adeposited = Double.parseDouble(txtadeposited.getText());
+			txtcomission.setText(String.format("%.0f", (adeposited)));
+
+		
+ String sql="INSERT INTO dailycontributionupdate(date,time,cid,fname,number,adeposited,commission,loan,staffid)values('"+txtDate.getText()+"','"+txtTime.getText()+"','"+txtchkid.getText()+"','"+txtcfName.getText()+"','"+txtpNumber.getText()+"','"+txtadeposited.getText()+"','"+txtcomission.getText()+"','"+txtwithdraw.getText()+"','"+txtstaffid.getText()+"')";
+   
+		try{
+			ps=con.prepareStatement(sql);
+			//System.out.println("sas");
+			ps.executeUpdate();
+			JOptionPane.showMessageDialog(null, "<html><i>\n Your Commission is " + txtcomission.getText() + " NAIRA"+"\n\"Saved into Database\"");
+			ps.close();
+			dispose();
+		dailycontributorstaffadmin sam = new dailycontributorstaffadmin();
+		sam.setSize(480, 420);
+		sam.setVisible(true);
+		sam.setResizable(false);
+		
+		sam.setLocationRelativeTo(null);
+
+		
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		
 			}
 	
-
+		}}
 	
 	public static void main(String[] args) {
 		
@@ -702,3 +771,26 @@ else if(obj==btnClear){
 		
 	}
 }
+
+
+/*
+
+
+stmt=con.createStatement();
+rs = stmt.executeQuery("select * from dailycontributionupdate ");
+
+
+while(rs.next()){
+      String userID=rs.getString("cid");
+      String date=rs.getString("date");
+      String deposited=rs.getString("adeposited");
+      String id=txtchkid.getText();
+      String dt=txtDate.getText();
+      System.out.println("Samuel");
+      
+     // if(userID.equals(txtchkid.getText())){
+      if(userID.equals(id)||date.equals(dt)||deposited.equals(amount)){
+        JOptionPane.showMessageDialog(null,"Already Exist,Not allowed");
+          
+      }
+     */
