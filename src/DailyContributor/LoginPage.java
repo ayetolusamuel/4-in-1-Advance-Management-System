@@ -256,9 +256,8 @@ void retrieve(){
 	{
 		JOptionPane.showMessageDialog(null, "Login Succesfuly");
 		setVisible(false);
-		mainmenu sa =new mainmenu();
-		sa.setSize(340,190);
-		sa.setLocationRelativeTo(null);
+		 MainPage sa=new  MainPage();
+		 sa.setLocationRelativeTo(null);
 		sa.setVisible(true);
 	}
 	else

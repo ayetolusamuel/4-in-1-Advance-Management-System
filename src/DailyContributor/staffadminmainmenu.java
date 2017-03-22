@@ -37,8 +37,8 @@ class staffadminmainmenu extends JFrame implements ActionListener{
 	
 	private JPanel pRegister;
 	//private JTextField txtuserName,txtcsfName,txtsfName;
-	String[] info={"Select","Staff/Admin Registration","Daily Contribtion Update"," "," "," "," "," "," "};
-	
+	String[] info={"Select","Daily Contribtion Update"," "," "," "," "," "," "};
+	//Staff/Admin Registration
 Choice catt;
 	JComboBox cmbcontinfo;
 	PreparedStatement ps;
