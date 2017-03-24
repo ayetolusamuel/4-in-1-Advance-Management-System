@@ -65,7 +65,7 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 	JMenu  staffmanager_menu;
 	JMenuItem studentMasterList_Archieves,staff_item,staffReg,schedule_item,guest_item,classlist_item,classmaster_list_item;
 	JMenu faculty_master_menu,platform_menu;
-	JMenuItem faculty_master_item;
+	JMenuItem cont_contact;
 	JMenuItem staffmanagers_registration,contributors_registration;
 	JMenuItem administrative_item;
 
@@ -175,7 +175,7 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
        	
        	registration_menu=new JMenu("Registration");
        	registration_menu.setFont(new Font("Times New Roman",Font.PLAIN,13));
-       	registration_menu.setMnemonic('p');
+       	registration_menu.setMnemonic('r');
        	
        	
      	platform_menu=new JMenu("Platform");
@@ -188,12 +188,12 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 
         staffmanager_menu=new JMenu("Staff/Manager Portal");
         staffmanager_menu.setFont(new Font("Times New Roman",Font.PLAIN,13));
-        staffmanager_menu.setMnemonic('i');
+        staffmanager_menu.setMnemonic('s');
 
         
      	view_menu=new JMenu("List");
      	view_menu.setFont(new Font("Times New Roman",Font.PLAIN,13));
-        view_menu.setMnemonic('i');
+        view_menu.setMnemonic('l');
 
 
      	help_menu=new JMenu("Help");
@@ -203,7 +203,7 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 
      	reports_menu=new JMenu("Query");
      	reports_menu.setFont(new Font("Times New Roman",Font.PLAIN,13));
-     	reports_menu.setMnemonic('e');
+     	reports_menu.setMnemonic('q');
 
      	//---JMenuItem
      	/*about_item=new JMenuItem("About Software?");
@@ -373,7 +373,23 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 	   // courseItem.addActionListener(h);
 
 	   */
+	    
+	    
+	    
+	    ///Query menuitem
+	   cont_contact=new JMenuItem("Contributor's Contact");
+	   cont_contact.setFont(new Font("Times New Roman",Font.PLAIN,13));
+	   cont_contact.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,ActionEvent.CTRL_MASK));
+	   cont_contact.setIcon(new ImageIcon("images//EXPENSE.PNG"));
+	   cont_contact.addActionListener(this);
 
+		
+		
+		
+		
+		
+		
+		
 	    stud_contact=new JMenuItem("Staff Contact");
 		stud_contact.setFont(new Font("Times New Roman",Font.PLAIN,13));
 		stud_contact.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,ActionEvent.CTRL_MASK));
@@ -445,6 +461,12 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
         staffmanager_menu.add(staffmanagerdailycontributionupdate);
        // staffmanager_menu.addSeparator();
        
+        
+        
+        //Query menu
+     reports_menu.add(cont_contact);
+        //reports_menu.addSeparator();
+        
 		
 		//list menu
         view_menu.add(staffmanagers_list);
@@ -743,6 +765,17 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 				sam.setLocationRelativeTo(null);
 
 			}
+			 else if(source==cont_contact)
+				{	
+				 contributors_contact sa=new contributors_contact();
+					sa.setSize(1200, 520);
+					sa.setLocation(12, 10);
+					sa.setVisible(true);
+					setVisible(false);
+
+				}
+			 
+			 
 			
 			 else if(source==contributors_registration)
 				{	
