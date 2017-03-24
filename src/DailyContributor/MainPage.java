@@ -501,24 +501,24 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
         Icon img1=new ImageIcon("images//ICON1.JPG");
         btn1=new JButton();
         btn1.setIcon(img1);
-       	//btn1.addActionListener(h);
-        btn1.setToolTipText("New Staff Entry");
+       	btn1.addActionListener(this);
+        btn1.setToolTipText("New Staff/Manager Entry");
 
         //StrBusinessTitle = "AMIS Software Copyright (C) 2006";
         BusinessTitleLabel.setText(StrBusinessTitle);
 		BusinessTitleLabel.setFont(new Font("Verdana",Font.PLAIN,12));
 		BusinessTitleLabel.setHorizontalAlignment(JLabel.CENTER);
-        Icon img2=new ImageIcon("images//ICON2.JPG");
+        Icon img2=new ImageIcon("images//bNew.png");
         btn2=new JButton();
         btn2.setIcon(img2);
-		btn2.setToolTipText("Search Student Entry");
-		//btn2.addActionListener(h);
+		btn2.setToolTipText("New Contributor Entry");
+		btn2.addActionListener(this);
 
-        Icon img3=new ImageIcon("images//ICON3.JPG");
+        Icon img3=new ImageIcon("images//ICON3.jpg");
         btn3=new JButton();
         btn3.setIcon(img3);
-        btn3.setToolTipText("Modify Student Entry");
-		//btn3.addActionListener(h);
+        btn3.setToolTipText("Daily Contributor Update");
+		btn3.addActionListener(this);
 
         Icon img4=new ImageIcon("images//ICON4.JPG");
         btn4=new JButton();
@@ -575,6 +575,7 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
         toolbar.setBounds(10,6,800,40);
 		toolbar.setRollover(true);
 		toolbar.setFloatable(false);
+		toolbar.setBackground(Color.gray);
         toolbar.add(btn1);
         toolbar.add(btn2);
         toolbar.add(btn3);
@@ -756,7 +757,7 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 			//}//end save
 			
 			//klkk
-			 if(source==staffmanagers_registration)
+			 if(source==staffmanagers_registration ||source==btn1)
 			{	
 				staffregistration sam = new staffregistration();
 				sam.setSize(480, 420);
@@ -777,7 +778,7 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 			 
 			 
 			
-			 else if(source==contributors_registration)
+			 else if(source==contributors_registration||source ==btn2)
 				{	
 				 contributor_registration sam = new contributor_registration();
 					sam.setSize(490, 593);
@@ -806,7 +807,7 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 
 				}
 			 
-			 else if(source==staffmanagerdailycontributionupdate)
+			 else if(source==staffmanagerdailycontributionupdate||source==btn3)
 				{	
 				 dailycontributorstaffadmin sam = new dailycontributorstaffadmin();
 					sam.setSize(480, 420);
