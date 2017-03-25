@@ -82,11 +82,10 @@ class contributor_list extends JFrame implements ActionListener
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				contributormainmenu sa =new contributormainmenu();
-				sa.setSize(340,190);
-				sa.setLocationRelativeTo(null);
+				 MainPage sa=new  MainPage();
+				 sa.setLocationRelativeTo(null);
 				sa.setVisible(true);
-				contributor_list.setDefaultLookAndFeelDecorated(true);
+				 MainPage.setDefaultLookAndFeelDecorated(true);
 				setVisible(false);
 				
 				
@@ -101,7 +100,7 @@ class contributor_list extends JFrame implements ActionListener
 	            if (complete) {
 	                /* show a success message  */
 	             // System.out.println("complete printing");
-	              JOptionPane.showMessageDialog(null, "Printing in Progress");
+	              //JOptionPane.showMessageDialog(null, "Printing in Progress");
 	            } else {
 	                /*show a message indicating that printing was cancelled */
 	              
@@ -112,10 +111,12 @@ class contributor_list extends JFrame implements ActionListener
 	        }
 			
 			setVisible(false);
-			contributormainmenu sa =new contributormainmenu();
-			sa.setSize(340,190);
-			sa.setLocationRelativeTo(null);
+			MainPage sa=new  MainPage();
+			 sa.setLocationRelativeTo(null);
 			sa.setVisible(true);
+			 MainPage.setDefaultLookAndFeelDecorated(true);
+			setVisible(false);
+			
 				
 			}
 		});

@@ -74,7 +74,7 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 	JMenuItem contributors_list;
 
 	JMenuItem staffmanagers_list,dailycontributionstaff_List;
-	JMenuItem Class_Schedules_Archieves,student_masterList,faculty_masterList,course_masterList,studentMasterRecord;
+	JMenuItem search_staff,search_cont,faculty_masterList,course_masterList,studentMasterRecord;
 	JMenuItem  staff_payrollList,discharge_List,staff_dailyTranList;
 	JMenuItem course_detailsItem;
 	JMenuItem course_item,staffentry_item,room_item,grade_item,reamain_fees_item;
@@ -308,14 +308,6 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 		//guest_item.addActionListener(h);
 
     	
-     	//short_term_courses_item=new JMenuItem("Short Term Courses");
-	//	short_term_courses_item.setFont(new Font("Verdana",Font.PLAIN,13));
-	//	short_term_courses_item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L,ActionEvent.CTRL_MASK));
-    //    short_term_courses_item.setIcon(new ImageIcon("newrecieve.png"));
-//		short_term_courses_item.addActionListener(this);
-
-	    
-	    
 	    
 	    //list menuitem
 	    staffmanagers_list=new JMenuItem("Staff's/Manager's List");
@@ -327,7 +319,7 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 	    contributors_list=new JMenuItem("Contributor's List");
 	    contributors_list.setFont(new Font("Times New Roman",Font.PLAIN,13));
 	    contributors_list.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U,ActionEvent.CTRL_MASK));
-	  //  contributors_list.addActionListener(h);
+	    contributors_list.addActionListener(this);
 	    contributors_list.setIcon(new ImageIcon("images//CUSTOMER.PNG"));
 
 	    
@@ -377,30 +369,22 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 	    
 	    
 	    ///Query menuitem
-	   cont_contact=new JMenuItem("Contributor's Contact");
-	   cont_contact.setFont(new Font("Times New Roman",Font.PLAIN,13));
-	   cont_contact.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,ActionEvent.CTRL_MASK));
-	   cont_contact.setIcon(new ImageIcon("images//EXPENSE.PNG"));
-	   cont_contact.addActionListener(this);
+		cont_contact = new JMenuItem("Contributor's Contact");
+		cont_contact.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		cont_contact.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
+		cont_contact.setIcon(new ImageIcon("images//EXPENSE.PNG"));
+		cont_contact.addActionListener(this);
+		search_staff = new JMenuItem("Search Staff");
+		search_staff.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		search_staff.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
+		search_staff.setIcon(new ImageIcon("images//EXPENSE.PNG"));
+		search_staff.addActionListener(this);
 
-		
-		
-		
-		
-		
-		
-		
-	    stud_contact=new JMenuItem("Staff Contact");
-		stud_contact.setFont(new Font("Times New Roman",Font.PLAIN,13));
-		stud_contact.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,ActionEvent.CTRL_MASK));
-		stud_contact.setIcon(new ImageIcon("images//EXPENSE.PNG"));
-		//stud_contact.addActionListener(h);
-
-		search_stud=new JMenuItem("Search Staff");
-		search_stud.setFont(new Font("Times New Roman",Font.PLAIN,13));
-		search_stud.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,ActionEvent.CTRL_MASK));
-		search_stud.setIcon(new ImageIcon("images//SEARCH.png"));
-		//search_stud.addActionListener(h);
+		search_cont = new JMenuItem("Search Contributor");
+		search_cont.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		search_cont.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+		search_cont.setIcon(new ImageIcon("images//SEARCH.png"));
+		search_cont.addActionListener(this);
 
 		calcy=new JMenuItem("Calculator");
 		calcy.setFont(new Font("Times New Roman",Font.PLAIN,13));
@@ -425,11 +409,11 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 	    studs_Archieves.setFont(new Font("Times New Roman",Font.PLAIN,13));
 	    studs_Archieves.setIcon(new ImageIcon("images//EXPENSE.PNG"));
 
-	    Class_Schedules_Archieves=new JMenuItem("Class Schedules Archieves");
+	 /*   Class_Schedules_Archieves=new JMenuItem("Class Schedules Archieves");
 	    Class_Schedules_Archieves.setFont(new Font("Times New Roman",Font.PLAIN,13));
         Class_Schedules_Archieves.setIcon(new ImageIcon("images//EXPENSE.PNG"));
 	    //Class_Schedules_Archieves.addActionListener(this);
-
+*/
 
      	//---Add to JMenu
      	file_menu.add(signout_item);
@@ -465,7 +449,11 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
         
         //Query menu
      reports_menu.add(cont_contact);
-        //reports_menu.addSeparator();
+        reports_menu.addSeparator();
+        reports_menu.add(search_cont);
+        reports_menu.addSeparator();
+        reports_menu.add(search_staff);
+     
         
 		
 		//list menu
@@ -575,7 +563,7 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
         toolbar.setBounds(10,6,800,40);
 		toolbar.setRollover(true);
 		toolbar.setFloatable(false);
-		toolbar.setBackground(Color.gray);
+		toolbar.setBackground(Color.white);
         toolbar.add(btn1);
         toolbar.add(btn2);
         toolbar.add(btn3);
@@ -806,6 +794,14 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 					setVisible(false);
 
 				}
+			 else if(source==contributors_list)
+				{	
+				 contributor_list sa=new contributor_list();
+					sa.setSize(1200, 520);
+					sa.setLocation(12, 10);
+					sa.setVisible(true);
+					setVisible(false);
+				}
 			 
 			 else if(source==staffmanagerdailycontributionupdate||source==btn3)
 				{	
@@ -823,6 +819,7 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 					sa.setSize(1200, 520);
 					sa.setLocation(12, 10);
 					sa.setVisible(true);
+					setVisible(false);
 				}
 			 else if(source==signout_item||source==btn5)
 			{

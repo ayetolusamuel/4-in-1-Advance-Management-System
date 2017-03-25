@@ -80,11 +80,10 @@ class contributors_contact extends JFrame implements MouseListener
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				contributormainmenu sa =new contributormainmenu();
-				sa.setSize(340,190);
-				sa.setLocationRelativeTo(null);
+				 MainPage sa=new  MainPage();
+				 sa.setLocationRelativeTo(null);
 				sa.setVisible(true);
-				contributormainmenu.setDefaultLookAndFeelDecorated(true);
+				MainPage.setDefaultLookAndFeelDecorated(true);
 				setVisible(false);
 				
 				
@@ -110,11 +109,10 @@ class contributors_contact extends JFrame implements MouseListener
 		           
 		        }
 				
-				contributormainmenu sa =new contributormainmenu();
-				sa.setSize(340,190);
-				sa.setLocationRelativeTo(null);
+				MainPage sa=new  MainPage();
+				 sa.setLocationRelativeTo(null);
 				sa.setVisible(true);
-				contributormainmenu.setDefaultLookAndFeelDecorated(true);
+				MainPage.setDefaultLookAndFeelDecorated(true);
 				setVisible(false);
 			}
 		});

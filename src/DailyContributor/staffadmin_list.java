@@ -80,16 +80,12 @@ class staffadmin_list extends JFrame implements ActionListener
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				/*contributormainmenu sa =new contributormainmenu();
-				sa.setSize(340,190);
-				sa.setLocationRelativeTo(null);
-				sa.setVisible(true);
-				contributormainmenu.setDefaultLookAndFeelDecorated(true);
 				setVisible(false);
-				
-				*/
-				dispose();
-				
+				MainPage sa=new  MainPage();
+				 sa.setLocationRelativeTo(null);
+				sa.setVisible(true);
+				 MainPage.setDefaultLookAndFeelDecorated(true);
+				setVisible(false);
 				
 				
 			}
@@ -112,14 +108,12 @@ class staffadmin_list extends JFrame implements ActionListener
 		            /* Printing failed, report to the user */
 		           
 		        }
-				/*contributormainmenu sa =new contributormainmenu();
-				sa.setSize(340,190);
-				sa.setLocationRelativeTo(null);
-				sa.setVisible(true);
-				contributormainmenu.setDefaultLookAndFeelDecorated(true);
 				setVisible(false);
-				*/
-				
+				MainPage sa=new  MainPage();
+				 sa.setLocationRelativeTo(null);
+				sa.setVisible(true);
+				 MainPage.setDefaultLookAndFeelDecorated(true);
+				setVisible(false);
 				
 			}
 		});

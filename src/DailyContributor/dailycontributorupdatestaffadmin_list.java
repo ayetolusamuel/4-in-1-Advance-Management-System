@@ -81,20 +81,13 @@ class dailycontributorupdatestaffadmin_list extends JFrame implements ActionList
 			public void actionPerformed(ActionEvent e)
 			{
 				
-				setVisible(false);
-				dailycontributorstaffadmin sam = new dailycontributorstaffadmin();
-				sam.setSize(480, 420);
-				sam.setVisible(true);
-				sam.setResizable(false);
-				sam.setLocationRelativeTo(null);
-				
-				/*staffadminmainmenu sa =new staffadminmainmenu();
-				sa.setSize(340,190);
-				sa.setLocationRelativeTo(null);
+				MainPage sa=new  MainPage();
+				 sa.setLocationRelativeTo(null);
 				sa.setVisible(true);
-				staffadminmainmenu.setDefaultLookAndFeelDecorated(true);
+				 MainPage.setDefaultLookAndFeelDecorated(true);
 				setVisible(false);
-				*/
+				
+				
 				
 			}
 		});
@@ -121,13 +114,11 @@ class dailycontributorupdatestaffadmin_list extends JFrame implements ActionList
 		        }
 				
 				
+				MainPage sa=new  MainPage();
+				 sa.setLocationRelativeTo(null);
+				sa.setVisible(true);
+				 MainPage.setDefaultLookAndFeelDecorated(true);
 				setVisible(false);
-				dailycontributorstaffadmin sam = new dailycontributorstaffadmin();
-				sam.setSize(480, 420);
-				sam.setVisible(true);
-				sam.setResizable(false);
-				sam.setLocationRelativeTo(null);
-				dailycontributorstaffadmin.setDefaultLookAndFeelDecorated(true);
 				
 				
 			}
