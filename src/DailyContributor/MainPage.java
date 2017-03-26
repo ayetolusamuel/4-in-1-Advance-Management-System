@@ -823,6 +823,14 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 					sa.setVisible(true);
 					setVisible(false);
 				}
+			 else if(source==search_staff)
+				{	
+				 search_staffadmin sam= new search_staffadmin();
+					sam.setSize(500,450);
+					sam.setLocationRelativeTo(null);
+					sam.setVisible(true);
+					setVisible(false);
+				}
 			 
 			 else if(source==staffmanagerdailycontributionupdate||source==btn3)
 				{	
