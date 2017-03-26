@@ -76,7 +76,7 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 	JMenuItem staffmanagers_list,dailycontributionstaff_List;
 	JMenuItem search_staff,search_cont,faculty_masterList,course_masterList,studentMasterRecord;
 	JMenuItem  staff_payrollList,discharge_List,staff_dailyTranList;
-	JMenuItem course_detailsItem;
+	JMenuItem course_detailsItem,payment_summary;
 	JMenuItem course_item,staffentry_item,room_item,grade_item,reamain_fees_item;
 	JMenuItem short_term_courses_item,dailycontributor_item;
 
@@ -385,14 +385,13 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 		search_cont.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 		search_cont.setIcon(new ImageIcon("images//SEARCH.png"));
 		search_cont.addActionListener(this);
-
-		calcy=new JMenuItem("Calculator");
-		calcy.setFont(new Font("Times New Roman",Font.PLAIN,13));
-		calcy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B,ActionEvent.CTRL_MASK));
-		calcy.setIcon(new ImageIcon("images//newrecieve.png"));
-		//calcy.addActionListener(h);
-
-
+		
+		
+		payment_summary = new JMenuItem("Payment Summary");
+		payment_summary.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		payment_summary.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+		//payment_summary.setIcon(new ImageIcon("images//bSearch."));
+		payment_summary.addActionListener(this);
 		caln=new JMenuItem("Calendar");
 		caln.setFont(new Font("Times New Roman",Font.PLAIN,13));
 		caln.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F,ActionEvent.CTRL_MASK));
@@ -453,6 +452,8 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
         reports_menu.add(search_cont);
         reports_menu.addSeparator();
         reports_menu.add(search_staff);
+        reports_menu.addSeparator();
+        reports_menu.add(payment_summary);
      
         
 		
@@ -469,7 +470,7 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 
         setting_menu.add(administrative_item);
 		setting_menu.addSeparator();
-		setting_menu.add(calcy);
+		//setting_menu.add(calcy);
 		setting_menu.addSeparator();
        	setting_menu.add(caln);
 
@@ -508,17 +509,17 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
         btn3.setToolTipText("Daily Contributor Update");
 		btn3.addActionListener(this);
 
-        Icon img4=new ImageIcon("images//ICON4.JPG");
+        Icon img4=new ImageIcon("images//bSearch.png");
         btn4=new JButton();
         btn4.setIcon(img4);
-		btn4.setToolTipText("Remove Student Entry");
-		//btn4.addActionListener(h);
+		btn4.setToolTipText("Search Paymeent");
+		btn4.addActionListener(this);
 
-        Icon img5=new ImageIcon("images//ICON5.JPG");
+        Icon img5=new ImageIcon("images//bSearch.png");
         btn5=new JButton();
-        btn5.setToolTipText("Sign Out");
+        btn5.setToolTipText("Search Contributor");
         btn5.setIcon(img5);
-		//btn5.addActionListener(h);
+		btn5.addActionListener(this);
 
         Icon img6=new ImageIcon("images//ICON6.JPG");
         btn6=new JButton();
@@ -776,6 +777,26 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 					//sam.setLocationRelativeTo(null);
 
 				}
+
+			 else if(source==payment_summary||source ==btn4)
+				{	
+				
+					payment_list sa=new payment_list();
+					sa.setSize(1200, 520);
+					sa.setLocation(12, 10);
+					sa.setVisible(true);
+					setVisible(false);
+
+				} 
+			 else if(source==search_cont||source==btn5)
+				{	
+				 search_contributor sam= new search_contributor();
+					sam.setSize(500,450);
+					sam.setLocationRelativeTo(null);
+					sam.setVisible(true);
+					setVisible(false);
+				}
+			 
 			 else if(source==dailycontributor_item)
 				{	
 
@@ -783,7 +804,7 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 					sa.setSize(340,190);
 					sa.setLocationRelativeTo(null);
 					sa.setVisible(true);
-
+					//setVisible(false);
 				}
 			 else if(source==staffmanagers_list)
 				{	

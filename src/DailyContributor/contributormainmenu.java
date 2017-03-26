@@ -296,7 +296,13 @@ Object obj = e.getSource();
 	
 	
 	else if(cmbcontinfo.getSelectedItem().equals("Payment Summary")){
-		JOptionPane.showMessageDialog(null, "Check Later! work in progress");
+		//JOptionPane.showMessageDialog(null, "Check Later! work in progress");
+		dispose();
+		payment_list sa=new payment_list();
+		sa.setSize(1200, 520);
+		sa.setLocation(12, 10);
+		sa.setVisible(true);
+		setVisible(false);
 		
 	}
 	

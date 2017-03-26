@@ -141,7 +141,11 @@ class payment_list extends JFrame implements ActionListener
 			
 			
 			st=conn.createStatement();
-			ResultSet set=st.executeQuery("select * from dailycontributionupdate");
+			String s=JOptionPane.showInputDialog(null, "Enter the Date in dd/mm/yyyy ","25/03/2017");
+		//	WHERE pcode ='"+s+"'And date='"+dat+"'"
+			//ResultSet set=st.executeQuery("select * from dailycontributionupdate ");
+			ResultSet set=st.executeQuery("select * from dailycontributionupdate WHERE date ='"+s+"'");
+			
 			int row=0;
 			int i=0;
 			while(set.next())
@@ -150,7 +154,10 @@ class payment_list extends JFrame implements ActionListener
 			}
 			DefaultTableModel model=new DefaultTableModel(new String[]{"Date ","Time ","Contributor's ID", "full name","Amount Deposited",},row);
 			table=new JTable(model);
-			set=st.executeQuery("select * from dailycontributionupdate");
+			
+			set=st.executeQuery("select * from dailycontributionupdate  WHERE date ='"+s+"'");
+			//set=st.executeQuery("select * from dailycontributionupdate WHERE pcode ='"+s+"'");
+			
 			while(set.next())
 			{
 				model.setValueAt(set.getString(1).trim(),i,0);

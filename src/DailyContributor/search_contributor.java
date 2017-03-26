@@ -15,10 +15,10 @@ import java.util.*;
 public class search_contributor extends JFrame implements ActionListener, FocusListener {
 	CheckboxGroup cbmf;
 	Checkbox cbm, cbf;
-	ResultSet rs = null;
+	 ResultSet rs = null;
 	Statement stmt = null;
 	Container cont;
-	Connection con = null;
+	 Connection con = null;
 	String user = "ayets";
 	String pass = "setonji04";
 	private JPanel pAdmin = new JPanel();
@@ -52,6 +52,8 @@ public class search_contributor extends JFrame implements ActionListener, FocusL
 
 	// Statement for Getting the Required Table.
 	private long id = 0; // To Hold the BookId.
+	private JLabel lbl2;
+	private JLabel lbl3;
 
 	// Constructor of Class.
 
@@ -82,10 +84,26 @@ public class search_contributor extends JFrame implements ActionListener, FocusL
 		
 		
 	;
-		setTitle("Staff Payroll System");
+	
+	
+	
+		setTitle("Contributor Profile");
 		setSize(397, 510);
 		setLocation(100, 60);
-	
+		addWindowListener(new WindowAdapter()
+		{
+			public void windowClosing(WindowEvent e)
+			{
+				 MainPage sa=new  MainPage();
+				 sa.setLocationRelativeTo(null);
+				sa.setVisible(true);
+				MainPage.setDefaultLookAndFeelDecorated(true);
+				setVisible(false);
+				
+				
+				
+			}
+		});
 		pAdmin.setLayout(null);
 
 		lblcfName = new JLabel("<html><b><b>Full Name :</i></b></html>");
@@ -93,7 +111,7 @@ public class search_contributor extends JFrame implements ActionListener, FocusL
 		lblcfName.setFont(new Font("Times New Roman", Font.ITALIC, 15));
 		pAdmin.add(lblcfName).setBounds(10, -40, 100, 120);
 
-		txtcfName = new JTextField("hdbfchds,chjbdschdsbchbshbc");
+		txtcfName = new JTextField("");
 		txtcfName.setFont(new Font("Times New Roman", Font.ITALIC, 13));
 		txtcfName.setEditable(false);
 		pAdmin.add(txtcfName).setBounds(90, 12, 220, 20);
@@ -104,7 +122,7 @@ public class search_contributor extends JFrame implements ActionListener, FocusL
 		pAdmin.add(lblEmail).setBounds(10, -10, 70, 120);
 		txtEmail = new JTextField();
 		txtEmail.setEditable(false);
-		txtEmail.setFont(new Font("Algerian", Font.ITALIC, 13));
+		txtEmail.setFont(new Font("Times New Roman", Font.ITALIC, 13));
 		pAdmin.add(txtEmail).setBounds(90, 40, 220, 20);
 
 		
@@ -120,7 +138,7 @@ public class search_contributor extends JFrame implements ActionListener, FocusL
 		pAdmin.add(txtpNumber).setBounds(90, 68, 220, 20);
 		
 		JLabel pic1= new JLabel(new ImageIcon("images/picback.png"));
-		pAdmin.add(pic1).setBounds(310, 7, 160, 120);
+		//pAdmin.add(pic1).setBounds(310, 7, 160, 120);
 		
 
 		JLabel lblppic = new JLabel("<html><i><b>Profile Picture</i></b></html>");
@@ -132,7 +150,9 @@ public class search_contributor extends JFrame implements ActionListener, FocusL
 		lblnkName = new JLabel("<html><b>Next of Kin Name :</i></b></html>");
 		lblnkName.setForeground(Color.white);
 		lblnkName.setFont(new Font("Times New Roman", Font.ITALIC, 14));
-		pAdmin.add(lblnkName).setBounds(10, 100, 180, 120);
+		
+		pAdmin.add(lblnkName).setBounds(10, 138, 180, 120);
+		//pAdmin.add(lblnkName).setBounds(10, 100, 180, 120);
 		txtnkName = new JTextField();
 		txtnkName.setEditable(false);
 		txtnkName.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
@@ -148,12 +168,13 @@ public class search_contributor extends JFrame implements ActionListener, FocusL
 
 			}
 		});
-		pAdmin.add(txtnkName).setBounds(130, 152, 340, 20);
-		
+		pAdmin.add(txtnkName).setBounds(130, 189, 330, 20);
 		lblnkNumber = new JLabel("<html><b>Next of Kin Contact :</i></b></html>");
 		lblnkNumber.setForeground(Color.white);
 		lblnkNumber.setFont(new Font("Times New Roman", Font.ITALIC, 12));
-		pAdmin.add(lblnkNumber).setBounds(10, 138, 180, 120);
+	
+		pAdmin.add(lblnkNumber).setBounds(10, 100, 180, 120);
+		
 		txtnkNumber = new JTextField();
 		txtnkNumber.setEditable(false);
 		txtnkNumber.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
@@ -174,22 +195,20 @@ public class search_contributor extends JFrame implements ActionListener, FocusL
 
 			}
 		});
-		pAdmin.add(txtnkNumber).setBounds(130, 189, 230, 20);
 		
+		pAdmin.add(txtnkNumber).setBounds(130, 152, 100, 20);
 		
 		
 		JLabel pic2= new JLabel(new ImageIcon("images/picback.png"));
-		pAdmin.add(pic2).setBounds(5, 230, 160, 120);
 		
 
 		JLabel lblpic2 = new JLabel("<html><i><b>Next of Kin picture</i></b></html>");
 		lblpic2.setForeground(Color.blue);
 		lblpic2.setFont(new Font("Times New Roman", Font.ITALIC, 17));
-		pAdmin.add(lblpic2).setBounds(10, 300, 180, 120);
+		pAdmin.add(lblpic2).setBounds(10, 290, 180, 120);
 		
 
 		JLabel pic3= new JLabel(new ImageIcon("images/picback.png"));
-		pAdmin.add(pic3).setBounds(310, 230, 160, 120);
 		
 
 		JLabel lblpic3 = new JLabel("<html><i><b>Contributor Signature</i></b></html>");
@@ -197,191 +216,46 @@ public class search_contributor extends JFrame implements ActionListener, FocusL
 		lblpic3.setFont(new Font("Times New Roman", Font.ITALIC, 17));
 		pAdmin.add(lblpic3).setBounds(310, 300, 180, 120);
 		
-		
-		
-	/*	
-		JFrame frame = new JFrame();
-		String[] options = new String[2];
-		options[0] = new String("Agree");
-		options[1] = new String("Disagree");
-		JOptionPane.showOptionDialog(frame.getContentPane(),"Message!","Title", 0,JOptionPane.INFORMATION_MESSAGE,null,options,null);
-		
-		*
-		*int res = JOptionPane.showConfirmDialog(null, "Are you want to continue the process?", "", JOptionPane.YES_NO_OPTION);
-        switch (res) {
-            case JOptionPane.YES_OPTION:
-            JOptionPane.showMessageDialog(null, "Process Successfully");
-            break;
-            case JOptionPane.NO_OPTION:
-            JOptionPane.showMessageDialog(null, "Process is Canceled");
-            break;
-        }
-		*
-		*
-		*
-		*
-		*
-		*
-		*/
-		
-		
-		/*lblpNumber = new JLabel("<html><b>Phone Num:</i></b></html>");
-		lblpNumber.setForeground(Color.white);
-		lblpNumber.setFont(new Font("Times New Roman", Font.ITALIC, 13));
-		pAdmin.add(lblpNumber).setBounds(10, 156, 180, 20);
-		txtpNumber = new JTextField();
-		txtpNumber.addKeyListener(new KeyAdapter() {
-			public void keyTyped(KeyEvent ke) {
-				char c = ke.getKeyChar();
-
-				if (!(c == '0' || c == '1' || c == '2' || c == '3' || c == '4'
-						|| c == '5' || c == '6' || c == '7' || c == '8' || c == '9')) {
-					getToolkit().beep();
-					ke.consume();
-
-				}
-			}
-		});
-		txtpNumber.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
-		pAdmin.add(txtpNumber).setBounds(90,158,230,20);*/
-		/*
-		
-		lblGender = new JLabel("<html><b>Gender :</i></b></html>");
-		lblGender.setFont(new Font("Times New Roman", Font.ITALIC, 14));
-		lblGender.setForeground(Color.white);
-		pAdmin.add(lblGender).setBounds(10, 190, 100, 20);
 	
-
-		cbmf = new CheckboxGroup();
-		cbm = new Checkbox("Male", cbmf, true);
-		cbf = new Checkbox("Female", cbmf, false);
-		cbm.setBounds(94, 225, 50, 15);
-		add(cbm);
-		cbf.setBounds(190, 225, 80, 15);
-		add(cbf);
-
-		lblrAddress = new JLabel("<html><b>Res. Address:</i></b></html>");
-		lblrAddress.setFont(new Font("Times New Roman", Font.ITALIC, 14));
-		lblrAddress.setForeground(Color.white);
-		pAdmin.add(lblrAddress).setBounds(10, 220, 80, 25);
-
-
-		//JScrollPane p=new JScrollPane();
-		txtrAddress=new JTextArea();
-		txtrAddress.addKeyListener (new KeyAdapter () {
-			public void keyTyped (KeyEvent ke) {
-				char c = ke.getKeyChar ();
-				
-				if (! ((Character.isAlphabetic (c)) || (c == KeyEvent.VK_BACK_SPACE))) {
-
-					if (!(c == '0' || c == '1' || c == '2' || c == '3' || c == '4' ||
-				            c == '5' || c == '6' || c == '7' || c == '8' || c == '9' || c=='.'||c==',')) {
-					
-					 	getToolkit().beep ();
-					ke.consume ();
-				}
-				}
-		}}
-		);
-		txtrAddress.setToolTipText("Enter contributor residential  Address");
-		txtrAddress.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
-		txtrAddress.setWrapStyleWord(true);
-		txtrAddress.setLineWrap(true);
-		txtrAddress.setFont(new Font("Times New Roman", Font.ITALIC, 14));
-		txtrAddress.setBounds(90, 224, 370, 100);
-		pAdmin.add(txtrAddress);
-		
-		lblnkName = new JLabel("<html><i><b>Next of Kin Name :</i></b></html>");
-		lblnkName.setForeground(Color.white);
-		lblnkName.setFont(new Font("Times New Roman", Font.ITALIC, 12));
-		pAdmin.add(lblnkName).setBounds(0, 280, 180, 120);
-		txtnkName= new JTextField();
-		txtnkName.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
-		txtnkName.setFont(new Font("Algerian", Font.ITALIC, 14));
-		pAdmin.add(txtnkName).setBounds(90, 332, 290, 20);
-		
-		lblnkNumber = new JLabel("<html><i><b>Next of Kin Number :</i></b></html>");
-		lblnkNumber.setForeground(Color.white);
-		lblnkNumber.setFont(new Font("Times New Roman", Font.ITALIC, 13));
-		pAdmin.add(lblnkNumber).setBounds(0,310, 180, 120);
-		txtnkNumber = new JTextField();
-		txtnkNumber.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
-		txtnkNumber.setFont(new Font("Algerian", Font.ITALIC, 14));
-		pAdmin.add(txtnkNumber).setBounds(115, 360, 265, 20);
-		
-		
-		lblofficialinfo = new JLabel("<html><i><b>Official Portal(Bank Details-Optional)</i></b></html>");
-		lblofficialinfo.setForeground(Color.red);
-		lblofficialinfo.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		pAdmin.add(lblofficialinfo).setBounds(40,338, 300, 120);
-		
-
-		lblaName = new JLabel("<html><i><b>Account Name :</i></b></html>");
-		lblaName.setForeground(Color.white);
-		lblaName.setFont(new Font("Times New Roman", Font.ITALIC, 16));
-		pAdmin.add(lblaName).setBounds(40,370, 180, 120);
-		txtaName = new JTextField();
-		txtaName.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
-		txtaName.setFont(new Font("Algerian", Font.ITALIC, 14));
-		pAdmin.add(txtaName).setBounds(160, 422, 290, 20);
-		
-	lblaNumber = new JLabel("<html><i><b>Account Number :</i></b></html>");
-		lblaNumber.setForeground(Color.white);
-		lblaNumber.setFont(new Font("Times New Roman", Font.ITALIC, 16));
-		pAdmin.add(lblaNumber).setBounds(30,400, 180, 120);
-		txtaNumber = new JTextField();
-		txtaNumber.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
-		txtaNumber.setFont(new Font("Algerian", Font.ITALIC, 14));
-		pAdmin.add(txtaNumber).setBounds(160, 450, 290, 20);
-		
-		lblaType = new JLabel("<html><i><b>Account Type :</i></b></html>");
-		lblaType.setForeground(Color.white);
-		lblaType.setFont(new Font("Times New Roman", Font.ITALIC, 16));
-		pAdmin.add(lblaType).setBounds(40,430, 180, 120);
-		
-		jcmbaType = new JComboBox(account_type);
-		jcmbaType.setBorder(BorderFactory.createBevelBorder(1,new Color(192,192,255),new Color(192,192,255)));
-		jcmbaType.setFont(new Font("Times New Roman",Font.ITALIC,12));
-		pAdmin.add(jcmbaType).setBounds(160, 480, 145, 22);
-		*//*
-		
-		
-		
-		*//*
-
-		btnSave = new JButton("Save");
-		pAdmin.add(btnSave).setBounds(0, 510, 65, 15);
-		btnNew = new JButton("New");
-		pAdmin.add(btnNew).setBounds(69, 510, 60, 15);
-		btnModify = new JButton("Modify");
-		pAdmin.add(btnModify).setBounds(135, 510, 80, 15);
-
-		btnPreview = new JButton("Preview");
-		pAdmin.add(btnPreview).setBounds(225, 510, 80, 15);
-		btnRemove = new JButton("Remove");
-		pAdmin.add(btnRemove).setBounds(310, 510, 85, 15);
-		btnExit = new JButton("Exit");
-		pAdmin.add(btnExit).setBounds(399, 510, 75, 15);*/
-		cont=getContentPane();
-	    
-		cont.add( new textcontributor(),BorderLayout.NORTH);
-		getContentPane().add(pAdmin, BorderLayout.CENTER);
-
-		/*btnNew.addActionListener(this);
-		btnSave.addActionListener(this);
-		btnRemove.addActionListener(this);
-		btnPreview.addActionListener(this);
-		btnExit.addActionListener(this);
-		btnModify.addActionListener(this);*/
-
+		getContentPane().add(pAdmin,BorderLayout.CENTER);
+		 String url = "jdbc:mysql://localhost:3306/ggtelecom";
+		  
+		   
+		   try {
+			con = DriverManager.getConnection(url,"root","setonji04");
+			//System.out.println("Connected");
 	}
-	static void productdetails(){
+		   catch (Exception e) {
+			// TODO: handle exception
+		}
+		   productdetails();   
+	}
+		   
+		   
+	 void productdetails(){
 		
-		try{
+		
 			String ggtc="ggtc";
 			String ggtc1=ggtc.toUpperCase();
 		String s = JOptionPane.showInputDialog(null,"<html><i>		Enter the Contributor ID",ggtc1);
 		
+
+	//cont pic
+		String urlimage="C://Users//DELL//workspace//GGBadagry//contributorimages/"+s+".png";
+		
+		lbl1= new JLabel(new ImageIcon(urlimage));
+		pAdmin.add(lbl1).setBounds(310, -10, 200, 199);
+		
+		//nextof kin
+String urlimage1="C://Users//DELL//workspace//GGBadagry//nextofkinpics/"+s+".png";
+		
+		lbl2= new JLabel(new ImageIcon(urlimage1));
+		pAdmin.add(lbl2).setBounds(10, 220, 200, 199);
+		
+String urlimage3="C://Users//DELL//workspace//GGBadagry//contributorsign/"+s+".png";
+		
+		lbl3= new JLabel(new ImageIcon(urlimage1));
+		pAdmin.add(lbl3).setBounds(310, 220, 200, 190);
 		
 		
 			
@@ -391,27 +265,35 @@ public class search_contributor extends JFrame implements ActionListener, FocusL
 		}
 		
 		
+		try{
 		
-		
-		else{
-			search_contributor sam = new search_contributor();
-			sam.setSize(480, 439);
-			sam.setVisible(true);
-			sam.setResizable(false);
-			sam.setLocationRelativeTo(null);
+			
+			stmt=con.createStatement();
+			rs = stmt.executeQuery("select * from contributorreg  WHERE cid ='"+s+"'");
+			
+		/*if(s==null){
+			
+		}*/
+				while(rs.next()){
+			txtcfName.setText(rs.getString("fname"));
+			txtEmail.setText(rs.getString("email"));
+			txtpNumber.setText(rs.getString("cpnumber"));
+			txtnkName.setText(rs.getString("nextofkinname"));
+			txtnkNumber.setText(rs.getString("nextofkinnumber"));
+			
 		}}
 		
 		catch (Exception e) {
 			// TODO: handle exception
 		
-		
-		System.out.println("Error");
 		}
 	}
 	public static void main(String[] args) {
-		productdetails();
+		search_contributor sam= new search_contributor();
+		sam.setSize(500,450);
+		sam.setLocationRelativeTo(null);
+		sam.setVisible(true);
 		
-
 	}
 
 	@Override
