@@ -225,7 +225,7 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
      	exit_item.setFont(new Font("Times New Roman",Font.PLAIN,13));
      	exit_item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,ActionEvent.CTRL_MASK));
 		exit_item.setIcon(new ImageIcon("images//EXIT.PNG"));
-		//exit_item.addActionListener(h);
+		exit_item.addActionListener(this);
 
 		
 //#############################################
@@ -714,12 +714,13 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 	}
 	
 
+		
 		public void actionPerformed(ActionEvent e)
 		{
 			//String s=e.getActionCommand();
 			Object source=e.getSource();
 			
-			/*if(s.equals("Exit"))
+			if(source==exit_item)
 			{
 				
 				Icon warning=new ImageIcon("images//warning.png");
@@ -728,11 +729,11 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 
 				if(ans==JOptionPane.YES_OPTION)
               	{
-					
-					MainMenuFrame sam=new MainMenuFrame();
+					dispose();
+					/*MainMenuFrame sam=new MainMenuFrame();
 					sam.setVisible(true);
 					dis_charge_report.setDefaultLookAndFeelDecorated(true);
-					setVisible(false);
+					setVisible(false);*/
 					
               	}
 				else if(ans==JOptionPane.NO_OPTION)
@@ -742,7 +743,7 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 				
 				
 			}
-			*/
+			
 			//}//end save
 			
 			//klkk
@@ -858,9 +859,15 @@ private JButton btnNew,btnSave,btnModify,btnRemove,btnExit,btnSearch,btnOk;
 
               	if(ans==JOptionPane.YES_OPTION)
               	{
-              	/*	LoginFrame sam= new LoginFrame();
-              		sam.setVisible(true);
-              		*/
+              		
+              		LoginPage sa =new LoginPage();
+            		sa.setSize(300,250);
+            		sa.setLocationRelativeTo(null);
+            		sa.setVisible(true);
+            		LoginPage.setDefaultLookAndFeelDecorated(true);
+            		
+            		setVisible(false);
+              		
               	}
               	if(ans==JOptionPane.NO_OPTION)
               	{
